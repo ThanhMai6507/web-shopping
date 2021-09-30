@@ -8,7 +8,7 @@
                     <span>Main</span>
                 </li>
                 <li class="submenu"> 
-                    <a href="{{url('/home')}}"><i></i> <span>Dashboard</span></a>
+                    <a href="{{url('/admin/home')}}"><i></i> <span>Dashboard</span></a>
                 </li>
                 <li class="menu-title"> 
                     <span>Pages</span>

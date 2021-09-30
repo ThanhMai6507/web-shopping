@@ -30,7 +30,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
          </div>
          <div class="cssmenu">
 			<ul>
-			   <li class="active"><a href="#">My Account</a></li> 
+				@if (Auth::check())
+				<li class="active"><div>
+					<a class="dropdown-item" href="{{ route('logout') }}"
+					   onclick="event.preventDefault();
+									 document.getElementById('logout-form').submit();">
+						{{ __('Logout') }}
+					</a>
+
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+						@csrf
+					</form>
+				</div></a></li> 
+				@else
+			   	<li class="active"><a href="{{ url('/user-register') }}">Đăng Kí</a></li> 
+			  	 <a>|</a>
+			  	 <li class="active"><a href="{{ url('/user-login') }}">Đăng Nhập</a></li> 
+			   	@endif
 			</ul>
 		 </div>
 	</div>
