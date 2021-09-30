@@ -21,9 +21,9 @@ class AdminController extends Controller
         ];
         if (Auth::guard('admin')->attempt($arr)) {
 
-           // $user =Auth::guard('admin')->check();
+           // $user =Auth::guard('admin')->user()->name;
           // dd($user);
-            return view('admin.home') ;
+           return view('admin.home') ;
         } else {
             return view('admin.login');
         }

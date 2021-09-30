@@ -153,7 +153,7 @@
 									<img src="{{ asset('public/img/profiles/avatar-01.jpg') }}  " alt="User Image" class="avatar-img rounded-circle">
 								</div>
 								<div class="user-text">
-									{{-- <h6>{{ Auth::user()->name }}</h6> --}}
+									<h6>Auth::guard('admin')->user()->name;</h6>
 									<p class="text-muted mb-0"></p>
 								</div>
 							</div>

@@ -7,6 +7,7 @@
     <div class="page-header">
         <div class="row">
             <div class="col-sm-12">
+                <h3 class="page-title">Hế lô {{Auth::guard('admin')->user()->name}} nhaaa!</h3>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ul>
