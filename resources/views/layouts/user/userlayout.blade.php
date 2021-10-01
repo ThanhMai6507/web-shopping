@@ -88,16 +88,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  @php
 					  $cart_info = Cart::content();
 					  @endphp
+
 					  @foreach ( $cart_info as $caif)
 					  	{{$caif-> price}}
-
 						 	 @php
                                 $subtotal = $caif -> price * $caif ->qty;
                             @endphp
 					  @endforeach
 					/>
 		      <h4>
-				<p>Cart: {{number_format($subtotal).' '.'VND'}} (<span id="simpleCart_quantity">{{Cart::count()}} </span> items)</p><img src="images/bag.png" alt=""/><div class="clearfix"> </div></h4>
+				  @if(Cart::count() > 0) 
+					  <p>Cart: {{number_format($subtotal).' '.'VND'}} (<span id="simpleCart_quantity">{{Cart::count()}} </span> items)</p><img src="images/bag.png" alt=""/><div class="clearfix"> </div></h4>
+				  @else
+					<p>Cart: 0 <div class="clearfix"> </div></h4>
+				  @endif
+				
 		      </a></div>
 	          <div class="clearfix"> </div>
 	        </div>

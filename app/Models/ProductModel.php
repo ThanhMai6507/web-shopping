@@ -24,8 +24,9 @@ class ProductModel extends Model
     protected $table = 'product';
 
       // San pham thuoc 1 danh muc //with
-      public function product_category(){
+    public function product_category(){
         return $this -> belongsTo('App\Models\CategoryModel','category_id','id');
     }
+    
 
 }

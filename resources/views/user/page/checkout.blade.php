@@ -4,11 +4,12 @@
 <div class="container">
 	<div class="check">	 
 		<div class="col-md-9 cart-items">
-			 <h1>Giỏ Hàng Của Bạn </h1>
+			 <h1>Trang Thanh Toán </h1>
              <?php 
              $content = Cart::content();
             // dd($content);
              ?>
+              
 				<script>$(document).ready(function(c) {
 					$('.close').on('click', function(c){
 						$('.cart-header').fadeOut('slow', function(c){
@@ -22,6 +23,54 @@
                      {{ session('message') }}
                  </div>
                  @endif
+
+                 <form method="POST" action="{{ url('/save-order') }}">
+                    @csrf
+                    <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right"> Tên người nhận </label>
+    
+                        <div class="col-md-6">
+                            <input name="order_name" type="text" class="form-control"  value="{{ old('order_name') }}" />
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right"> Số điện thoại </label>
+    
+                        <div class="col-md-6">
+                            <input name="order_phone" type="text" class="form-control"  value="{{ old('order_phone') }}" />
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right"> Địa Chỉ </label>
+    
+                        <div class="col-md-6">
+                            <input name="order_adds" type="text" class="form-control"  value="{{ old('order_adds') }}" />
+
+                        </div>
+                    </div>
+                   
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            {{-- @foreach ($content as $key => $cart_ord)
+                                @php
+                                $subtotal1 = $cart_ord -> price * $cart_ord -> qty;
+                                @endphp
+                             <input name="order_name" type="hidden" value="{{$cart_ord -> name}}" /> 
+                             <input name="order_qty" type="hidden" value="{{$cart_ord -> qty}}" /> 
+                             <input name="order_price" type="hidden" value="{{$cart_ord -> id}}" /> 
+                            @endforeach --}}
+                            {{-- <input name="productId" type="hidden" value="{{$new -> id}}" />
+                            <input name="productId" type="hidden" value="{{$new -> id}}" />
+                            <input name="productId" type="hidden" value="{{$new -> id}}" /> --}}
+                            <button type="submit" class="btn btn-primary">
+                               Đặt Hàng
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
                @foreach ($content as $key => $cart)
                 <div class="cart-header">
                     <a href="{{url('delete-cart/'.$cart -> rowId)}}" class="close1" ></a>
@@ -44,7 +93,7 @@
                         </ul>
                         <div class="delivery">
                             @php
-                                $subtotal = $cart -> price * $cart ->qty;
+                                $subtotal = $cart -> price * $cart -> qty;
                             @endphp
                                 <p>Giá : {{number_format($cart -> price).' '.'VND'}}</p>
                                 {{-- <span>Delivered in 2-3 bussiness days</span> --}}
@@ -63,6 +112,7 @@
 				 <h3>Chi tiết giá cả</h3>
 				 <span>Toàn bộ</span>
                     @if ( Cart::count() > 0)
+                   
                         <span class="total1"> {{number_format($subtotal).' '.'VND'}}    </span>
                     @endif
 				 
@@ -87,7 +137,6 @@
 			
 			 
 			 <div class="clearfix"></div>
-			 <a class="order" href="{{url('/check-out')}}">Thanh Toán </a>
 			 {{-- <div class="total-item">
 				 <h3>OPTIONS</h3>
 				 <h4>COUPONS</h4>

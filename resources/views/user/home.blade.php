@@ -22,13 +22,16 @@
 					
                     @foreach ($product_new as $key => $new )
                         <div class="col_1_of_3 span_1_of_3 simpleCart_shelfItem">
-                            <form action="" method="POST">
+                            <form action="{{url('/save-cart')}}" method="POST">
                                 @csrf
                                 <div class="shop-holder">
                                     <div class="product-img">
                                         <a href="{{url('san-pham/'.$new -> slug_product)}}">
                                             <img width="225" height="265" src="{{asset('public/uploads/product/'.$new -> img_product)}}" class="img-responsive"  alt="item4"></a>
-                                    <button class="button item_add"></button>	                         </div>
+                                    <button type="submit" class="button item_add"></button> 
+                                    <input name="qty" type="hidden" value="1" />
+                                    <input name="productId" type="hidden" value="{{$new -> id}}" />
+                                   </div>
                                 </div>
                              </form>
                                 <div class="shop-content" style="height: 80px;">
@@ -65,7 +68,7 @@
                  <div class="section group">
                      @foreach ($product as $key => $sanpham)
                         <div class="col_1_of_3 simpleCart_shelfItem">
-                            <form action="{{Url('/save-cart')}}" method="POST">
+                            <form action="{{url('/save-cart')}}" method="POST">
                                 @csrf
                                 <div class="shop-holder">
                                     <div class="product-img">
