@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Buy_shop an E-Commerce online Shopping Category Flat Bootstarp responsive Website Template| 404 :: w3layouts</title>
+<title>Shop Báng Hàng Online </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Buy_shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -83,10 +83,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	    <div class="col-xs-4 header-bottom-right">
 	       <div class="box_1-cart">
-		     <div class="box_11"><a href="checkout.html">
-		      <h4><p>Cart: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</p><img src="images/bag.png" alt=""/><div class="clearfix"> </div></h4>
+		     <div class="box_11"><a href="{{url('/show-cart')}}">
+				<input type="hidden" 
+					  @php
+					  $cart_info = Cart::content();
+					  @endphp
+					  @foreach ( $cart_info as $caif)
+					  	{{$caif-> price}}
+
+						 	 @php
+                                $subtotal = $caif -> price * $caif ->qty;
+                            @endphp
+					  @endforeach
+					/>
+		      <h4>
+				<p>Cart: {{number_format($subtotal).' '.'VND'}} (<span id="simpleCart_quantity">{{Cart::count()}} </span> items)</p><img src="images/bag.png" alt=""/><div class="clearfix"> </div></h4>
 		      </a></div>
-	          <p class="empty"><a href="" class="simpleCart_empty">Empty Cart</a></p>
 	          <div class="clearfix"> </div>
 	        </div>
 	        <div class="search">	  

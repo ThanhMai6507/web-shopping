@@ -20,8 +20,7 @@ class AdminController extends Controller
             'password' => $request->password,
         ];
         if (Auth::guard('admin')->attempt($arr)) {
-
-           // $user =Auth::guard('admin')->user()->name;
+           // $user =Auth::guard('admin')->user()->email;
           // dd($user);
            return view('admin.home') ;
         } else {

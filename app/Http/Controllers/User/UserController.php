@@ -8,6 +8,7 @@ use App\Models\CategoryModel;
 use App\Models\ProductModel;
 use App\Models\Clinetlogin;
 use Auth;
+use Cart;
 
 class UserController extends Controller
 {

@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\AdminController;
 //use
 use App\Http\Controllers\User\IndexController;
-use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\CartController;
 
 
 /*
@@ -45,3 +45,8 @@ Route::get('/san-pham/{slug}',[ IndexController::class ,'detailProduct']);
 //user dang nhap vs dang ki 
 Route::get('/user-login',[UserController::class, 'loginUser']);
 Route::get('/user-register',[UserController::class, 'registerUser']);
+//cart
+Route::post('/save-cart',[CartController::class, 'saveCart']);
+Route::get('/show-cart',[CartController::class, 'showCart']);
+Route::get('/delete-cart/{rowId}',[CartController::class, 'deleteCart']);
+Route::post('/update-cart-quantity',[CartController::class, 'updateCart']);

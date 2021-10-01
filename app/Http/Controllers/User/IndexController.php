@@ -6,17 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CategoryModel;
 use App\Models\ProductModel;
+use Cart;
 
 
 class IndexController extends Controller
 {
     public function index(){
-        
         $category = CategoryModel::orderBy('id','ASC')->get();
 
-
         $product = ProductModel::orderBy('id','ASC')->paginate(12);
-        $product_new = ProductModel::orderBy('id','ASC')->where('hot',0)->paginate(3);
+        $product_new = ProductModel::orderBy('id','ASC')->where('hot',0)->get();
         return view('user.home')->with(compact('category','product','product_new'));
     }
 

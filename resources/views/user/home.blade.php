@@ -22,16 +22,20 @@
 					
                     @foreach ($product_new as $key => $new )
                         <div class="col_1_of_3 span_1_of_3 simpleCart_shelfItem">
-                            <div class="shop-holder">
-                                <div class="product-img">
-                                    <a href="{{url('san-pham/'.$new -> slug_product)}}">
-                                        <img width="225" height="265" src="{{asset('public/uploads/product/'.$new -> img_product)}}" class="img-responsive"  alt="item4"></a>
-                                <a href="" class="button item_add"></a>	                         </div>
-                            </div>
-                            <div class="shop-content" style="height: 80px;">
-                                    <h3><a href="{{url('san-pham/'.$new -> slug_product)}}">{{$new -> name_product}}</a></h3>
-                                    <span class="amount item_price">{{number_format($new -> price).' '.'VND'}}</span>
-                            </div>
+                            <form action="" method="POST">
+                                @csrf
+                                <div class="shop-holder">
+                                    <div class="product-img">
+                                        <a href="{{url('san-pham/'.$new -> slug_product)}}">
+                                            <img width="225" height="265" src="{{asset('public/uploads/product/'.$new -> img_product)}}" class="img-responsive"  alt="item4"></a>
+                                    <button class="button item_add"></button>	                         </div>
+                                </div>
+                             </form>
+                                <div class="shop-content" style="height: 80px;">
+                                        <h3><a href="{{url('san-pham/'.$new -> slug_product)}}">{{$new -> name_product}}</a></h3>
+                                        <span class="amount item_price">{{number_format($new -> price).' '.'VND'}}</span>
+                                </div>
+                            
                         </div>
                         @endforeach
                         {{-- {{$product_new ->links('pagination::bootstrap-4')}} --}}
@@ -61,16 +65,21 @@
                  <div class="section group">
                      @foreach ($product as $key => $sanpham)
                         <div class="col_1_of_3 simpleCart_shelfItem">
-                            <div class="shop-holder">
-                                <div class="product-img">
-                                    <a href="{{url('san-pham/'.$new -> slug_product)}}">
-                                        <img width="225" height="265" src="{{asset('public/uploads/product/'.$sanpham -> img_product)}}" class="img-responsive"  alt="item4"></a>
-                                    <a href="#" class="button item_add"> </a>
+                            <form action="{{Url('/save-cart')}}" method="POST">
+                                @csrf
+                                <div class="shop-holder">
+                                    <div class="product-img">
+                                        <a href="{{url('san-pham/'.$sanpham -> slug_product)}}">
+                                            <img width="225" height="265" src="{{asset('public/uploads/product/'.$sanpham -> img_product)}}" class="img-responsive"  alt="item4"></a>
+                                            <button type="submit" class="button item_add"></button> 
+                                            <input name="qty" type="hidden" value="1" />
+                                            <input name="productId" type="hidden" value="{{$sanpham -> id}}" />
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                             <div class="shop-content" style="height: 80px; ">
-                                    <a href="{{url('san-pham/'.$new -> slug_product)}}" style="text-align: center; font-size: 14px;">{{$sanpham -> name_product}}</a>
-                                    <div><a  href="{{url('san-pham/'.$new -> slug_product)}}" rel="tag" style="font-size: 12px;" ></a></div>
+                                    <a href="{{url('san-pham/'.$sanpham -> slug_product)}}" style="text-align: center; font-size: 14px;">{{$sanpham -> name_product}}</a>
+                                    <div><a  href="{{url('san-pham/'.$sanpham -> slug_product)}}" rel="tag" style="font-size: 12px;" ></a></div>
                                     <span class="amount item_price">{{number_format($sanpham -> price).' '.'VND'}}</span>
                             </div>
                         </div>
