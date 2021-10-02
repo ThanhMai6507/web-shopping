@@ -175,7 +175,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="footer_bottom">
 			<div class="copy">
-                <p>Copyright © 2015 Buy_shop. All Rights Reserved.<a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+                <p>Copyright © Phạm Việt Khánh <a href="#" target="_blank"></a> </p>
 	        </div>
 	    </div>
 	</div>

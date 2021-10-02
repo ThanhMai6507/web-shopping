@@ -47,9 +47,11 @@
             <div class="col-md-5 row_3">
                 <div class="about-block-content">
                 <div class="border-add"></div>
-                    <h4>About Us</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                    <h4>Giới Thiệu </h4>
+                    <p>Tạo cho bạn
+                        một phong cách mới!</p>
+                    <p>Thành công không phải lúc nào cũng là về sự vĩ đại. Đó là về tính nhất quán. Kiên trì
+                    </p>
                     <p>		        	</p></div>
                     <img src="images/pic9.jpg" class="img-responsive" alt=""/>
             </div>

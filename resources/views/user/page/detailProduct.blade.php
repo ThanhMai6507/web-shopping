@@ -18,7 +18,8 @@
                    <p>{{$product ->description}}</p>
                     <div class="dropdown_top">
                       <div class="dropdown_left">
-                        <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"metro1"}'>
+                          
+                        <select  class="dropdown" tabindex="10" data-settings='{"wrapperClass":"metro1"}'>
                            <option value="0">Select size</option>	
                            <option value="1">M</option>
                            <option value="2">L</option>
@@ -42,8 +43,12 @@
                          <div class="head_desc"><a href="#"></a><img src="images/review.png" alt=""/></li></div>
                           <div class="clearfix"></div>
                         </div>
-                         <div class="size_2-right"><a href="#" class="item_add item_add1 btn_5" value="">Add to Cart </a></div>
-                     
+                        <form action="{{url('/save-cart')}}" method="POST">
+                            @csrf
+                            <input name="qty" type="hidden" value="1" />
+                            <input name="productId" type="hidden" value="{{$product -> id}}" />
+                            <button class="btn btn-primary" type="submit" >Add to Cart</button> 
+                        </form>
                     </div>
                </div>
                  <div class="clearfix"></div>

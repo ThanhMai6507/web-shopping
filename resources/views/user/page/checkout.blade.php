@@ -50,20 +50,13 @@
 
                         </div>
                     </div>
-                   
+                  
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            {{-- @foreach ($content as $key => $cart_ord)
-                                @php
-                                $subtotal1 = $cart_ord -> price * $cart_ord -> qty;
-                                @endphp
-                             <input name="order_name" type="hidden" value="{{$cart_ord -> name}}" /> 
-                             <input name="order_qty" type="hidden" value="{{$cart_ord -> qty}}" /> 
-                             <input name="order_price" type="hidden" value="{{$cart_ord -> id}}" /> 
-                            @endforeach --}}
                             {{-- <input name="productId" type="hidden" value="{{$new -> id}}" />
                             <input name="productId" type="hidden" value="{{$new -> id}}" />
                             <input name="productId" type="hidden" value="{{$new -> id}}" /> --}}
+                            
                             <button type="submit" class="btn btn-primary">
                                Đặt Hàng
                             </button>
@@ -112,8 +105,9 @@
 				 <h3>Chi tiết giá cả</h3>
 				 <span>Toàn bộ</span>
                     @if ( Cart::count() > 0)
-                   
-                        <span class="total1"> {{number_format($subtotal).' '.'VND'}}    </span>
+                    <span>
+                        {{Cart::priceTotal(0,',','.')}} VND
+                    </span>
                     @endif
 				 
 				 <span>Chiết khấu</span>
@@ -127,7 +121,7 @@
 			   <li class="last_price">
                 @if ( Cart::count() > 0)
                     <span>
-                        {{number_format($subtotal).' '.'VND'}}    
+                        {{Cart::priceTotal(0,',','.')}} VND 
                     </span>
                 @endif
                    

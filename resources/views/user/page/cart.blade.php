@@ -4,9 +4,15 @@
 <div class="container">
 	<div class="check">	 
 		<div class="col-md-9 cart-items">
-			 <h1>Giỏ Hàng Của Bạn </h1>
+            @if (Cart::count() > 0)
+                 <h1>Giỏ Hàng Của Bạn </h1>
+            @else
+                <h1>Giỏ Hàng Của Bạn Hiện Đang Trống </h1>
+            @endif
+			 
              <?php 
              $content = Cart::content();
+             $items = Cart::count();
             // dd($content);
              ?>
 				<script>$(document).ready(function(c) {
@@ -22,6 +28,9 @@
                      {{ session('message') }}
                  </div>
                  @endif
+                 {{-- @php
+                    $subtotal1  = 0;
+                 @endphp --}}
                @foreach ($content as $key => $cart)
                 <div class="cart-header">
                     <a href="{{url('delete-cart/'.$cart -> rowId)}}" class="close1" ></a>
@@ -46,7 +55,7 @@
                             @php
                                 $subtotal = $cart -> price * $cart ->qty;
                             @endphp
-                                <p>Giá : {{number_format($cart -> price).' '.'VND'}}</p>
+                                <p>Giá : {{number_format($cart -> price,0,',','.').' '.'VND'}}</p>
                                 {{-- <span>Delivered in 2-3 bussiness days</span> --}}
                                 <div class="clearfix"></div>
                         </div>	
@@ -55,15 +64,20 @@
                     </div>
                  </div>
                @endforeach
+
+                 
+
+              
 			
 		 </div>
 		 <div class="col-md-3 cart-total">
-			 <a class="continue" href="#">Tiếp Tục Mua Sắm</a>
+			 <a class="continue" href="{{url('/')}}">Tiếp Tục Mua Sắm</a>
 			 <div class="price-details">
 				 <h3>Chi tiết giá cả</h3>
 				 <span>Toàn bộ</span>
+               
                     @if ( Cart::count() > 0)
-                        <span class="total1"> {{number_format($subtotal).' '.'VND'}}    </span>
+                        <span class="total1"> {{Cart::priceTotal(0,',','.')}} VND   </span>
                     @endif
 				 
 				 <span>Chiết khấu</span>
@@ -77,7 +91,7 @@
 			   <li class="last_price">
                 @if ( Cart::count() > 0)
                     <span>
-                        {{number_format($subtotal).' '.'VND'}}    
+                        {{Cart::priceTotal(0,',','.')}} VND
                     </span>
                 @endif
                    
@@ -87,7 +101,10 @@
 			
 			 
 			 <div class="clearfix"></div>
-			 <a class="order" href="{{url('/check-out')}}">Thanh Toán </a>
+             @if (Cart::count() > 0)
+                 <a class="order" href="{{url('/check-out')}}">Thanh Toán </a>
+             @endif
+			
 			 {{-- <div class="total-item">
 				 <h3>OPTIONS</h3>
 				 <h4>COUPONS</h4>

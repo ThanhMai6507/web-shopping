@@ -43,9 +43,17 @@
                             </div>
                             <div class="size_2">
                               <div class="size_2-left"> 
-                               <input type="text" class="item_quantity quantity_1" value="1">
+                               {{-- <input type="text" class="item_quantity quantity_1" value="1"> --}}
                             </div>
-                            <div class="size_2-right"><input type="button" class="item_add add3" value=""></div>
+                            <div class="size_2-right">
+                                <form action="{{url('/save-cart')}}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="item_add add3"></button> 
+                                    
+                                    <input name="qty" type="hidden" value="1" />
+                                    <input name="productId" type="hidden" value="{{$sanpham -> id}}" />
+                                </form>
+                            </div>
                             <div class="clearfix"> </div>
                          </div>
                      </div>

@@ -68,7 +68,9 @@ class CartController extends Controller
         $order_cart-> order_name = $data['order_name'];
         $order_cart-> order_address = $data['order_adds'];
         $order_cart-> order_phone = $data['order_phone'];
+        $order_cart-> order_totol = Cart::priceTotal(0,',','');
         $order_cart-> payment_method = "1";
+        $order_cart-> order_qty = Cart::count();
         $order_cart -> save();
         $order_cart_Id = $order_cart->id;
         $content = Cart::content();
@@ -79,19 +81,28 @@ class CartController extends Controller
             $order_cart_detail-> order_qty = $v_content -> qty;
             $order_cart_detail-> order_price = $price_total;
             $order_cart_detail-> order_card_id = $order_cart_Id;
-            //dd($order_cart_detail);
+            //dd($tong2);
             $order_cart_detail -> save();
            }
           if($order_cart -> save() == true && $order_cart_detail -> save() == true) {
             Cart::destroy();
-          }
-        return redirect('/tks-out');
+            }
 
-    }
-
-    public function tksOut(){
         $category = CategoryModel::orderBy('id','ASC')->get();
+
         return view('user.page.tks')->with(compact('category'));
+       // return redirect('/tks-out');
     }
+
+    // public function tksOut(){
+    //     if(Cart::count =) {
+    //         $category = CategoryModel::orderBy('id','ASC')->get();
+    //         return view('user.page.tks')->with(compact('category'));
+    //     }
+    //     else{
+    //         return redirect('/');
+    //     }
+       
+    // }
 
 }

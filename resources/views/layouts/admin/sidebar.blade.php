@@ -44,7 +44,7 @@
                 <li class="submenu">
                     <a href="#"> <span> Đơn Hàng </span> <span class="ti-angle-down"></span></a>
                     <ul style="display: none;">
-                        <li><a href="{{route('menu-type.index')}}"> Đơn Hàng </a></li>
+                        <li><a href="{{url('/admin/order')}}"> Đơn Hàng </a></li>
                     </ul>
                 </li>
                 

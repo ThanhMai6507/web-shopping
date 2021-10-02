@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OrderController;
 //use
 use App\Http\Controllers\User\IndexController;
 use App\Http\Controllers\User\CartController;
@@ -36,6 +37,13 @@ Route::resource('/admin/slide', SlideController::class)->middleware('checklogin'
 Route::resource('/admin/menu-type', MenuTypeController::class)->middleware('checklogin');
 Route::resource('/admin/category', CategoryController::class)->middleware('checklogin');
 Route::resource('/admin/product', ProductController::class)->middleware('checklogin');
+Route::get('/admin/order', [OrderController::class, 'index'])->middleware('checklogin');
+//don hang
+Route::get('/admin/order-detail/{id}', [OrderController::class, 'orderDetail'])->middleware('checklogin');
+Route::get('/admin/order-delete/{id}', [OrderController::class, 'orderDestroy'])->middleware('checklogin');
+Route::get('/admin/order-accept/{id}', [OrderController::class, 'acceptOrder'])->middleware('checklogin');
+Route::get('/admin/order-cancel/{id}', [OrderController::class, 'cancelOrder'])->middleware('checklogin');
+Route::get('/admin/order-delivery/{id}', [OrderController::class, 'deliveryOrder'])->middleware('checklogin');
 
 
 //user
@@ -50,6 +58,6 @@ Route::post('/save-cart',[CartController::class, 'saveCart']);
 Route::get('/show-cart',[CartController::class, 'showCart']);
 Route::get('/delete-cart/{rowId}',[CartController::class, 'deleteCart']);
 Route::post('/update-cart-quantity',[CartController::class, 'updateCart']);
-Route::get('/check-out',[CartController::class, 'checkOut']);
+Route::get('/check-out',[CartController::class, 'checkOut'])->middleware('checkCart');
 Route::post('/save-order',[CartController::class, 'saveOrder']);
-Route::get('/tks-out',[CartController::class, 'tksOut']);
+// Route::get('/tks-out',[CartController::class, 'tksOut']);
