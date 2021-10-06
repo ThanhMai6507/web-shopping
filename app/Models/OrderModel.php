@@ -12,7 +12,7 @@ class OrderModel extends Model
         'order_name ','order_address','order_phone','payment_method','order_totol','status'
     ];
 
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     protected $table = 'order_cart';
 
     public function order_cart_detail(){

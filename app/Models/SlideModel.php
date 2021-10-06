@@ -12,7 +12,7 @@ class SlideModel extends Model
         'ten_slide ','img_slide','trang_thai'
     ];
 
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     protected $table = 'slide_models';
 
     

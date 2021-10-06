@@ -12,7 +12,7 @@ class MenuType extends Model
         'menu_type ','Slug_Menu_type','Trang_Thai'
     ];
 
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     protected $table = 'menutype';
 
     // Menu Chứa nhiều thể loại

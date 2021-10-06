@@ -20,7 +20,7 @@ class ProductModel extends Model
         'Trang_Thai'
     ];
 
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     protected $table = 'product';
 
       // San pham thuoc 1 danh muc //with

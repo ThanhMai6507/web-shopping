@@ -12,7 +12,7 @@ class OrderDetialModel extends Model
         'order_card_id ','order_name_product','order_qty','order_price'
     ];
 
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     protected $table = 'order_card_detail';
 
     public function order_card(){

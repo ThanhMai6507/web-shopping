@@ -12,7 +12,7 @@ class CategoryModel extends Model
         'category_name ','slug_category','trang_Thai','menu_id'
     ];
 
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     protected $table = 'category';
 
     // danh muc thuoc 1 menu //with
