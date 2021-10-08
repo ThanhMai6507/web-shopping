@@ -32,13 +32,21 @@
                         @method('PUT')
                         @csrf
                         <div class="form-group">
-                            <label> Tên Category </label>
+                            <label> Tên  Danh Mục </label>
                             <input type="text" name="category_name" value="{{$editcategory -> category_name}}" onkeyup="ChangeToSlug()" id="slug"  class="form-control">
                         </div>
                         <div class="form-group">
-                          <label> Tên Category </label>
+                          <label> Slug  Danh Mục </label>
                             <input type="text" name="slug_category" value="{{$editcategory -> slug_category}}"  id="convert_slug" class="form-control">
-                        </div>  
+                        </div> 
+                        <div class="form-group">
+                            <label> Mô Tả  Danh Mục </label>
+                            <input type="text" name="category_desc" value="{{$editcategory -> category_desc}}"  class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label> TỪ Khóa  Danh Mục </label>
+                            <input type="text" name="category_keywords" value="{{$editcategory -> category_keywords}}" class="form-control">
+                        </div>
                         <div class="form-group">
                             <label> Thuộc Menu </label><br/>
                                 <select name="category_menu" class="form-control">

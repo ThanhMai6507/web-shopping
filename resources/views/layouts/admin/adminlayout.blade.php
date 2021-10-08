@@ -214,6 +214,11 @@
 		<!-- Custom JS -->
 		<script  src="{{ asset('js/script.js') }} "></script>
 
+		<script src="//cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
+		<script type="text/javascript">
+			CKEDITOR.replace('noidung');
+		</script>
+
         <script type="text/javascript">
  
             function ChangeToSlug()

@@ -2,11 +2,17 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Shop Báng Hàng Online </title>
+<title> {{$meta_title}} </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Buy_shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+{{-- SEO --}}
+<meta name="description" content="{{$meta_desc}}">
+<meta name="keywords" content="{{$meta_keywords}}" />
+<meta name="robots" content="INDEX,FOLLOW"/>
+<link  rel="canonical" href="{{$url_canonical}}" />
+<meta name="author" content="">
+<link  rel="icon" type="image/x-icon" href="" />
+{{-- end seo --}}
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="{{ asset('public/User/css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -77,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						  </div>
 						</div>
 			    </li>
-				<li><a class="color4" href="about.html"> Giới Thiệu </a></li>				
+				<li><a class="color4" href="#"> Giới Thiệu </a></li>				
 			  </ul> 
 			</div>
 		</div>

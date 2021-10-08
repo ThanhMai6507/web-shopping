@@ -46,6 +46,7 @@ class ProductController extends Controller
                 [
                     'name_product' => 'required|unique:product|max:250',
                     'slug_product' => 'required|unique:product|max:250',
+                    'product_keywords' => 'required',
                     'code' => 'required',
                     'description' => 'required',
                     'img_product' => 'required|image|mimes:jgp,png,jpeg,git,svg|max:4048|dimensions:min_width=100,min_height=100,max_width=10000,max_height=10000',   
@@ -77,6 +78,7 @@ class ProductController extends Controller
             $product -> name_product = $data['name_product'];
             $product -> slug_product = $data['slug_product'];
             $product -> code         = $data['code'];
+            $product -> product_keywords         = $data['product_keywords'];
             $product -> description = $data['description'];
             $product -> price       = $data['price'];
             $product -> category_id = $data['category_product_id'];
@@ -131,14 +133,17 @@ class ProductController extends Controller
     {
         $data = $request-> validate(
             [
-                'name_product' => 'required|unique:product|max:250',
-                'slug_product' => 'required|unique:product|max:250',
+                'name_product' => 'required|max:250',
+                'slug_product' => 'required|max:250',
+                'product_keywords' => 'required',
+                'description' => 'required',
                 'code' => 'required',
+                'price' => 'required',
                // 'description' => 'required',
                 //'img_product' => 'required|image|mimes:jgp,png,jpeg,git,svg|max:4048|dimensions:min_width=100,min_height=100,max_width=10000,max_height=10000',   
                 //'price' => 'required',
                 'category_product_id' => 'required',
-               // 'detail' => 'required|min:100',
+                 'detail' => 'required|min:100',
                 'trangthai' => 'required',
             ],
             [
@@ -148,8 +153,6 @@ class ProductController extends Controller
                 'slug_product.required' => 'Điền Slug Sản Phẩm',
                 'code.unique' => 'Code đã có',
                 'code.required' => 'Điền code Sản Phẩm',
-                'description.unique' => 'Tóm Tắt đã có',
-                'description.required' => 'Điền Tóm Tắt Sản Phẩm',
                 'img_product.unique' => 'img đã có',
                 'img_product.required' => 'Ảnh Sản Phẩm',
                 'price.unique' => 'Giá đã có',
@@ -163,6 +166,7 @@ class ProductController extends Controller
         $product -> name_product = $data['name_product'];
         $product -> slug_product = $data['slug_product'];
         $product -> code         = $data['code'];
+        $product -> product_keywords         = $data['product_keywords'];
         $product -> description = $data['description'];
         $product -> price       = $data['price'];
         $product -> category_id = $data['category_product_id'];

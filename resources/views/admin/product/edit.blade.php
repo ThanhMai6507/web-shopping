@@ -44,21 +44,25 @@
                             <input type="file" name="img_product"value="{{$product_edit -> img_product}}" class="form-control">
                         </div> 
                         <div class="form-group">
+                            <label> Từ Khóa Sản Phẩm  </label>
+                            <input type="text" name="product_keywords" value="{{$product_edit -> product_keywords}}" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label> code  </label>
                             <input type="text" name="code" value=" {{$product_edit -> code}}" class="form-control">
                         </div>
                         <div class="form-group">
                             <label> Tóm Tắt  </label>
-                            <textarea name="description" value=" {{$product_edit -> description}}" class="form-control" ></textarea>
+                            <textarea name="description" value="" class="form-control" >{{$product_edit ->description}}</textarea>
                         </div>
                         <div class="form-group">
                             <label> Giá   </label>
-                            <input type="number" name="price" value=" 12312 " class="form-control">
+                            <input type="number" name="price" value="{{$product_edit -> price}}" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label> Chi tiết  </label>
-                            <textarea name="detail" class="form-control" value="{{$product_edit -> category_name}}" ></textarea>
+                            <textarea name="detail" id="noidung" class="form-control" value="" >{{$product_edit -> detail}}</textarea>
                         </div>
                        
 

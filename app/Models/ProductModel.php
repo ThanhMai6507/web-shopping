@@ -16,6 +16,7 @@ class ProductModel extends Model
         'img_product',
         'price',
         'category_id',
+        'product_keywords',
         'detail',
         'Trang_Thai'
     ];

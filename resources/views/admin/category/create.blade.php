@@ -40,6 +40,16 @@
                         </div>  
 
                         <div class="form-group">
+                            <label> Mô Tả Danh Muc </label>
+                            <input type="text" name="category_desc" onkeyup="ChangeToSlug()" id="slug"  class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label> Từ Khóa Danh Muc </label>
+                            <input type="text" name="category_keywords" onkeyup="ChangeToSlug()" id="slug"  class="form-control">
+                        </div>
+
+                        <div class="form-group">
                             <label> Thuộc Menu </label><br/>
                                 <select name="category_menu" class="form-control">
                                     <option value="0" >Không Thuộc Menu Nào</option>
@@ -47,7 +57,6 @@
                                     <option value="{{$menuid -> id}}" >{{$menuid -> menu_type}}</option>
                                     @endforeach
                                 </select>
-                           
                         </div>
 
                         <div class="form-group">

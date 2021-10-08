@@ -183,7 +183,7 @@ body a{
 	color:#000;
 	line-height: 1.8em;
 	text-transform:uppercase
-	margin-bottom: 4%;
+	/* margin-bottom : 4%; */
 }
 .h_nav h4.top{
 	margin-top: 12%;
@@ -191,6 +191,7 @@ body a{
 .h_nav ul li{
 	display: block;
 }
+
 .h_nav ul li a{
 	display:block;
 	font-size:1em;
@@ -285,7 +286,7 @@ body a{
 }
 /*-- search Box --*/
 .banner {
-	background: url(../images/banner.jpg) no-repeat center top;
+
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -2227,9 +2228,9 @@ p.cart {
 .cart-header2 {  
   position: relative;  
 }
-.cart-total {
+/* .cart-total {
   
-}
+} */
 a.order {
   background:#333;
   padding: 10px 20px;
@@ -2678,7 +2679,7 @@ ul.single_social li {
 }
 @media (max-width:736px){
 .header-bottom-left {
-  width: 100%% !important;
+  width: 100% !important;
 }
 .col-xs-4.header-bottom-right {
   width: 100%;
@@ -2854,13 +2855,13 @@ li.middle {
 	padding:0 10px !important;
 }
 .header-bottom-left {
-  width: 100%% !important;
+  width: 100% !important;
 }
 .one-fifth select {
   padding: 5px 0px 5px 0;
 }
 .header-bottom-left {
-  width: 100%% !important;
+  width: 100% !important;
   padding: 0 !important;
 }
 .menu {
@@ -3011,6 +3012,3 @@ ul#etalage {
 a.b-home {
  padding: 0.3em 0.5em;
 }
-
-
-

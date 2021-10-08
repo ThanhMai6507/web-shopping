@@ -43,6 +43,10 @@
                             <input type="file" name="img_product" class="form-control">
                         </div> 
                         <div class="form-group">
+                            <label> Từ Khóa Sản Phẩm  </label>
+                            <input type="text" name="product_keywords"  class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label> code  </label>
                             <input type="text" name="code" class="form-control">
                         </div>
@@ -57,7 +61,7 @@
 
                         <div class="form-group">
                             <label> Chi tiết  </label>
-                            <textarea name="detail" class="form-control" ></textarea>
+                            <textarea name="detail" id="noidung" class="form-control" ></textarea>
                         </div>
                        
 

@@ -9,7 +9,7 @@ class CategoryModel extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'category_name ','slug_category','trang_Thai','menu_id'
+        'category_name ','slug_category','category_desc','category_keywords','trang_Thai','menu_id'
     ];
 
     protected $primaryKey = 'id';
