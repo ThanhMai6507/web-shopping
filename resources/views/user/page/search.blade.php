@@ -20,7 +20,7 @@
                 </div>
                 <!-- grids_of_4 -->
                 <div class="row">
-                    @foreach ($product as $key => $sanpham)
+                    @foreach ($product_search as $key => $sanpham)
                         <div class="grids_of_4">
                             <div class="grid1_of_4 simpleCart_shelfItem">
                                 <div class="content_box">

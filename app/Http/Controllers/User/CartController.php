@@ -15,6 +15,8 @@ class CartController extends Controller
     public function saveCart(Request $request){
         $productId = $request -> productId;
         $quantity = $request -> qty;
+        $product_size = $request -> productSize;
+        //dd($product_size);
         $product_info = ProductModel::where('id',$productId)->first();
         //dd($product_info -> name_product);
         //dd($quantity);
@@ -25,7 +27,9 @@ class CartController extends Controller
         $data ['price'] = $product_info->price;
         $data ['weight'] = '123';
         $data ['options']['image'] = $product_info -> img_product;
+        //$data  ['options']['size'] = $product_info -> img_product;
         Cart::add($data);
+       // dd($data);
         return redirect('/show-cart');
     }
 

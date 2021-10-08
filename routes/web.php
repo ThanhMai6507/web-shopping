@@ -61,3 +61,7 @@ Route::post('/update-cart-quantity',[CartController::class, 'updateCart']);
 Route::get('/check-out',[CartController::class, 'checkOut'])->middleware('checkCart');
 Route::post('/save-order',[CartController::class, 'saveOrder']);
 // Route::get('/tks-out',[CartController::class, 'tksOut']);
+
+//tim kiem 
+Route::post('/tim-kiem',[ IndexController::class ,'timkiem']);
+Route::post('/timkiem-ajax',[ IndexController::class ,'timkiem_ajax']);
