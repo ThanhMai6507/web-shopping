@@ -9,7 +9,9 @@ class SlideModel extends Model
 {
     use HasFactory; public $timestamps = false;
     protected $fillable = [
-        'ten_slide ','img_slide','trang_thai'
+        'ten_slide ',
+        'img_slide',
+        'trang_thai'
     ];
 
     protected $primaryKey = 'id';

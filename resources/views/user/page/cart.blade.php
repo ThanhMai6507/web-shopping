@@ -88,7 +88,12 @@
                     <span class="total1">---</span>
                     <span>Phí vận chuyển</span>
                     <span class="total1">---</span>
+                   
+                  
+
                     <div class="clearfix"></div>
+
+
                 </div>
                 <ul class="total_price">
                     <li class="last_price">
@@ -110,13 +115,7 @@
                 @if (Cart::count() > 0)
                     <a class="order" href="{{ url('/check-out') }}">Thanh Toán </a>
                 @endif
-
-                {{-- <div class="total-item">
-				 <h3>OPTIONS</h3>
-				 <h4>COUPONS</h4>
-				 <a class="cpns" href="#">Apply Coupons</a>
-				 <p><a href="#">Log In</a> to use accounts - linked coupons</p>
-			 </div> --}}
+              
             </div>
         </div>
     </div>

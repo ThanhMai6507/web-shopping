@@ -32,11 +32,11 @@
                         @csrf
                         <div class="form-group">
                             <label> Tên Menu </label>
-                            <input type="text" name="menutype" onkeyup="ChangeToSlug()" id="slug" class="form-control">
+                            <input type="text" value="{{old('menutype')}}" name="menutype" onkeyup="ChangeToSlug()" id="slug" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Slug Menu </label>
-                            <input type="text" name="slug_menu_type" id="convert_slug" class="form-control">
+                            <input type="text" value="{{old('slug_menu_type')}}" name="slug_menu_type" id="convert_slug" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Default Select</label><br />

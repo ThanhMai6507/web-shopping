@@ -25,7 +25,8 @@
                             <div class="grid1_of_4 simpleCart_shelfItem">
                                 <div class="content_box">
                                     <a href="{{ url('san-pham/' . $sanpham->slug_product) }}"></a>
-                                    <div class="view view-fifth"><a href="{{ url('san-pham/' . $sanpham->slug_product) }}">
+                                    <div class="view view-fifth"><a
+                                            href="{{ url('san-pham/' . $sanpham->slug_product) }}">
                                             <img src="{{ asset('public/uploads/product/' . $sanpham->img_product) }}"
                                                 width="188" height="183" class="img-responsive" alt="">
                                             <div class="mask1">
@@ -36,7 +37,8 @@
                                     <a href="{{ url('san-pham/' . $sanpham->slug_product) }}" style="font-size: 15px;">
                                         {{ $sanpham->name_product }}</a>
                                     <div class="size_1">
-                                        <span class="item_price">{{ number_format($sanpham->price) . ' ' . 'VND' }}</span>
+                                        <span
+                                            class="item_price">{{ number_format($sanpham->price) . ' ' . 'VND' }}</span>
                                         <select class="item_Size">
                                             <option value="Small">L</option>
                                             <option value="Medium">S</option>

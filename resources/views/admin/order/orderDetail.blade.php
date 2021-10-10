@@ -48,7 +48,14 @@
                         </a> --}}
                                 <p> Đơn Hàng Đang Được Thực Hiện</p>
                             @endif
-
+                            @if ($order_us->status != 3)
+                                <a class="btn btn-sm">
+                                    <a class="btn btn-danger"
+                                        onclick="return confirm('Ban muon xoa ?')"
+                                        href="{{ url('admin/order-delete', [$order_us->id]) }}">Xóa</a>
+                                </a>
+                            @endif
+                           
                         </div>
                     </div>
                 </div>
@@ -96,7 +103,11 @@
 
                                     </div>
                                 </div>
-                                <h5> Tổng Tiền:{{ number_format($order_us->order_totol, 0, ',', '.') . ' ' . 'VND' }} </h5>
+                                @if ($order_us -> coupon_status == 1)
+                                 <h5> Đơn Hàng Này Được Sử Dụng Mã Giảm Giá </h5>
+                                @endif
+                               
+                                <h3> Tổng Tiền:    {{ number_format($order_us->order_totol, 0, ',', '.') . ' ' . 'VND' }} </h3>
 
                                 <!-- Edit Details Modal -->
 

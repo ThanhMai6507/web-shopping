@@ -9,7 +9,9 @@ class MenuType extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'menu_type ','Slug_Menu_type','Trang_Thai'
+        'menu_type ',
+        'Slug_Menu_type',
+        'Trang_Thai'
     ];
 
     protected $primaryKey = 'id';

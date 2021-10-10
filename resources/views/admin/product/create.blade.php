@@ -32,36 +32,36 @@
                         @csrf
                         <div class="form-group">
                             <label> Tên Sản Phẩm </label>
-                            <input type="text" name="name_product" onkeyup="ChangeToSlug()" id="slug" class="form-control">
+                            <input type="text" name="name_product" value="{{old('name_product')}}" onkeyup="ChangeToSlug()" id="slug" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Slug Sản Phẩm </label>
-                            <input type="text" name="slug_product" id="convert_slug" class="form-control">
+                            <input type="text" name="slug_product" value="{{old('slug_product')}}" id="convert_slug" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Img</label>
-                            <input type="file" name="img_product" class="form-control">
+                            <input type="file" name="img_product" value="{{old('img_product')}}" class="form-control">
                         </div>
                         <div class="form-group">
                             <label> Từ Khóa Sản Phẩm </label>
-                            <input type="text" name="product_keywords" class="form-control">
+                            <input type="text" name="product_keywords" value="{{old('product_keywords')}}" class="form-control">
                         </div>
                         <div class="form-group">
                             <label> code </label>
-                            <input type="text" name="code" class="form-control">
+                            <input type="text" name="code" value="{{old('code')}}" class="form-control">
                         </div>
                         <div class="form-group">
                             <label> Tóm Tắt </label>
-                            <textarea name="description" class="form-control"></textarea>
+                            <textarea name="description" value="{{old('description')}}" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label> Giá </label>
-                            <input type="number" name="price" class="form-control">
+                            <input type="number" name="price" value="{{old('price')}}" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label> Chi tiết </label>
-                            <textarea name="detail" id="noidung" class="form-control"></textarea>
+                            <textarea name="detail" id="noidung" value="{{old('detail')}}" class="form-control"></textarea>
                         </div>
 
 

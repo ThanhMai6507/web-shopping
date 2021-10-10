@@ -88,6 +88,23 @@
                                             </div>
                                         </div>
                                     </form>
+
+                                    {{-- <form >
+                                       @csrf
+                                        <div class="shop-holder">
+                                            <div class="product-img">
+                                                <a href="{{ url('san-pham/' . $sanpham->slug_product) }}">
+                                                    <img width="225" height="265"
+                                                        src="{{ asset('public/uploads/product/' . $sanpham->img_product) }}"
+                                                        class="img-responsive" alt="item4"></a>
+                                                <button name="add-to-cart" type="button" data-id_product="{{ $sanpham->id}}" class="button item_add add-to-cart"></button>
+                                                <input type="hidden" value="{{ $sanpham->id }}" class="cart_product_id_{{ $sanpham->id }}">
+                                                <input name="qty" type="hidden" value="1" />
+
+                                            </div>
+                                        </div>
+                                    </form> --}}
+
                                     <div class="shop-content" style="height: 80px; ">
                                         <a href="{{ url('san-pham/' . $sanpham->slug_product) }}"
                                             style="text-align: center; font-size: 14px;">{!! substr($sanpham->name_product, 0, 18) !!}</a>
@@ -175,4 +192,4 @@
 
 
 
-        @endsection
+@endsection

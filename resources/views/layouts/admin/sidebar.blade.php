@@ -40,9 +40,18 @@
                     </ul>
                 </li>
                 <li class="submenu">
+                    <a href="#"> <span> Mã Giả Giá </span> <span class="ti-angle-down"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('coupon.create') }}">Thêm Mã Giảm Giá </a></li>
+                        <li><a href="{{ route('coupon.index') }}">Liệt Mã Giảm Giá </a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
                     <a href="#"> <span> Đơn Hàng </span> <span class="ti-angle-down"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ url('/admin/order') }}"> Đơn Hàng </a></li>
+                        <li><a href="{{ url('/admin/order-done') }}"> Đơn Hàng Hoàn Thành </a></li>
+                        <li><a href="{{ url('/admin/order-faill') }}"> Đơn Hàng Bị Hủy </a></li>
                     </ul>
                 </li>
 

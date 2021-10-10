@@ -9,7 +9,10 @@ class OrderDetialModel extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'order_card_id ','order_name_product','order_qty','order_price'
+        'order_card_id ',
+        'order_name_product',
+        'order_qty',
+        'order_price'
     ];
 
     protected $primaryKey = 'id';

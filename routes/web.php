@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\CouponController;
 //use
 use App\Http\Controllers\User\IndexController;
 use App\Http\Controllers\User\CartController;
@@ -37,14 +38,22 @@ Route::resource('/admin/slide', SlideController::class)->middleware('checklogin'
 Route::resource('/admin/menu-type', MenuTypeController::class)->middleware('checklogin');
 Route::resource('/admin/category', CategoryController::class)->middleware('checklogin');
 Route::resource('/admin/product', ProductController::class)->middleware('checklogin');
+Route::resource('/admin/coupon', CouponController::class)->middleware('checklogin');
 Route::get('/admin/order', [OrderController::class, 'index'])->middleware('checklogin');
+Route::get('/admin/order-done', [OrderController::class, 'orderDove'])->middleware('checklogin');
+Route::get('/admin/order-faill', [OrderController::class, 'orderFaill'])->middleware('checklogin');
+
 //don hang
 Route::get('/admin/order-detail/{id}', [OrderController::class, 'orderDetail'])->middleware('checklogin');
 Route::get('/admin/order-delete/{id}', [OrderController::class, 'orderDestroy'])->middleware('checklogin');
 Route::get('/admin/order-accept/{id}', [OrderController::class, 'acceptOrder'])->middleware('checklogin');
 Route::get('/admin/order-cancel/{id}', [OrderController::class, 'cancelOrder'])->middleware('checklogin');
 Route::get('/admin/order-delivery/{id}', [OrderController::class, 'deliveryOrder'])->middleware('checklogin');
+Route::get('/admin/order-delivery-done/{id}', [OrderController::class, 'deliveryOrderDone'])->middleware('checklogin');
+Route::get('/admin/order-delivery-faill/{id}', [OrderController::class, 'deliveryOrderFaill'])->middleware('checklogin');
 
+//ma giam gia 
+Route::post('/check-coupon',[CartController::class, 'checkCoupon']);
 
 //user
 Route::get('/', [IndexController::class, 'index']);
@@ -64,4 +73,4 @@ Route::post('/save-order',[CartController::class, 'saveOrder']);
 
 //tim kiem 
 Route::post('/tim-kiem',[ IndexController::class ,'timkiem']);
-Route::post('/timkiem-ajax',[ IndexController::class ,'timkiem_ajax']);
+Route::post('/timkiem-ajax',[ IndexController::class ,'timkiemajax']);

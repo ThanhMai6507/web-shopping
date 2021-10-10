@@ -64,12 +64,6 @@
                                                                 aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                                                 aria-label="Chuyên môn: activate to sort column ascending"
                                                                 style="width: 209px;">
-                                                                Phương Thức Thanh Toán
-                                                            </th>
-                                                            <th class="sorting" tabindex="0"
-                                                                aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                                                aria-label="Chuyên môn: activate to sort column ascending"
-                                                                style="width: 109px;">
                                                                 Trạng Thái
                                                             </th>
                                                             <th class="sorting" tabindex="0"
@@ -108,49 +102,17 @@
                                                                 @endif
                                                             </h2>
                                                         </td>
+                                                      
                                                         <td>
-                                                            @if ($value->payment_method == 1)
-                                                                <span class="text text-success"> Thanh Toán Khi Nhận Hàng
-                                                                </span>
-                                                            @endif
-                                                            @if ($value->payment_method == 2)
-                                                                <span class="text text-danger"> Đang Chờ Chuyển Khoảng
-                                                                </span>
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            @if ($value->status == 0)
-                                                                <span class="text text-success"> Đơn Hàng Đã Được Xác
-                                                                    Nhận </span>
-                                                            @endif
-                                                            @if ($value->status == 1)
-                                                                <span class="text text-danger"> Đơn Hàng Chưa Xác Nhận
-                                                                </span>
-                                                            @endif
-                                                            @if ($value->status == 3)
-                                                                <span class="text text-success"> Đang Giao Hàng </span>
-                                                            @endif
+                                                           
+                                                           
+                                                                <span class="text text-success"> Đã Hoàn Thành </span>
 
                                                         </td>
                                                         <td class="text-right">
                                                             <div class="actions">
                                                                 <a href="{{ url('admin/order-detail/' . $value->id) }}"
                                                                     class="btn btn-primary"> Chi tiết</a>
-                                                                @if ($value->status != 3)
-                                                                    <a class="btn btn-sm">
-                                                                        <a class="btn btn-danger"
-                                                                            onclick="return confirm('Ban muon xoa ?')"
-                                                                            href="{{ url('admin/order-delete', [$value->id]) }}">Xóa</a>
-                                                                    </a>
-                                                                @endif
-                                                                @if ($value->status == 3)
-                                                                    <a href="{{ url('admin/order-delivery-done/' . $value->id) }}" class="btn btn-primary">
-                                                                        Hoàn Thành
-                                                                    </a>
-                                                                    <a href="{{ url('admin/order-delivery-faill/' . $value->id) }}" class="btn btn-primary">
-                                                                        Đơn Bị Hủy
-                                                                    </a>
-                                                                @endif
                                                             </div>
                                                         </td>
                                                     </tr>

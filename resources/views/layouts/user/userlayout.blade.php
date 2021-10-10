@@ -26,6 +26,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- Custom Theme files -->
     <link href="{{ asset('public/User/css/style.css') }}" rel='stylesheet' type='text/css' />
+    <link href="{{ asset('public/User/css/sweetalert.css') }}" rel='stylesheet' type='text/css' />
     <script src="{{ asset('public/User/js/simpleCart.min.js') }}"> </script>
     <!-- Custom Theme files -->
     <!--webfont-->
@@ -132,10 +133,11 @@
                         </a></div>
                     <div class="clearfix"> </div>
                 </div>
-                <form  action="{{ url('tim-kiem')}}" method="post">
+                <form autocomplete="off" action="{{ url('tim-kiem') }}" method="post">
                     @csrf
                     <div class="search">
-                        <input type="text" placeholder="Bạn cần tìm gì ?"  id= "keywords" name="tukhoa" class="textbox">
+                        <input type="text" placeholder="Bạn cần tìm gì ?" id="keywords" name="tukhoa"
+                            class="textbox">
                         <input type="submit" value="Subscribe" id="submit" name="submit">
                         <div id="search_ajax"></div>
                     </div>
@@ -209,32 +211,55 @@
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- gio hang ajax --}}
+    {{-- <script type="text/javascript" src="{{ asset('public/User/js/sweetalert.js') }}"></script>
+    <script type="text/javascript">
 
-    {{-- <script type="text/javascript">
-        $('#keywords').keyup(function(){
-            var keywords = $(this).val();
-            if(keywords != '')
-            {
+        $(document).ready(function() {
+            $('.add-to-cart').click(function() {
+                var id = $(this).data('id_product');
+                var cart_product_id = $('.cart_product_id_'+id).val();
                 var _token = $('input[name = "_token"]').val();
                 $.ajax({
-                    url:"{{ url('/timkiem-ajax')}}",
+                    url:"{{ url('/save-cart')}}",
                     method:"post",
-                    data:{keywords:keywords,_token:_token},
-                    success:function(data){
+                    data:{productId:id,_token:_token}
+                    swal("Hello world!");
+                })
+            })
+        })
+
+    </script> --}}
+    {{-- gio hang ajax --}}
+    {{-- Tim kiem ajax --}}
+    <script type="text/javascript">
+        $('#keywords').keyup(function() {
+            var keywords = $(this).val();
+            if (keywords != '') {
+                var _token = $('input[name = "_token"]').val();
+                $.ajax({
+                    url: "{{ url('/timkiem-ajax') }}",
+                    method: "post",
+                    data: {
+                        keywords: keywords,
+                        _token: _token
+                    },
+                    success: function(data) {
                         $('#search_ajax').fadeIn();
                         $('#search_ajax').html(data);
                     }
                 })
-            }else{
+            } else {
                 $('#seach_ajax').fadeOut();
             }
         });
-        $(document).on('click','.li_timkiem_ajax', function(){
-                $('#keywords').val($(this).text());
-                $('#search_ajax').fadeOut();
+        $(document).on('click', '.li_timkiem_ajax', function() {
+            $('#keywords').val($(this).text());
+            $('#search_ajax').fadeOut();
         });
-
-    </script> --}}
+    </script>
+    {{-- end tim kiem ajax --}}
 
 
 </body>

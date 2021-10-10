@@ -10,7 +10,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Slide </h4>
+                    <h4 class="card-title">Mã Giảm Giá</h4>
                     @if (session('message'))
                         <div class="alert alert-success" role="alert">
                             {{ session('message') }}
@@ -28,23 +28,28 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('slide.store') }}" method="post" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('category.update', [$editcategory->id]) }}">
+                        @method('PUT')
                         @csrf
                         <div class="form-group">
-                            <label> Tên Slide </label>
-                            <input type="text" name="ten_slide" value="{{old('ten_slide')}}" class="form-control">
+                            <label> Tên Danh Mục </label>
+                            <input type="text" name="category_name" value="{{ $editcategory->category_name }}"
+                                onkeyup="ChangeToSlug()" id="slug" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Img</label>
-                            <input type="file" name="img_slide" value="{{old('img_slide')}}" class="form-control">
+                            <label> Slug Danh Mục </label>
+                            <input type="text" name="slug_category" value="{{ $editcategory->slug_category }}"
+                                id="convert_slug" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Trạng Thái</label><br />
-                            <select name="trangthai" class="form-control">
-                                <option value="0">Hiện</option>
-                                <option value="1">Ẩn</option>
-                            </select>
-
+                            <label> Mô Tả Danh Mục </label>
+                            <input type="text" name="category_desc" value="{{ $editcategory->category_desc }}"
+                                class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label> TỪ Khóa Danh Mục </label>
+                            <input type="text" name="category_keywords" value="{{ $editcategory->category_keywords }}"
+                                class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">Thêm</button>
                     </form>

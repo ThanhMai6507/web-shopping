@@ -75,21 +75,23 @@ class IndexController extends Controller
         return view('user.page.search')->with(compact('category','product_search','meta_desc','meta_keywords','meta_title','url_canonical'));
     }
 
-    // public function timkiem_ajax(Request $request){
-    //     $data = $request->all();
-    //     if($data['keywords']){
-    //         $product_search =  ProductModel::where('name_product','LIKE','%'.$tukhoa.'%')->orWhere('description','LIKE','%'.$tukhoa.'%')->get();
-            
-    //         $output = ' <ul class="dropdown-menu" style="display: block;margin-left: 810px;">';
-
-    //         foreach($product_search as $keyword => $tr){
-    //             $output.= '<li class="li_timkiem_ajax" style="padding: 4px 15px; "><a href="#" style="text-transform: uppercase; color: #000;">'.$tr->name_product.'</a></li>';
-    //         }
-
-    //         $output.= '</ul>';
-    //         echo $output;
-    //     }
-    // }
+    public function timkiemajax(Request $request){
+        // $data = $request->keywords;
+        // dd($data);
+        $data = $request->all();
+        //dd($data);
+        if($data['keywords']){
+            $product_search =  ProductModel::where('name_product','LIKE','%'.$data['keywords'].'%')->orWhere('description','LIKE','%'.$data['keywords'].'%')->get();
+           //dd($product_search);
+           
+            $output = ' <ul class="dropdown-menu" style="display: block;">';
+            foreach($product_search as $key => $timkiemajax){
+                $output.= '<li class="li_timkiem_ajax" style="padding: 4px 15px; "><a href="#" style="text-transform: uppercase; color: #000; padding: initial;">'.$timkiemajax->name_product.'</a></li>';
+            }
+            $output.= '</ul>';
+            echo $output;
+        }
+    }
 
 
 }

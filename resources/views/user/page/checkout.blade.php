@@ -5,25 +5,68 @@
         <div class="check">
             <div class="col-md-9 cart-items">
                 <h1>Trang Thanh Toán </h1>
+
                 <?php
                 $content = Cart::content();
                 // dd($content);
                 ?>
-
-                <script>
-                    $(document).ready(function(c) {
-                        $('.close').on('click', function(c) {
-                            $('.cart-header').fadeOut('slow', function(c) {
-                                $('.cart-header').remove();
-                            });
-                        });
-                    });
-                </script>
                 @if (session('message'))
                     <div class="alert alert-success" role="alert">
                         {{ session('message') }}
                     </div>
                 @endif
+                @if (session('error'))
+                <div class="alert alert-error" role="alert">
+                    {{ session('message') }}
+                </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                
+                {{-- coupon --}}
+
+                @if(Session::get('coupon'))
+                   
+                        @foreach(Session::get('coupon') as $key => $cou)
+
+                            @if($cou['coupon_condition'] == 1)
+                                {{-- Mã giảm : {{$cou['coupon_number']}} % --}}
+                                {{-- <p> --}}
+                                    @php 
+                                    $tong  =Cart::priceTotal(0, ',', '.');
+                                    // echo $tong;
+                                    $total_coupon = ( ($tong * 1000) * $cou['coupon_number']) /100;
+                                    // echo '<p><li>Tổng giảm:'.number_format($total_coupon,0,',','.').'VND</li></p>';
+                                    @endphp
+                                {{-- </p> --}}
+
+                                {{-- <p><li>Tổng đã giảm :{{ ($tong * 1000) - $total_coupon }}đ</li></p> --}}
+
+                            @elseif($cou['coupon_condition'] == 2)
+                                {{-- Mã giảm :{{$cou['coupon_number']}} k --}}
+                                {{-- <p> --}}
+                                    @php 
+                                    $tong  =Cart::priceTotal(0, ',', '.');
+                                    // echo $tong;
+                                    $total_coupon = ( ($tong * 1000) - $cou['coupon_number']) ;
+                                    // echo '<p><li>Tổng giảm:'.number_format($total_coupon,0,',','.').'đ</li></p>';
+                                    @endphp
+                                {{-- </p> --}}
+                                {{-- <p><li>Tổng đã giảm :{{number_format($total_coupon,0,',','.')}}đ</li></p> --}}
+                            @endif
+                        @endforeach
+                    
+                 @endif 
+
+                    
+                {{-- end coupon --}}
 
                 <form method="POST" action="{{ url('/save-order') }}">
                     @csrf
@@ -52,13 +95,35 @@
 
                         </div>
                     </div>
+                    <h5>Phương Thức Thanh Tooán</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" value="1" type="radio" name="bankdef" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Thanh Toán Khi Nhận Hàng
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" value="2" type="radio" name="bankdef" id="flexRadioDefault2"
+                            checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Chuyển Khoảng
+                        </label>
+                    </div>
 
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             {{-- <input name="productId" type="hidden" value="{{$new -> id}}" />
-                            <input name="productId" type="hidden" value="{{$new -> id}}" />
-                            <input name="productId" type="hidden" value="{{$new -> id}}" /> --}}
-
+                            <input name="productId" type="hidden" value="{{$new -> id}}" />--}}
+                            @if(Session::get('coupon'))
+                            @foreach(Session::get('coupon') as $key => $cou)
+                                    @if($cou['coupon_condition'] == 1)
+                                    <input name="coupon_price" type="hidden" value=" {{ (($tong * 1000) - $total_coupon) }} " /> 
+                                    @elseif($cou['coupon_condition'] == 2)
+                                    <input name="coupon_price" type="hidden" value=" {{ $total_coupon}} " /> 
+                                   
+                                    @endif
+                                @endforeach
+                            @endif 
                             <button type="submit" class="btn btn-primary">
                                 Đặt Hàng
                             </button>
@@ -115,10 +180,32 @@
                         </span>
                     @endif
 
-                    <span>Chiết khấu</span>
-                    <span class="total1">---</span>
-                    <span>Phí vận chuyển</span>
-                    <span class="total1">---</span>
+                    <span>Mã Giảm Giá </span>
+                    <span class="total1">
+                        @if(Session::get('coupon'))
+                            @foreach(Session::get('coupon') as $key => $cou)
+                                @if($cou['coupon_condition'] == 1)
+                                    {{$cou['coupon_number']}} % 
+                                @elseif($cou['coupon_condition'] == 2)
+                                    {{number_format($cou['coupon_number'],0,',','.')}} VND 
+                                @endif
+                            @endforeach
+                        @endif 
+                    </span>
+                    <span>Tiền Giảm</span>
+                    <span class="total1">
+
+                        @if(Session::get('coupon'))
+                            @foreach(Session::get('coupon') as $key => $cou)
+                                @if($cou['coupon_condition'] == 1)
+                                    {{number_format($total_coupon,0,',','.')}} VND
+                                @elseif($cou['coupon_condition'] == 2)
+                                    {{number_format($total_coupon,0,',','.')}} VND
+                                @endif
+                            @endforeach
+                        @endif 
+
+                    </span>
                     <div class="clearfix"></div>
                 </div>
                 <ul class="total_price">
@@ -126,15 +213,39 @@
                         <h4>Tổng Tiền </h4>
                     </li>
                     <li class="last_price">
-                        @if (Cart::count() > 0)
+                        {{-- @if (Cart::count() > 0)
                             <span>
+                               {{Cart::priceTotal()}}
                                 {{ Cart::priceTotal(0, ',', '.') }} VND
                             </span>
-                        @endif
+                        @endif --}}
+                        
+                        @if(Session::get('coupon'))
+                            @foreach(Session::get('coupon') as $key => $cou)
+                                @if($cou['coupon_condition'] == 1)
+                                {{number_format( (($tong * 1000) - $total_coupon)),0,',','.' }} VND
+                                @elseif($cou['coupon_condition'] == 2)
+                                {{number_format($total_coupon,0,',','.')}} VND
+                                @endif
+                            @endforeach
+                        @endif 
 
                     </li>
+                    <div class="clearfix"></div>
+
+                    <form action="{{ url('check-coupon') }}" method="post">
+                        @csrf
+                        <div class="total-item">
+                            <h3>Mã Giảm Giá</h3>
+                            <input type="text" name="coupon" value="{{ old('coupon') }}" class="form-control">
+                            <br />
+                            <button type="submit" class="cpns">Áp Dụng Mã Giảm</button>
+                        </div>
+                    </form>
+
                     <div class="clearfix"> </div>
                 </ul>
+
 
 
                 <div class="clearfix"></div>
