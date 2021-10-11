@@ -36,11 +36,11 @@
     <!-- start menu -->
     <link href="{{ asset('public/User/css/megamenu.css') }}" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="{{ asset('public/User/js/megamenu.js') }}"></script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $(".megamenu").megamenu();
         });
-    </script>
+    </script> --}}
 </head>
 
 <body>
@@ -55,7 +55,7 @@
                         <li class="active">
                             <div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-         document.getElementById('logout-form').submit();">
+                                    document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -108,29 +108,17 @@
             </div>
             <div class="col-xs-4 header-bottom-right">
                 <div class="box_1-cart">
-                    <div class="box_11"><a href="{{ url('/show-cart') }}">
-                            <input type="hidden" @php
-                                $cart_info = Cart::content();
-                            @endphp @foreach ($cart_info as $caif)
-                            {{ $caif->price }}
-                            @php
-                                $subtotal = $caif->price * $caif->qty;
-                            @endphp
-                            @endforeach
-                            />
-                            <h4>
-                                @if (Cart::count() > 0)
-                                    <p>Cart: {{ number_format($subtotal) . ' ' . 'VND' }} (<span
-                                            id="simpleCart_quantity">{{ Cart::count() }} </span> items)</p><img
-                                        src="images/bag.png" alt="" />
-                                    <div class="clearfix"> </div>
-                            </h4>
-                        @else
-                            <p>Cart: 0 <div class="clearfix"> </div>
-                                </h4>
-                                @endif
+                    <div class="box_11">
+                            <input type="hidden"/>
+                            @if (Session::get('cart') == true)
+                            <a href="{{ url('/show-cart-ajax') }}"> 
+                            <p> Giỏ Hàng: {{count(Session::get('cart'))}}  <span id="simpleCart_quantity">  </span> Sản Phẩm</p><div class="clearfix"> </div>
+                            </a>
+                            @else
+                             <p> Giỏ Hàng Trống </p> <div class="clearfix"> </div>
+                            @endif   
 
-                        </a></div>
+                        </div>
                     <div class="clearfix"> </div>
                 </div>
                 <form autocomplete="off" action="{{ url('tim-kiem') }}" method="post">
@@ -213,24 +201,56 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {{-- gio hang ajax --}}
-    {{-- <script type="text/javascript" src="{{ asset('public/User/js/sweetalert.js') }}"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" src="{{ asset('public/User/js/sweetalert.js') }}"></script>
 
+
+    <script type="text/javascript">
         $(document).ready(function() {
             $('.add-to-cart').click(function() {
                 var id = $(this).data('id_product');
-                var cart_product_id = $('.cart_product_id_'+id).val();
-                var _token = $('input[name = "_token"]').val();
+                //alert(id);
+                var cart_product_id = $('.cart_product_id_' + id).val();
+                var cart_product_name = $('.cart_product_name_' + id).val();
+                var cart_product_image = $('.cart_product_image_' + id).val();
+                var cart_product_price = $('.cart_product_price_' + id).val();
+                var cart_product_qty = $('.cart_product_qty_' + id).val();
+                var _token = $('input[name="_token"]').val();
+                // alert(cart_product_name);
                 $.ajax({
-                    url:"{{ url('/save-cart')}}",
-                    method:"post",
-                    data:{productId:id,_token:_token}
-                    swal("Hello world!");
-                })
-            })
-        })
+                    url: '{{ url('/add-cart-ajax') }}',
+                    method: 'POST',
+                    data: {
+                        cart_product_id: cart_product_id,
+                        cart_product_name: cart_product_name,
+                        cart_product_image: cart_product_image,
+                        cart_product_price: cart_product_price,
+                        cart_product_qty: cart_product_qty,
+                        _token: _token
+                    },
 
-    </script> --}}
+                    success: function(data) {
+
+                        swal({
+                                title: "Đã thêm sản phẩm vào giỏ hàng",
+                                text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+                                showCancelButton: true,
+                                cancelButtonText: "Xem tiếp",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "Đi đến giỏ hàng",
+                                closeOnConfirm: false
+                            },
+                            function() {
+                                window.location.href = "{{ url('/show-cart-ajax') }}";
+                            });
+
+                    }
+
+                });
+            });
+        });
+    </script>
+
+
     {{-- gio hang ajax --}}
     {{-- Tim kiem ajax --}}
     <script type="text/javascript">

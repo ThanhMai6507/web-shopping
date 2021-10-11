@@ -10,7 +10,7 @@ use App\Models\OrderDetialModel;
 class OrderController extends Controller
 {
     public function index(){
-        $order = OrderModel::where('status',1)->orWhere('status',2)->orWhere('status',3) ->get();
+        $order = OrderModel::where('status',1)->orWhere('status',2)->orWhere('status',3)->orderBy('id','DESC')->get();
         //$order2 = OrderDetialModel::with('order_card')->orderBy('id','DESC')->paginate(10);
        // dd($order2);
         return view('admin.order.index')->with(compact('order'));

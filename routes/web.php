@@ -42,6 +42,9 @@ Route::resource('/admin/coupon', CouponController::class)->middleware('checklogi
 Route::get('/admin/order', [OrderController::class, 'index'])->middleware('checklogin');
 Route::get('/admin/order-done', [OrderController::class, 'orderDove'])->middleware('checklogin');
 Route::get('/admin/order-faill', [OrderController::class, 'orderFaill'])->middleware('checklogin');
+//share mail
+Route::get('/share-mail',[ AdminController::class ,'shareMail']);
+
 
 //don hang
 Route::get('/admin/order-detail/{id}', [OrderController::class, 'orderDetail'])->middleware('checklogin');
@@ -69,6 +72,13 @@ Route::get('/delete-cart/{rowId}',[CartController::class, 'deleteCart']);
 Route::post('/update-cart-quantity',[CartController::class, 'updateCart']);
 Route::get('/check-out',[CartController::class, 'checkOut'])->middleware('checkCart');
 Route::post('/save-order',[CartController::class, 'saveOrder']);
+//cart ajax
+Route::post('/add-cart-ajax',[CartController::class, 'saveCartAjax']);
+Route::get('/show-cart-ajax',[CartController::class, 'showCartAjax']);
+Route::get('/delete-cart-ajax/{session_id}',[CartController::class, 'deleteCartAjax']);
+Route::post('/update-cart-ajax',[CartController::class, 'updateCartAjax']);
+Route::get('/check-out-ajax',[CartController::class, 'checkOutAjax']);
+Route::post('/save-order-ajax',[CartController::class, 'saveOrderAjax']);
 // Route::get('/tks-out',[CartController::class, 'tksOut']);
 
 //tim kiem 

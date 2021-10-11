@@ -22,7 +22,7 @@
 
                         @foreach ($product_new as $key => $new)
                             <div class="col_1_of_3 span_1_of_3 simpleCart_shelfItem">
-                                <form action="{{ url('/save-cart') }}" method="POST">
+                                <form>
                                     @csrf
                                     <div class="shop-holder">
                                         <div class="product-img">
@@ -30,12 +30,18 @@
                                                 <img width="225" height="265"
                                                     src="{{ asset('public/uploads/product/' . $new->img_product) }}"
                                                     class="img-responsive" alt="item4"></a>
-                                            <button type="submit" class="button item_add"></button>
-                                            <input name="qty" type="hidden" value="1" />
-                                            <input name="productId" type="hidden" value="{{ $new->id }}" />
+                                            <input type="button" class="button item_add add-to-cart" data-id_product="{{$new->id}}" name="add-to-cart">
                                         </div>
                                     </div>
+
+                                <input type="hidden" value="{{$new->id}}" class="cart_product_id_{{$new->id}}">
+                                <input type="hidden" value="{{$new->name_product}}" class="cart_product_name_{{$new->id}}">
+                                <input type="hidden" value="{{$new->img_product}}" class="cart_product_image_{{$new->id}}">
+                                <input type="hidden" value="{{$new->price}}" class="cart_product_price_{{$new->id}}">
+                                <input type="hidden" value="1" class="cart_product_qty_{{$new->id}}">
+
                                 </form>
+
                                 <div class="shop-content" style="height: 80px;">
                                     <h3><a href="{{ url('san-pham/' . $new->slug_product) }}">{!! substr($new->name_product, 0, 18) !!}</a>
                                     </h3>
@@ -74,7 +80,7 @@
                         <div class="section group">
                             @foreach ($product as $key => $sanpham)
                                 <div class="col_1_of_3 simpleCart_shelfItem">
-                                    <form action="{{ url('/save-cart') }}" method="POST">
+                                    {{-- <form action="{{ url('/save-cart') }}" method="POST">
                                         @csrf
                                         <div class="shop-holder">
                                             <div class="product-img">
@@ -87,7 +93,7 @@
                                                 <input name="productId" type="hidden" value="{{ $sanpham->id }}" />
                                             </div>
                                         </div>
-                                    </form>
+                                    </form> --}}
 
                                     {{-- <form >
                                        @csrf
@@ -97,13 +103,35 @@
                                                     <img width="225" height="265"
                                                         src="{{ asset('public/uploads/product/' . $sanpham->img_product) }}"
                                                         class="img-responsive" alt="item4"></a>
-                                                <button name="add-to-cart" type="button" data-id_product="{{ $sanpham->id}}" class="button item_add add-to-cart"></button>
+                                                <button name="btnAddCart" type="button" data-id_product="{{ $sanpham->id}}" class="button item_add add-to-cart"></button>
                                                 <input type="hidden" value="{{ $sanpham->id }}" class="cart_product_id_{{ $sanpham->id }}">
                                                 <input name="qty" type="hidden" value="1" />
 
                                             </div>
                                         </div>
                                     </form> --}}
+                                {{-- cart ajax --}}
+                                    <form>
+                                        @csrf
+                                        <div class="shop-holder">
+                                            <div class="product-img">
+                                                <a href="{{ url('san-pham/' . $sanpham->slug_product) }}">
+                                                    <img width="225" height="265"
+                                                        src="{{ asset('public/uploads/product/' . $sanpham->img_product) }}"
+                                                        class="img-responsive" alt="item4"></a>
+                                                <input type="button" class="button item_add add-to-cart" data-id_product="{{$sanpham->id}}" name="add-to-cart">
+                                            </div>
+                                        </div>
+
+                                    <input type="hidden" value="{{$sanpham->id}}" class="cart_product_id_{{$sanpham->id}}">
+                                    <input type="hidden" value="{{$sanpham->name_product}}" class="cart_product_name_{{$sanpham->id}}">
+                                    <input type="hidden" value="{{$sanpham->img_product}}" class="cart_product_image_{{$sanpham->id}}">
+                                    <input type="hidden" value="{{$sanpham->price}}" class="cart_product_price_{{$sanpham->id}}">
+                                    <input type="hidden" value="1" class="cart_product_qty_{{$sanpham->id}}">
+
+                                    </form>
+
+                                 {{-- cart ajax --}}
 
                                     <div class="shop-content" style="height: 80px; ">
                                         <a href="{{ url('san-pham/' . $sanpham->slug_product) }}"
