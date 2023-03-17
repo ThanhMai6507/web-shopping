@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('sizes', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('color_id');
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->unsignedBigInteger('color_id')->nullable();
             $table->text('content');
             $table->timestamps();
             $table->foreign('color_id')->references('id')->on('colors');

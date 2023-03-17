@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('color_products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('color_id');
-            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('color_id')->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->timestamps();
             $table->foreign('color_id')->references('id')->on('colors');
             $table->foreign('product_id')->references('id')->on('products');
