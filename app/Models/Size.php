@@ -16,12 +16,12 @@ class Size extends Model
         'content',
     ];
 
-    public function product()
+    public function products()
     {
         return $this->belongsToMany(Product::class);
     }
 
-    public function color()
+    public function colors()
     {
         return $this->belongsToMany(Color::class);
     }
