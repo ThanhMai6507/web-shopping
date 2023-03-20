@@ -20,6 +20,6 @@ class CheckIfAdmin
             return $next($request);
         }
 
-        return redirect('/home');
+        return redirect()->route('home')->with('message', 'Bạn không có quyền Admin');
     }
 }
