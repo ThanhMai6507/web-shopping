@@ -14,6 +14,7 @@ class Size extends Model
         'product_id',
         'color_id',
         'content',
+        'type',
     ];
 
     public function products()
