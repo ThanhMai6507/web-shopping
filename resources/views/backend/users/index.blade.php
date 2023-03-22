@@ -1,5 +1,15 @@
 @extends('layouts.backend')
-
+@push('search')
+    <x-search>
+        <x-slot:slot>
+            <select class="form-select" name='role'>
+            <option value="0">Select Role</option>
+            <option value="1" {{ request()->role == 1 ? 'selected' : '' }}>Admin</option>
+            <option value="2" {{ request()->role != 1 ? 'selected' : '' }}>User</option>
+            </select>
+        </x-slot:slot>
+    </x-search>
+@endpush
 @section('content')
     <div class="page-wrapper">
         <div class="content container-fluid">
@@ -11,8 +21,8 @@
                                 <table class="table table-hover table-center">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
+                                            <th><x-sort :sortName="'id'"></x-sort>ID</th>
+                                            <th><x-sort :sortName="'name'"></x-sort>Name</th>
                                             <th>Email</th>
                                             <th>Role</th>
                                             <th>Action</th>

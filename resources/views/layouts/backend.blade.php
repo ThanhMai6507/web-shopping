@@ -6,11 +6,8 @@
         <title>Laravel</title>
         
         <link rel="preconnect" href="https://fonts.bunny.net">
-        
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" /> 
-        
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     </head>
         
     <body class="antialiased">
