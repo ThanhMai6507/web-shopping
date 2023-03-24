@@ -25,7 +25,12 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'email' => 'required|email|unique:users,email,'.auth()->user()->id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$this->route('user'),
+            'password' => [
+                'nullable',
+                'min:6',
+                'regex:/[@$!%*#?&]/',
+            ],
         ];
     }
 }

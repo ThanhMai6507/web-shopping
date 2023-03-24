@@ -38,4 +38,23 @@ class UserController extends Controller
         $this->userRepository->save(['id' => ''], $newUser);
         return redirect()->route('users.index')->with('message', 'Created successfully');
     }
+
+    public function edit(int $id)
+    {
+        return view('backend.users.edit', [
+            'user' => $this->userRepository->findById($id),
+        ]);
+    }
+
+    public function update(UserRequest $request, $id)
+    {
+        $inputs = $request->except(['_token', '_method']);
+        if ($inputs['password']) {
+            $inputs['password'] = Hash::make($inputs['password']);
+        } else {
+            unset($inputs['password']);
+        }
+        $this->userRepository->save($inputs, ["id" => $id]);
+        return redirect()->route('users.index')->with('message', 'Update successfully!');
+    }
 }

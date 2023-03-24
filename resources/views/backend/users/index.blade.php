@@ -40,7 +40,8 @@
                                             <td class="text-nowrap">{{ $user->email }}</td>
                                             <td>{{ $user->type == 1 ? 'admin' : 'user' }}</td>
                                             <td style="display: flex; gap:20px;">
-                                                <a href="">Update</a>
+                                                <a href="{{ route('users.create') }}">Create</a>
+                                                <a href="{{ route('users.edit', ['user' => $user->id]) }}">Update</a>
                                                 <a href="">Infomation</a>
                                                 <button>Delete</button>
                                             </td>
