@@ -16,7 +16,6 @@ use App\Models\ProductUser;
 use App\Models\Size;
 use App\Models\User;
 
-
 class DatabaseSeeder extends Seeder
 {
     /**

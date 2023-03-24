@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories;
 
-use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Schema;
 
 class UserRepository extends BaseRepository

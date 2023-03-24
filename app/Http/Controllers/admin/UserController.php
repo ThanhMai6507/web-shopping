@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
@@ -24,7 +26,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function create() 
+    public function create()
     {
         return view('backend.users.create');
     }
