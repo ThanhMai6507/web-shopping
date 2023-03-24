@@ -43,7 +43,7 @@
                                                 <a href="{{ route('users.create') }}">Create</a>
                                                 <a href="{{ route('users.edit', ['user' => $user->id]) }}">Update</a>
                                                 <a href="{{ route('users.show', ['user' => $user->id]) }}">Infomation</a>
-                                                <button>Delete</button>
+                                                <x-button_delete route="{{ route('users.destroy', ['user' => $user->id]) }}"></x-button_delete>
                                             </td>
                                         </tr>
                                     @endforeach

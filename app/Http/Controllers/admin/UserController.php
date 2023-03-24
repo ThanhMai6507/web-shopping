@@ -9,7 +9,9 @@ use App\Http\Requests\UserRequest;
 use App\Repositories\ProductRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserController extends Controller
 {
@@ -67,5 +69,15 @@ class UserController extends Controller
             'user' => $this->userRepository->findById($id),
             'products' => $this->productRepository->getByUserId($id),
         ]);
+    }
+
+    public function destroy(int $id)
+    {
+        if (Auth::user()->id == $id) {
+            return back()->with('message', "Don't delete yourself");
+        }
+
+        $this->userRepository->delete($id);
+        return redirect()->route('users.index')->with('message', 'Deleted successfully');
     }
 }
