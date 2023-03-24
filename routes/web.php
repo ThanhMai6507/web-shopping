@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

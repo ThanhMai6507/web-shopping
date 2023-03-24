@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
@@ -24,7 +26,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function create() 
+    public function create()
     {
         return view('backend.users.create');
     }
@@ -35,5 +37,24 @@ class UserController extends Controller
         $newUser['password'] = Hash::make($newUser['password']);
         $this->userRepository->save(['id' => ''], $newUser);
         return redirect()->route('users.index')->with('message', 'Created successfully');
+    }
+
+    public function edit(int $id)
+    {
+        return view('backend.users.edit', [
+            'user' => $this->userRepository->findById($id),
+        ]);
+    }
+
+    public function update(UserRequest $request, $id)
+    {
+        $inputs = $request->except(['_token', '_method']);
+        if ($inputs['password']) {
+            $inputs['password'] = Hash::make($inputs['password']);
+        } else {
+            unset($inputs['password']);
+        }
+        $this->userRepository->save($inputs, ["id" => $id]);
+        return redirect()->route('users.index')->with('message', 'Update successfully!');
     }
 }
