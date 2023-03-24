@@ -42,7 +42,7 @@
                                             <td style="display: flex; gap:20px;">
                                                 <a href="{{ route('users.create') }}">Create</a>
                                                 <a href="{{ route('users.edit', ['user' => $user->id]) }}">Update</a>
-                                                <a href="">Infomation</a>
+                                                <a href="{{ route('users.show', ['user' => $user->id]) }}">Infomation</a>
                                                 <button>Delete</button>
                                             </td>
                                         </tr>
