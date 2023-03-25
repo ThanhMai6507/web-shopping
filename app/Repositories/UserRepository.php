@@ -36,7 +36,7 @@ class UserRepository extends BaseRepository
         $validSortType = in_array(strtolower(trim($columnSortType)), static::SORT_TYPES);
 
         if ($validColumn && $validSortType) {
-            $query->orderBy($columnSortName, $columnSortType)->paginate(static::PER_PAGE);
+            $results = $query->orderBy($columnSortName, $columnSortType)->paginate(static::PER_PAGE);
         }
 
         return $query->paginate(static::PER_PAGE);

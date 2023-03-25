@@ -14,7 +14,7 @@ class BaseRepository
 
     public function getAll()
     {
-        //
+        return $this->model->all();
     }
 
     public function find($id)

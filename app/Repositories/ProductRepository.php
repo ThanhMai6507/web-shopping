@@ -14,9 +14,21 @@ class ProductRepository extends BaseRepository
         $this->model = $model;
     }
 
-    public function getAllProducts()
+    public function getAll(array $input = [])
     {
         $query = $this->model->query();
+
+        if (!empty($input['search'])) {
+            $query->where(
+                fn ($query) =>
+                    $query->where('name', 'like', '%'.$input['search'].'%')
+                          ->orWhere('description', 'like', '%'.$input['search'].'%')
+            );
+        }
+
+        if (!empty($input['category_id'])) {
+            $query->where('category_id', $input['category_id']);
+        }
 
         $columnSortName = $input['sort_name'] ?? 'id';
         $columnSortType = $input['sort_type'] ?? 'asc';

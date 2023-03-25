@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         return view('backend.products.index', [
-            'products' => $this->productRepository->getAllProducts($request->all()),
+            'products' => $this->productRepository->getAll($request->all()),
             'categories' => $this->categoryRepository->getAll(),
         ]);
     }

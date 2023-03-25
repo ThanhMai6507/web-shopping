@@ -1,14 +1,14 @@
 @extends('layouts.backend')
 @push('search')
 <x-search>
-        <x-slot:slot>
-            <select class="form-select" style="width: 10rem" name='role'>
-            <option value="0">Select Role</option>
-            <option value="1" {{ request()->role == 1 ? 'selected' : '' }}>Admin</option>
-            <option value="2" {{ request()->role != 1 ? 'selected' : '' }}>User</option>
-            </select>
-        </x-slot:slot>
-    </x-search>
+    <x-slot:slot>
+        <select class="form-select" style="width: 10rem" name='role'>
+        <option value="0">Select Role</option>
+        <option value="1" {{ request()->role == 1 ? 'selected' : '' }}>Admin</option>
+        <option value="2" {{ request()->role == 2 ? 'selected' : '' }}>User</option>
+        </select>
+    </x-slot:slot>
+</x-search>
 @endpush
 @section('content')
 <div class="page-wrapper">

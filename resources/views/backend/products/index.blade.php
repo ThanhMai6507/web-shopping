@@ -1,4 +1,18 @@
 @extends('layouts.backend')
+@push('search')
+    <x-search>
+        <x-slot:slot>
+        <select class="form-select" style="width: 10rem" name='category_id'>
+            <option value="">Select Categories</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : ''}}>
+                        {{$category->id}}. {{ $category->name }}
+                    </option>
+                @endforeach
+        </select>
+        </x-slot:slot>
+    </x-search>
+@endpush
 
 @section('content')
 <div class="page-wrapper">

@@ -3,12 +3,13 @@
 namespace App\Repositories;
 
 use App\Repositories\BaseRepository;
+use App\Models\Category;
 
 class CategoryRepository extends BaseRepository
 {
-    public function getModel()
+    public function __construct(Category $model)
     {
-        return \App\Models\Category::class;
+        $this->model = $model;
     }
 
     public function getByUserId($userId)
