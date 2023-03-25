@@ -63,6 +63,8 @@ class UserController extends Controller
 
     public function show(int $id)
     {
+        dd($this->productRepository->getByUserId($id));
+        
         return view('backend.users.show', [
             'user' => $this->userRepository->findById($id),
             'products' => $this->productRepository->getByUserId($id),
