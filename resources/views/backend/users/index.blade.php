@@ -52,12 +52,16 @@
                                     </thead>
                                 <tbody>
                                     @foreach($users as $user)
-                                    <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->type == 1 ? 'admin' : 'user' }}</td>
-                                        <td>
+                                        <tr>
+                                            <td class="text-nowrap">
+                                                <div class="font-weight-600">{{ $user->id }}</div>
+                                            </td>
+                                            <td class="text-nowrap">
+                                                <div class="font-weight-600">{{ $user->name }}</div>
+                                            </td>
+                                            <td class="text-nowrap">{{ $user->email }}</td>
+                                            <td>{{ $user->type == 1 ? 'admin' : 'user' }}</td>
+                                            <td>
                                             <div class="actions" style="display: flex;">
                                                 <a href="{{ route('users.create') }}" style="background: #E0F6F6;"
                                                     class="btn btn-sm bg-info-light me-2">
@@ -67,14 +71,11 @@
                                                     class="btn btn-sm bg-success-light me-2">
                                                     <i data-feather="edit" width="16" color="#26AF48"></i>
                                                 </a>
-                                                <a href="{{ route('users.show', ['user' => $user->id]) }}" style="background: #F0D5DA;"
-                                                    class="btn btn-sm bg-success-light me-2">
-                                                    <i data-feather="trash-2" width="16" color="#E63C3C"></i>
-                                                </a>
-                                                <a href="{{ route('users.show', ['user' => $user->id]) }}">Detail</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                <a href="{{ route('users.show', ['user' => $user->id]) }}">Infomation</a>
+                                                <x-button_delete route="{{ route('users.destroy', ['user' => $user->id]) }}"></x-button_delete>
+
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table><br>
