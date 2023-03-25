@@ -67,13 +67,17 @@
                                                     class="btn btn-sm bg-info-light me-2">
                                                     <i data-feather="user" width="16" color="#1DB9AA"></i>
                                                 </a>
+
                                                 <a href="{{ route('users.edit', ['user' => $user->id]) }}" style="background: #E2F6ED;"
                                                     class="btn btn-sm bg-success-light me-2">
                                                     <i data-feather="edit" width="16" color="#26AF48"></i>
                                                 </a>
-                                                <a href="{{ route('users.show', ['user' => $user->id]) }}">Infomation</a>
-                                                <x-button_delete route="{{ route('users.destroy', ['user' => $user->id]) }}"></x-button_delete>
 
+                                                <x-button_delete route="{{ route('users.destroy', ['user' => $user->id]) }}"></x-button_delete>
+                                                
+                                                <a href="{{ route('users.show', ['user' => $user->id]) }}" style="background: #E0F6F6; width:16; color:#1DB9AA; margin-left:10px"
+                                                    class="btn btn-sm bg-info-light me-2"> Infomation
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
