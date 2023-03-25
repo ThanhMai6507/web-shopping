@@ -14,11 +14,6 @@ class ProductRepository extends BaseRepository
         $this->model = $model;
     }
 
-    // public function getModel()
-    // {
-    //     return \App\Models\Product::class;
-    // }
-
     public function getAllProducts()
     {
         $query = $this->model->query();
