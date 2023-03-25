@@ -6,6 +6,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Repositories\ProductRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,10 +14,12 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     protected $userRepository;
+    protected $productRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, ProductRepository $productRepository)
     {
         $this->userRepository = $userRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function index(Request $request)
@@ -56,5 +59,13 @@ class UserController extends Controller
         }
         $this->userRepository->save($inputs, ["id" => $id]);
         return redirect()->route('users.index')->with('message', 'Update successfully!');
+    }
+
+    public function show(int $id)
+    {
+        return view('backend.users.show', [
+            'user' => $this->userRepository->findById($id),
+            'products' => $this->productRepository->getByUserId($id),
+        ]);
     }
 }
