@@ -16,10 +16,10 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title">Danh sách User</h3>
+                    <h3 class="page-title">List User</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Danh sách</li>
+                        <li class="breadcrumb-item active">List</li>
                     </ul>
                 </div>
             </div>
