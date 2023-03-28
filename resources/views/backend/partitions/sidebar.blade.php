@@ -12,6 +12,8 @@
             <li><a href=""><span></span>Bags</a></li>
             <li><a href=""><span></span>Dressed</a></li>
             <li><a href=""><span></span>Jackets</a></li>
+        </ul>
+        <ul>
             <li><a href=""><span></span>jewelry</a></li>
             <li><a href=""><span></span>Shoes</a></li>
             <li><a href=""><span></span>Shirts</a></li>

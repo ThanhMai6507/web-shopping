@@ -4,11 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Laravel</title>
+        <!-- CSS only -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
         
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+        <script src="https://unpkg.com/feather-icons"></script>
     </head>
         
     <body class="antialiased">
@@ -29,7 +37,7 @@
 
         <div>
 
-        <div id="wrapper">
+        <div id="wrapper" style="background: #e9e9e9;">
             <div class="cart-icon-top">
             </div>
 
@@ -49,18 +57,6 @@
 
             @include('backend.partitions.sidebar')
 
-            <div id="grid-selector">
-                <div id="grid-menu">
-                    View:
-                    <ul>           	   
-                        <li class="largeGrid"><a href=""></a></li>
-                        <li class="smallGrid"><a class="active" href=""></a></li>
-                    </ul>
-                </div>
-                
-                Showing 1–9 of 48 results 
-            </div>
-
             @yield('content')
             
         </div>
@@ -70,5 +66,8 @@
         <footer class="credit">Author: shipra - Distributed By: <a title="Awesome web design code & scripts" href="https://www.codehim.com?source=demo-page" target="_blank">CodeHim</a></footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/script.js"></script>
+        <script>
+            feather.replace()
+        </script>
     </body>
 </html>

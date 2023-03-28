@@ -102,7 +102,12 @@ body {
 	letter-spacing:1px;	
 }
 #sidebar .checklist{
+	display: flex;
 	padding:0;
+}
+
+.checklist ul {
+	padding: 0.5rem;
 }
 
 .checklist ul li{	

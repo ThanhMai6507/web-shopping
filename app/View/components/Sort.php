@@ -9,10 +9,12 @@ use Illuminate\View\Component;
 class Sort extends Component
 {
     public $sortName;
+    public $columnTitle;
 
-    public function __construct($sortName)
+    public function __construct($sortName, $columnTitle)
     {
         $this->sortName = $sortName;
+        $this->columnTitle = $columnTitle;
     }
 
     public function render()
