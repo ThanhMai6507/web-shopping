@@ -97,4 +97,10 @@ class ProductController extends Controller
     {
        //
     }
+
+    public function destroy(int $id)
+    {
+        $this->productRepository->delete($id);
+        return redirect()->route('products.index')->with('message', 'Delete successfully!');
+    }
 }

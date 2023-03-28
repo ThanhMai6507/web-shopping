@@ -86,11 +86,8 @@
                                                     <i data-feather="edit" width="16" color="#26AF48"></i>
                                                 </a>
 
-                                                <x-button_delete route="#"></x-button_delete>
+                                                <x-button_delete route="{{ route('products.destroy', ['product' => $product->id]) }}"></x-button_delete>
                                                 
-                                                <a href="#" style="background: #E0F6F6; width:16; color:#1DB9AA; margin-left:10px"
-                                                    class="btn btn-sm bg-info-light me-2"> Infomation
-                                                </a>
                                             </div>
                                         </td>
                                     </tr>
