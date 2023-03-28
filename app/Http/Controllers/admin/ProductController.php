@@ -66,12 +66,31 @@ class ProductController extends Controller
 
     public function edit(int $id)
     {
-        //
+        return view('backend.products.edit', [
+            'product' => $this->productRepository->findById($id),
+            'categories' => $this->categoryRepository->getAll()
+        ]);
     }
 
     public function update(ProductRequest $request, $id)
     {
-        //
+        DB::transaction(function () use ($id) {
+            $input = request()->all();
+            $this->productRepository->save($input, ["id" => $id]);
+
+            if (!empty($input['image'])) {
+                $this->attachmentRepository->save([
+                    'attachable_type' => Product::class,
+                    'file_path' => Storage::putFile('public/attachments', $input['image']),
+                    'file_name' => $input['image']->hashName(),
+                    'extension' => $input['image']->extension(),
+                    'mime_type' => $input['image']->getClientMimeType(),
+                    'size' => $input['image']->getSize(),
+                ], ['attachable_id' => $id]);
+            }
+        });
+
+        return redirect()->route('products.index')->with('message', 'Update successfully');
     }
 
     public function show(int $id)

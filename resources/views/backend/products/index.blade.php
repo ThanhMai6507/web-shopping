@@ -71,17 +71,17 @@
                                         </td>
                                         <td class="text-nowrap">
                                             @if ($product->attachment)
-                                                <img class="img-fluid" src="">
+                                                <img class="img-fluid" src="{{ asset('storage/attachments/'.$product->attachment->file_name) }} ?? null">
                                             @endif
                                         </td>
                                         <td >
                                             <div class="actions" style="display: flex;">
-                                                <a href="#" style="background: #E0F6F6;"
+                                                <a href="{{ route('products.create') }}" style="background: #E0F6F6;"
                                                     class="btn btn-sm bg-info-light me-2">
                                                     <i data-feather="user" width="16" color="#1DB9AA"></i>
                                                 </a>
 
-                                                <a href="#" style="background: #E2F6ED;"
+                                                <a href="{{ route('products.edit', ['product' => $product->id]) }}" style="background: #E2F6ED;"
                                                     class="btn btn-sm bg-success-light me-2">
                                                     <i data-feather="edit" width="16" color="#26AF48"></i>
                                                 </a>
