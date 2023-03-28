@@ -6,10 +6,13 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\Product;
 use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\AttachmentRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -34,12 +37,31 @@ class ProductController extends Controller
 
     public function create()
     {
-        //
+        return view('backend.products.create', [
+            'categories' => $this->categoryRepository->getAll(),
+        ]);
     }
 
     public function store(ProductRequest $request)
     {
-        //
+        DB::transaction(function () {
+            $input = request()->all();
+            $product = $this->productRepository->save($input);
+
+            if (!empty($input['image'])) {
+                $this->attachmentRepository->save([
+                    'attachable_type' => Product::class,
+                    'file_path' => Storage::putFile('public/attachments', $input['image']),
+                    'file_name' => $input['image']->hashName(),
+                    'attachable_id' => $product['id'],
+                    'extension' => $input['image']->extension(),
+                    'mime_type' => $input['image']->getClientMimeType(),
+                    'size' => $input['image']->getSize()
+                ]);
+            }
+        });
+        
+        return redirect()->route('products.index')->with('message', 'Create successfully!');
     }
 
     public function edit(int $id)
