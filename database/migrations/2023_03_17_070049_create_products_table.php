@@ -19,7 +19,7 @@ return new class () extends Migration {
             $table->decimal('old_price')->default(0);
             $table->unsignedBigInteger('created_by')->length(20);
             $table->unsignedBigInteger('category_id')->length(20);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
         });

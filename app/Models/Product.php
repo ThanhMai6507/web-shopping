@@ -49,7 +49,10 @@ class Product extends Model
     {
         parent::boot();
         static::saving(function ($model) {
-            $model->created_by = auth()->user()->id;
+            $user = auth()->user();
+            if ($user) {
+                $model->created_by = $user->id;
+            }
         });
     }
 }
