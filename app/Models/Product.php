@@ -44,4 +44,12 @@ class Product extends Model
     {
         return $this->morphOne(Attachment::class, 'attachable');
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving(function ($model) {
+            $model->created_by = auth()->user()->id;
+        });
+    }
 }
