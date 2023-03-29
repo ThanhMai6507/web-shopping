@@ -53,9 +53,9 @@
             <p>    Follow me on <a href="https://dribbble.com/virgilpana" style="color:#ea4c89" target="_blank">Dribbble</a> | <a style="color:#2aa9e0" href="https://twitter.com/virgil_pana" target="_blank">Twitter</a></p>
             </div>
 
-            @include('backend.partitions.header')
+            @include('backend.partitions.user.header')
 
-            @include('backend.partitions.sidebar')
+            @include('backend.partitions.user.sidebar')
 
             @yield('content')
             
