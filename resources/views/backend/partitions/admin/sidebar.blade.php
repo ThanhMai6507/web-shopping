@@ -28,12 +28,12 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Dashboard 1
+                  <a href="admin/users">Người dùng
                     <span class="badge badge-pill badge-success">Pro</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">Dashboard 2</a>
+                  <a href="admin/products">Sản phẩm</a>
                 </li>
                 <li>
                   <a href="#">Dashboard 3</a>
