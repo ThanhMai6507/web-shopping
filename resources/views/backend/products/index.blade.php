@@ -88,6 +88,9 @@
 
                                                 <x-button_delete route="{{ route('products.destroy', ['product' => $product->id]) }}"></x-button_delete>
                                                 
+                                                <a href="{{ route('products.show', ['product' => $product->id]) }}" style="background: #E0F6F6; color:#1DB9AA"
+                                                    class="btn btn-sm bg-info-light me-2"> Chi tiết
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

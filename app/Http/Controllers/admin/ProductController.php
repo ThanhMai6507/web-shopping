@@ -95,7 +95,9 @@ class ProductController extends Controller
 
     public function show(int $id)
     {
-       //
+        return view('backend.products.show', [
+            'product' => $this->productRepository->findById($id)
+        ]);
     }
 
     public function destroy(int $id)
