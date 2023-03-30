@@ -1,8 +1,9 @@
-@extends('layouts.backend')
+@extends('layouts.admin')
+
 @push('search')
 <x-search>
     <x-slot:slot>
-        <select class="form-select" style="width: 10rem" name='role'>
+        <select class="form-select" style="width: 10rem; height: 40px; border-radius: 4px; padding:5px" name='role'>
         <option value="0">Select Role</option>
         <option value="1" {{ request()->role == 1 ? 'selected' : '' }}>Admin</option>
         <option value="2" {{ request()->role == 2 ? 'selected' : '' }}>User</option>
@@ -11,7 +12,7 @@
 </x-search>
 @endpush
 @section('content')
-<div class="page-wrapper">
+<div class="page-wrapper" style="margin-left:20%">
     <div class="content container-fluid">
         <div class="page-header">
             <div class="row align-items-center">
@@ -25,8 +26,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 d-flex">
-
+            <div class="col-md-12">
                 <div class="card card-table flex-fill">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -53,30 +53,26 @@
                                 <tbody>
                                     @foreach($users as $user)
                                         <tr>
-                                            <td class="text-nowrap">
-                                                <div class="font-weight-600">{{ $user->id }}</div>
-                                            </td>
-                                            <td class="text-nowrap">
-                                                <div class="font-weight-600">{{ $user->name }}</div>
-                                            </td>
+                                            <td class="text-nowrap">{{ $user->id }}</td>
+                                            <td class="text-nowrap">{{ $user->name }}</td>
                                             <td class="text-nowrap">{{ $user->email }}</td>
                                             <td>{{ $user->type == 1 ? 'admin' : 'user' }}</td>
                                             <td>
-                                            <div class="actions" style="display: flex;">
+                                            <div class="actions" style="display: flex; justify-content: between; width:100%; gap:5px; height:40px; margin:auto">
                                                 <a href="{{ route('users.create') }}" style="background: #E0F6F6;"
                                                     class="btn btn-sm bg-info-light me-2">
-                                                    <i data-feather="user" width="16" color="#1DB9AA"></i>
+                                                    Thêm
                                                 </a>
 
                                                 <a href="{{ route('users.edit', ['user' => $user->id]) }}" style="background: #E2F6ED;"
                                                     class="btn btn-sm bg-success-light me-2">
-                                                    <i data-feather="edit" width="16" color="#26AF48"></i>
+                                                    Sửa
                                                 </a>
 
                                                 <x-button_delete route="{{ route('users.destroy', ['user' => $user->id]) }}"></x-button_delete>
                                                 
-                                                <a href="{{ route('users.show', ['user' => $user->id]) }}" style="background: #E0F6F6; width:16; color:#1DB9AA; margin-left:10px"
-                                                    class="btn btn-sm bg-info-light me-2"> Infomation
+                                                <a href="{{ route('users.show', ['user' => $user->id]) }}" style="background: #E0F6F6; color:#1DB9AA"
+                                                    class="btn btn-sm bg-info-light me-2"> Chi tiết
                                                 </a>
                                             </td>
                                         </tr>

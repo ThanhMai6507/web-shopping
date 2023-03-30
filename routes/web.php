@@ -30,3 +30,5 @@ Route::prefix('admin')->middleware(['auth', 'checkAdmin'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
 });
+
+Route::get('/user', [App\Http\Controllers\admin\DashboardController::class, 'index']);
