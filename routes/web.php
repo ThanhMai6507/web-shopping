@@ -35,6 +35,6 @@ Route::prefix('admin')->middleware(['auth', 'checkAdmin'])->group(function () {
 
 Route::get('/change-password', [App\Http\Controllers\Auth\ConfirmPasswordController::class, 'showForm'])->name('change.password');
 Route::post('/update-password', [App\Http\Controllers\Auth\ConfirmPasswordController::class, 'updatePassword'])->name('update.password');
-    
+
 
 Route::get('/user', [App\Http\Controllers\admin\DashboardController::class, 'index']);
