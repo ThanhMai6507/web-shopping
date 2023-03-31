@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark kind">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark kind header">
 @stack('search')
 
 <div style="margin-left: 32%">
@@ -12,7 +12,7 @@
         {{ Auth::user()->name }}
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Change Password</a>
+          <a class="dropdown-item" href="change-password">Change Password</a>
           <a class="dropdown-item" href="{{ route('login') }}">Logout</a>
         </div>
     </li>
