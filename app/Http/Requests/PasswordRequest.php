@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use App\Rules\CheckPassword;
@@ -26,7 +28,7 @@ class PasswordRequest extends FormRequest
             'old_password' => [
                 'required',
                 'min:6',
-                new CheckPassword
+                new CheckPassword()
             ],
             'new_password' => [
                 'required',

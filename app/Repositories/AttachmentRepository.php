@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+declare(strict_types=1);
 
-use App\Repositories\BaseRepository;
+namespace App\Repositories;
 
 class AttachmentRepository extends BaseRepository
 {

@@ -45,12 +45,12 @@ class ConfirmPasswordController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function showForm() 
+    public function showForm()
     {
         return view('backend.change_password');
     }
 
-    public function updatePassword(PasswordRequest $request) 
+    public function updatePassword(PasswordRequest $request)
     {
         $user = auth()->user();
         $user->password = bcrypt($request->new_password);
