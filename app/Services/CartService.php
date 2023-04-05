@@ -44,5 +44,10 @@ class CartService
     {
         return $this->cart->where('id', $id)->isNotEmpty();
     }
+
+    public function find($id)
+    {
+        return $this->cart->where('id', $id);
+    }
 }
 ?>

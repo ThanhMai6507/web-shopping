@@ -1,9 +1,9 @@
 @extends('layouts.user')
 
 @section('content')
-<div class="cartList" style="width: 85%; margin-left:20%; margin-top:5%">
+<div class="cartList" style="width: 85%; margin-left:18%; margin-top:5%">
     <div class="container">
-        <form action="#" method="POST">
+        <form action="{{ route('update.to.cart') }}" method="POST">
             @csrf
             <table id="cart" class="table table-hover table-condesed">
                 <thead>
@@ -28,23 +28,23 @@
                 @endphp
                 @if (session('cart'))
                     @foreach (session('cart') as $id => $products)
-                    @php
-                        $total += $products['price'] * $products['quantity']
-                    @endphp
-                    <tr>
-                        <td data-th="Product">{{ $products['name'] }}</td>
-                        <td data-th="Image">
-                            <img src="{{ asset('storage/attachments/'.$products['image']) }}" style="width: 300px;"/>
-                        </td>
-                        <td data-th="Price">{{ $products['price'] }}</td>
-                        <td data-th="Quantity">
-                            <input type="number" class="form-control text-center" name="quantity[{{ $products['id'] }}]" value="{{ $products['quantity'] }}">
-                        </td>
-                        <td data-th="Subtotal" class="text-center">{{ $products['price'] * $products['quantity'] }}</td>
-                        <td data-th="" class="action">
-                            <a href="#">Delete</a>
-                        </td>
-                    </tr>
+                        @php
+                            $total += $products['price'] * $products['quantity']
+                        @endphp
+                        <tr>
+                            <td data-th="Product">{{ $products['name'] }}</td>
+                            <td data-th="Image">
+                                <img src="{{ asset('storage/attachments/'.$products['image']) }}" style="width: 300px;"/>
+                            </td>
+                            <td data-th="Price">{{ $products['price'] }}</td>
+                            <td data-th="Quantity">
+                                <input type="number" class="form-control text-center" name="quantity[{{ $products['id'] }}]" value="{{ $products['quantity'] }}">
+                            </td>
+                            <td data-th="Subtotal" class="text-center">{{ $products['price'] * $products['quantity'] }}</td>
+                            <td data-th="" class="action">
+                                <a href="#">Delete</a>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
                 @endif

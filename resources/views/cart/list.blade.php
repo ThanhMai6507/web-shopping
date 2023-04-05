@@ -50,7 +50,7 @@
                     <a class="add_to_cart" href="{{ route('add.to.cart', $product->id) }}">Add to cart</a>
                     <div class="view_gallery">View gallery</div>                
                     <div class="stats">        	
-                        <div class="stats-container">
+                        <div class="stats-container" style="width: 100%">
                             <span class="product_price">{{ $product->price }}</span>
                             <span class="product_name">{{ $product->name }}</span>    
                             <p>{{ $product->category->name }}</p>                                            

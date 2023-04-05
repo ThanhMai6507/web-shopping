@@ -39,4 +39,5 @@ Route::post('/update-password', [App\Http\Controllers\Auth\ConfirmPasswordContro
 Route::get('show-cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('show.cart')->middleware(['auth']);
 Route::get('show-list', [App\Http\Controllers\CartController::class, 'showList'])->name('show.list')->middleware(['auth']);
 Route::get('add-to-cart/{id}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('add.to.cart')->middleware(['auth']);
+Route::post('update-cart', [App\Http\Controllers\CartController::class, 'updateCart'])->name('update.to.cart');
 

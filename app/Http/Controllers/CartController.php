@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\ProductRepository;
 use App\Services\CartService;
+use GuzzleHttp\Psr7\Request;
 
 class CartController extends Controller
 {
@@ -38,5 +39,12 @@ class CartController extends Controller
         return view('cart.list',[
             'products' => $this->productRepository->getAll(),
         ]);
+    }
+
+    public function updateCart(Request $request) 
+    {
+        app(CartService::class)->update($request->quantity);
+
+        return redirect()->back()->with('success', 'Update successfully');
     }
 }
