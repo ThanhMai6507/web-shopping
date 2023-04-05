@@ -37,7 +37,7 @@
 
         <div>
 
-        <div id="wrapper" style="background: #e9e9e9;">
+        <div id="wrapper" style="background: #e9e9e9; height:1650px">
             <div class="cart-icon-top">
             </div>
 
@@ -45,7 +45,7 @@
             </div>
 
             <div id="checkout">
-                CHECKOUT
+                <a href="{{ url('/show-cart') }}">CHECKOUT</a>
             </div>
 
             <div id="info">
