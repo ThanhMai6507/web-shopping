@@ -1,9 +1,9 @@
 @extends('layouts.user')
 
 @section('content')
-<div class="cartList" style="width: 85%; margin-left:18%; margin-top:5%">
+<div class="cartList" style="width: 80%; margin-left:18%; margin-top:5%">
     <div class="container">
-        <form action="{{ route('update.to.cart') }}" method="POST">
+        <form method="POST" action="{{ route('update.to.cart') }}">
             @csrf
             <table id="cart" class="table table-hover table-condesed">
                 <thead>
@@ -15,10 +15,10 @@
 
                 <tr>
                     <th style="width: 16%">Name</th>
-                    <th style="width: 16%">Image</th>
-                    <th style="width: 16%">Price</th>
-                    <th style="width: 16%">Quantity</th>
-                    <th style="width: 16%">Subtotal</th>
+                    <th style="width: 10%">Image</th>
+                    <th style="width: 10%">Price</th>
+                    <th style="width: 10%">Quantity</th>
+                    <th style="width: 10%">Subtotal</th>
                     <th style="width: 16%">Action</th>
                 </tr>
                 </thead>
@@ -40,9 +40,9 @@
                             <td data-th="Quantity">
                                 <input type="number" class="form-control text-center" name="quantity[{{ $products['id'] }}]" value="{{ $products['quantity'] }}">
                             </td>
-                            <td data-th="Subtotal" class="text-center">{{ $products['price'] * $products['quantity'] }}</td>
+                            <td data-th="Subtotal">{{ $products['price'] * $products['quantity'] }}</td>
                             <td data-th="" class="action">
-                                <a href="#">Delete</a>
+                                <a href="{{ route('delete.to.cart', $products['id'])}}" style="background:#E2F6ED;color:black;text-decoration:none;padding:8px;border-radius:6px;">Delete</a>
                             </td>
                         </tr>
                     @endforeach
@@ -60,7 +60,9 @@
                     </tr>
                 </tfoot>
             </table>
-            <a href="#" class="btn btn-warning">Delete all cart</a>
+
+            <button type="submit" class="btn btn-primary"> Update Card</button>
+            <a href="{{ route('delete.all.cart') }}" class="btn btn-warning">Delete all cart</a>
             <input type="submit" class="btn btn-warning" formaction="#" value="Buy now">
         </form>
     </div>

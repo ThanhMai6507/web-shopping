@@ -22,14 +22,12 @@ class CartService
     public function update(array $inputs, $isReplace = true)
     {
         foreach ($inputs as $key => $quantity) {
-            $this->cart = $this->cart->map(
-                function ($item) use ($isReplace, $key, $quantity) {
-                    if ($key == $item->id) {
-                        $isReplace ? $item->$quantity = $quantity : $item->quantity += $quantity;
-                    }
-                    return $item;
+            $this->cart = $this->cart->map(function ($item) use ($isReplace, $key, $quantity) {
+                if ($key == $item->id) {
+                    $isReplace ? $item->quantity = $quantity : $item->quantity += $quantity ;
                 }
-            );
+                return $item;
+            });
         }
         session()->put('cart', $this->cart);
         return;
@@ -49,5 +47,15 @@ class CartService
     {
         return $this->cart->where('id', $id);
     }
+
+    public function removeItem($id)
+    {
+        $this->cart = $this->cart->whereNotIn('id', $id);
+        session()->put('cart', $this->cart);
+    }
+
+    public function destroy()
+    {
+        request()->session()->forget('cart');
+    }
 }
-?>

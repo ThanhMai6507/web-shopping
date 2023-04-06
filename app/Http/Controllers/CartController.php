@@ -22,11 +22,11 @@ class CartController extends Controller
 
         if (app(CartService::class)->exists($product->id)) {
             $cartService->update([$product->id => 1], false);
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Add Successfully!');
         }
         $product->image = $product->attachment->file_name ?? null;
         $cartService->insert($product);
-        return redirect()->back();    
+        return redirect()->back()->with('success', 'Add Successfully!');    
     }
 
     public function showCart()
@@ -41,10 +41,21 @@ class CartController extends Controller
         ]);
     }
 
-    public function updateCart(Request $request) 
+    public function updateCart(Request $request)
     {
         app(CartService::class)->update($request->quantity);
+        return redirect()->back()->with('success', 'Update Successfully!');
+    }
 
-        return redirect()->back()->with('success', 'Update successfully');
+    public function removeItem($id)
+    {
+        app(CartService::class)->removeItem($id);
+        return redirect()->back()->with('sucess', 'Delete this product successfully');
+    }
+
+    public function removeAll()
+    {
+        app(CartService::class)->destroy();
+        return redirect()->back()->with('success', 'Delete all product successfully');
     }
 }
