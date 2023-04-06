@@ -42,3 +42,4 @@ Route::get('add-to-cart/{id}', [App\Http\Controllers\CartController::class, 'add
 Route::post('update-cart', [App\Http\Controllers\CartController::class, 'updateCart'])->name('update.to.cart');
 Route::get('delete-item-cart/{session_id}', [App\Http\Controllers\CartController::class, 'removeItem'])->name('delete.to.cart');
 Route::get('delete-all-cart', [App\Http\Controllers\CartController::class, 'removeAll'])->name('delete.all.cart');
+Route::post('checkout-cart', [App\Http\Controllers\CartController::class, 'chekoutCart'])->name('checkout.cart')->middleware('auth');

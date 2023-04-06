@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Repositories\ProductRepository;
 use App\Services\CartService;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
+use App\Services\MailService;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -57,5 +59,12 @@ class CartController extends Controller
     {
         app(CartService::class)->destroy();
         return redirect()->back()->with('success', 'Delete all product successfully');
+    }
+
+    public function chekoutCart()
+    {
+        app(MailService::class)->sendMailCheckoutCart(auth()->user(), session()->get('cart'));
+        app(CartService::class)->destroy();
+        return redirect('')->with('success', 'Checkout cart successfully');
     }
 }
