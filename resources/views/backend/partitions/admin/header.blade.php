@@ -9,7 +9,7 @@
     </li>
     <li class="nav-item dropdown navbar-nav">
         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        {{ Auth::user()->name }}
+          {{ Auth::user()->name }}
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="change-password">Change Password</a>

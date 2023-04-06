@@ -1,4 +1,4 @@
-<div id="sidebar">
+<div id="sidebar" style="height: 1650px">
     <h3>CART</h3>
     <div id="cart">
         <span class="empty">No items in cart.</span>       

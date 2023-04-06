@@ -83,9 +83,7 @@
                 </div>
             </div>
         </div>
-        <div style="margin-top: 5%"><a href="{{ route('users.index') }}">Return home page</a></div>
-</div>
-
-
+        <div style="margin-top: 5%"><a href="/">Return home page</a></div>
+    </div>
 </body>
 </html>
