@@ -69,7 +69,7 @@
                                         <td class="text-nowrap">
                                             <div class="font-weight-600">{{ $product->price }}</div>
                                         </td>
-                                        <td class="text-nowrap">
+                                        <td class="text-nowrap" style="width: 15%">
                                             @if ($product->attachment)
                                                 <img class="img-fluid" src="{{ asset('storage/attachments/'.$product->attachment->file_name) }} ?? null">
                                             @endif

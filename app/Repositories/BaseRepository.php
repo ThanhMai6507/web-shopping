@@ -8,7 +8,7 @@ class BaseRepository
 {
     protected $model;
     public const SORT_TYPES = ['desc', 'asc'];
-    public const PER_PAGE = 12;
+    public const PER_PAGE = 4;
 
     public function getAll()
     {

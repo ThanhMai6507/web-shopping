@@ -41,11 +41,13 @@
                             
             </div>
             <div class="make3D">
-                <div class="product-front">
-                    <div class="shadow"></div>
-                        @if ($product->attachment)
+                <div class="product-front" style="position:relative;">
+                    <div class="shadow" style="position:absolute; margin:auto"></div>
+                        @if ($product->attachment) 
                             <img class="img-fluid" src="{{ asset('storage/attachments/'.$product->attachment->file_name) }} ?? null">
-                        @endif
+                        @else
+                            <img src="https://perspectives.agf.com/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png" style='display:block; width:100%; height: 100%; object-fit: cover '>
+                        @endif 
                     <div class="image_overlay"></div>
                     <a class="add_to_cart" href="{{ route('add.to.cart', $product->id) }}">Add to cart</a>
                     <div class="view_gallery">View gallery</div>                
