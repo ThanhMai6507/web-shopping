@@ -260,4 +260,24 @@ $(document).ready(function(){
 			
 		}, 1000);
 	});
+
+	 // Lấy tất cả các phần tử input có kiểu checkbox trên trang
+	 const checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+	 // Lặp qua tất cả các phần tử checkbox và thêm sự kiện click
+	 checkboxes.forEach(function(checkbox) {
+		 checkbox.addEventListener('click', function() {
+			 // Lấy phần tử span liền kề của checkbox
+			 const span = checkbox.nextElementSibling;
+ 
+			 // Nếu checkbox được chọn, thêm lớp checked vào phần tử span
+			 if (checkbox.checked) {
+				 span.classList.add('checked');
+			 }
+			 // Nếu checkbox không được chọn, xóa lớp checked khỏi phần tử span
+			 else {
+				 span.classList.remove('checked');
+			 }
+		 });
+	 });
 });

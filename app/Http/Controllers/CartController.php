@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Services\CartService;
 use Illuminate\Http\Request;
@@ -11,10 +12,12 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     protected $productRepository;
+    protected $categoryRepository;
 
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
     {
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function addToCart(int $id) 
@@ -24,11 +27,11 @@ class CartController extends Controller
 
         if (app(CartService::class)->exists($product->id)) {
             $cartService->update([$product->id => 1], false);
-            return redirect()->back()->with('success', 'Add Successfully!');
+            return redirect()->back();
         }
         $product->image = $product->attachment->file_name ?? null;
         $cartService->insert($product);
-        return redirect()->back()->with('success', 'Add Successfully!');    
+        return redirect()->back();    
     }
 
     public function showCart()
@@ -40,6 +43,7 @@ class CartController extends Controller
     {
         return view('cart.list',[
             'products' => $this->productRepository->getAll(),
+            'categories' => $this->categoryRepository->getAll()
         ]);
     }
 

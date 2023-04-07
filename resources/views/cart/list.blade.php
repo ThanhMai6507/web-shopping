@@ -1,4 +1,18 @@
 @extends('layouts.user')
+@push('search')
+    <x-search>
+        <x-slot:slot>
+        <select class="form-select" style="width: 10rem; height: 38px; border-radius: 4px; padding: 5px 40px 5px 5px;" name='category_id'>
+            <option value="">Select Categories</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : ''}}>
+                        {{$category->id}}. {{ $category->name }}
+                    </option>
+                @endforeach
+        </select>
+        </x-slot:slot>
+    </x-search>
+@endpush
 
 @section('content')
 <div id="grid">
@@ -77,10 +91,12 @@
                 <div class="product-back">
                     <div class="shadow"></div>
                     <div class="carousel">
-                        <ul class="carousel-container">
-                            <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1.jpg" alt="" /></li>
-                            <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2.jpg" alt="" /></li>
-                            <li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/3.jpg" alt="" /></li>
+                        <ul class="carousel-container" style="padding: 0">
+                            @if ($product->attachment) 
+                                <li><img class="img-fluid" src="{{ asset('storage/attachments/'.$product->attachment->file_name) }} ?? null"></li>
+                            @else
+                                <li><img src="https://perspectives.agf.com/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png" style='display:block; width:100%; height: 100%; object-fit: cover '></li>
+                            @endif 
                         </ul>
                         <div class="arrows-perspective">
                             <div class="carouselPrev">
