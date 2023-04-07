@@ -102,5 +102,7 @@
         </div>
         @endforeach
     </div>
+    <br>
+    {{ $products->appends(request()->all())->links() }}
 </div>
 @endsection
