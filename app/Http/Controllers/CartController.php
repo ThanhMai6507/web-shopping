@@ -31,7 +31,7 @@ class CartController extends Controller
         }
         $product->image = $product->attachment->file_name ?? null;
         $cartService->insert($product);
-        return redirect()->back();    
+        return redirect()->back()->with('success', 'Add Successfully!');    
     }
 
     public function showCart()
@@ -44,6 +44,13 @@ class CartController extends Controller
         return view('cart.list',[
             'products' => $this->productRepository->getAll(),
             'categories' => $this->categoryRepository->getAll()
+        ]);
+    }
+
+    public function showDetailProduct(int $id)
+    {
+        return view('cart.detail_product', [
+            'product' => $this->productRepository->findById($id)
         ]);
     }
 

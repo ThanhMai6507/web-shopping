@@ -38,6 +38,7 @@ Route::post('/update-password', [App\Http\Controllers\Auth\ConfirmPasswordContro
 
 Route::get('show-cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('show.cart')->middleware(['auth']);
 Route::get('show-list', [App\Http\Controllers\CartController::class, 'showList'])->name('show.list');
+Route::get('show-detail-product/{id}', [App\Http\Controllers\CartController::class, 'showDetailProduct'])->name('show.detail.product');
 Route::get('add-to-cart/{id}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('add.to.cart')->middleware(['auth']);
 Route::post('update-cart', [App\Http\Controllers\CartController::class, 'updateCart'])->name('update.to.cart');
 Route::get('delete-item-cart/{session_id}', [App\Http\Controllers\CartController::class, 'removeItem'])->name('delete.to.cart');
