@@ -17,7 +17,7 @@ class ProductRepository extends BaseRepository
     public function getAll(array $input = [])
     {
         $query = $this->model->query();
-
+        $query->with(['colors', 'sizes']);
         if (!empty($input['search'])) {
             $query->where(
                 fn ($query) =>
@@ -38,7 +38,6 @@ class ProductRepository extends BaseRepository
         if ($validColumn && $validSortType) {
             $query->orderBy($columnSortName, $columnSortType)->paginate(static::PER_PAGE);
         }
-
         return $query->paginate(static::PER_PAGE);
     }
 
