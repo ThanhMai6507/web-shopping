@@ -21,35 +21,35 @@ class CartController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-    // public function addToCart(int $id) 
-    // {
-    //     $product = $this->productRepository->findById($id);
-    //     $cartService = app(CartService::class); //create a new CartService object
-
-    //     if (app(CartService::class)->exists($product->id)) {
-    //         $cartService->update([$product->id => 1], false);
-    //         return redirect()->back();
-    //     }
-    //     $product->image = $product->attachment->file_name ?? null;
-    //     $cartService->insert($product);
-    //     return redirect()->back()->with('success', 'Add Successfully!');    
-    // }
-
-    public function addToCart(Request $request, Product $product)
+    public function addToCart(int $id) 
     {
-        $cartService = new CartService();
+        $product = $this->productRepository->findById($id);
+        $cartService = app(CartService::class); //create a new CartService object
 
-        // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
-        if ($cartService->exists($product->id)) {
-            // Nếu sản phẩm đã tồn tại, tăng số lượng lên 1
+        if (app(CartService::class)->exists($product->id)) {
             $cartService->update([$product->id => 1], false);
-            return redirect()->back()->with('success', 'Đã cập nhật giỏ hàng thành công!');
+            return redirect()->back();
         }
-
-        // Nếu sản phẩm chưa tồn tại, thêm sản phẩm vào giỏ hàng
+        $product->image = $product->attachment->file_name ?? null;
         $cartService->insert($product);
-        return redirect()->back()->with('success', 'Đã thêm sản phẩm vào giỏ hàng thành công!');
+        return redirect()->back()->with('success', 'Add Successfully!');    
     }
+
+    // public function addToCart(Request $request, Product $product)
+    // {
+    //     $cartService = new CartService();
+
+    //     // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+    //     if ($cartService->exists($product->id)) {
+    //         // Nếu sản phẩm đã tồn tại, tăng số lượng lên 1
+    //         $cartService->update([$product->id => 1], false);
+    //         return redirect()->back()->with('success', 'Đã cập nhật giỏ hàng thành công!');
+    //     }
+
+    //     // Nếu sản phẩm chưa tồn tại, thêm sản phẩm vào giỏ hàng
+    //     $cartService->insert($product);
+    //     return redirect()->back()->with('success', 'Đã thêm sản phẩm vào giỏ hàng thành công!');
+    // }
 
 
     public function showCart()
