@@ -25,11 +25,15 @@
                     </div>
                     <div class="form-group">
                         <label>Màu sắc</label>
-                        <p>{{ $product->category->color }}</p>
+                        @foreach($product->colors as $color)
+                            <span>{{ $color->name }}</span>
+                        @endforeach 
                     </div>
                     <div class="form-group">
                         <label>Kích thước</label>
-                        <p>{{ $product->category->size }}</p>
+                        @foreach($product->sizes as $size)
+                            <span>{{ $size->name }}</span>
+                        @endforeach 
                     </div>
                 </div>
             </div>

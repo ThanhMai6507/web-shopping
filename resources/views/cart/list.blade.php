@@ -36,19 +36,21 @@
                 </div>
                 
                 <h3>COLORS</h3>
-                <div class="colors-large">
+                <div class="colors-large" style="margin-bottom:0">
                     <ul>
                         @foreach($product->colors as $color)
-                            <li>Color: {{ $color }}</li>
+                            <li> {{ $color }}</li>
                         @endforeach    
                     </ul> 
                 </div>
 
                 <h3>SIZE</h3>
-                <div class="sizes-large">
-                    @foreach($product->sizes as $size)
-                        <span>Size: {{ $size }}</span>
-                    @endforeach  
+                <div class="sizes-large" style="margin-bottom:0">  
+                    <ul>
+                        @foreach($product->sizes as $size)
+                            <li> {{ $size }}</li>
+                        @endforeach    
+                    </ul>  
                 </div>
                 
                 <button class="add-cart-large">Add To Cart</button>                          
@@ -72,16 +74,19 @@
                             <p>{{ $product->category->name }}</p>                                            
                             
                             <div class="product-options">
-                            <strong>SIZES</strong>
-                                @foreach($product->sizes as $size)
-                                    <span>Size: {{ $size->name }}</span>
-                                @endforeach 
-                            <br>
-                            <strong>COLORS</strong>
-                            <div class="colors">
-                                @foreach($product->colors as $color)
-                                    <span>Color: {{ $color->name }}</span>
-                                @endforeach 
+                                <div>
+                                    <strong style="margin-right: 10px">SIZES</strong>
+                                    @foreach($product->sizes as $size)
+                                        <span style="display: inline-block; margin-left: -5px; margin-right: 10px">{{ $size->name }}</span>
+                                    @endforeach 
+                                </div>
+                                <div>
+                                    <strong style="margin-right: 10px">COLORS</strong>
+                                    <div class="colors">
+                                    @foreach($product->colors as $color)
+                                        <span style="display: inline-block; margin-left: -5px; margin-right: 10px">{{ $color->name }}</span>
+                                    @endforeach 
+                                </div>
                             </div>
                         </div>                       
                         </div>                         
