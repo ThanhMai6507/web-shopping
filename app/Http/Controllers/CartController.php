@@ -41,8 +41,8 @@ class CartController extends Controller
 
     public function showList()
     {
-        return view('cart.list',[
-            'products' => $this->productRepository->getAll(),
+        return view('cart.list', [
+            'products' => $this->productRepository->getAll(request()->all()),
             'categories' => $this->categoryRepository->getAll()
         ]);
     }
