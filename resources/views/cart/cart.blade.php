@@ -42,7 +42,7 @@
                             </td>
                             <td data-th="Subtotal">{{ $products['price'] * $products['quantity'] }}</td>
                             <td data-th="" class="action">
-                                <a href="{{ route('delete.to.cart', $products['id'])}}" style="background:#E2F6ED;color:black;text-decoration:none;padding:8px;border-radius:6px;">Delete</a>
+                                <a href="{{ route('delete.to.cart', $id)}}" style="background:#E2F6ED;color:black;text-decoration:none;padding:8px;border-radius:6px;">Delete</a>
                             </td>
                         </tr>
                     @endforeach

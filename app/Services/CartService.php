@@ -15,6 +15,8 @@ class CartService
     public function insert($data) 
     {
         $data->quantity = 1;
+        // $this->cart->push($data);
+        $data->user_id = auth()->id(); // thêm user_id vào đối tượng sản phẩm
         $this->cart->push($data);
         session()->put('cart', $this->cart);
     }
@@ -50,7 +52,7 @@ class CartService
 
     public function removeItem($id)
     {
-        $this->cart = $this->cart->whereNotIn('id', $id);
+        $this->cart = $this->cart->where('id', '<>', $id);
         session()->put('cart', $this->cart);
     }
 
