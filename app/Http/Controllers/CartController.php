@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Services\CartService;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
+use App\Services\MailService;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     protected $productRepository;
+    protected $categoryRepository;
 
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
     {
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function addToCart(int $id) 
@@ -22,7 +27,7 @@ class CartController extends Controller
 
         if (app(CartService::class)->exists($product->id)) {
             $cartService->update([$product->id => 1], false);
-            return redirect()->back()->with('success', 'Add Successfully!');
+            return redirect()->back();
         }
         $product->image = $product->attachment->file_name ?? null;
         $cartService->insert($product);
@@ -38,6 +43,14 @@ class CartController extends Controller
     {
         return view('cart.list',[
             'products' => $this->productRepository->getAll(),
+            'categories' => $this->categoryRepository->getAll()
+        ]);
+    }
+
+    public function showDetailProduct(int $id)
+    {
+        return view('cart.detail_product', [
+            'product' => $this->productRepository->findById($id)
         ]);
     }
 
@@ -57,5 +70,12 @@ class CartController extends Controller
     {
         app(CartService::class)->destroy();
         return redirect()->back()->with('success', 'Delete all product successfully');
+    }
+
+    public function chekoutCart()
+    {
+        app(MailService::class)->sendMailCheckoutCart(auth()->user(), session()->get('cart'));
+        app(CartService::class)->destroy();
+        return redirect('')->with('success', 'Checkout cart successfully');
     }
 }

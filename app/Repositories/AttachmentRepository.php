@@ -3,12 +3,13 @@
 declare(strict_types=1);
 
 namespace App\Repositories;
+use App\Models\Attachment;
 
 class AttachmentRepository extends BaseRepository
 {
-    public function getModel()
+    public function __construct(Attachment $model)
     {
-        return \App\Models\Attachment::class;
+        $this->model = $model;
     }
 
     public function getByUserId($userId)

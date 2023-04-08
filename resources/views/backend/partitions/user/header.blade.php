@@ -4,6 +4,8 @@
         <li><a href="">BRANDS</a></li>
         <li><a href="">DESIGNERS</a></li>
         <li><a href="">CONTACT</a></li>  
+
+        @if (Auth::user())
         <li>
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
             {{ Auth::user()->name ?? null}}
@@ -13,10 +15,8 @@
                 <a class="dropdown-item" href="{{ route('login') }}">Logout</a>
             </div>
         </li>
-        <li>
-            <a style="width: 85%; margin-left:50%" href="{{ route('show.cart') }}">Cart</a>
-        </li>
-
+        @endif
+        
         @stack('search')                                            
     </ul>		
 </div>

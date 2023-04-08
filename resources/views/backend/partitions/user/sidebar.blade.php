@@ -1,25 +1,8 @@
-<div id="sidebar" style="height: 1650px">
-    <h3>CART</h3>
+<div id="sidebar" style="height: 2139px">
+    <a style="color: #262626; font-weight: bold; text-decoration: none" href="{{ url('/show-cart') }}">CART</a>
     <div id="cart">
+        <br>
         <span class="empty">No items in cart.</span>       
-    </div>
-    
-    <h3>CATEGORIES</h3>
-    <div class="checklist categories">
-        <ul>
-            <li><a href=""><span></span>New Arivals</a></li>
-            <li><a href=""><span></span>Accesories</a></li>
-            <li><a href=""><span></span>Bags</a></li>
-            <li><a href=""><span></span>Dressed</a></li>
-            <li><a href=""><span></span>Jackets</a></li>
-        </ul>
-        <ul>
-            <li><a href=""><span></span>jewelry</a></li>
-            <li><a href=""><span></span>Shoes</a></li>
-            <li><a href=""><span></span>Shirts</a></li>
-            <li><a href=""><span></span>Sweaters</a></li>
-            <li><a href=""><span></span>T-shirts</a></li>
-        </ul>
     </div>
     
     <h3>COLORS</h3>

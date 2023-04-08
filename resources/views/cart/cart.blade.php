@@ -63,7 +63,7 @@
 
             <button type="submit" class="btn btn-primary"> Update Card</button>
             <a href="{{ route('delete.all.cart') }}" class="btn btn-warning">Delete all cart</a>
-            <input type="submit" class="btn btn-warning" formaction="#" value="Buy now">
+            <input type="submit" class="btn btn-warning" formaction="{{ route('checkout.cart') }}" value="Buy now">
         </form>
     </div>
 </div>

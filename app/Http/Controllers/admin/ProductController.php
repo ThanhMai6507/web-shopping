@@ -47,7 +47,7 @@ class ProductController extends Controller
         DB::transaction(function () {
             $input = request()->all();
             $product = $this->productRepository->save($input);
-
+            
             if (!empty($input['image'])) {
                 $this->attachmentRepository->save([
                     'attachable_type' => Product::class,

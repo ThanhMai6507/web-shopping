@@ -15,7 +15,11 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+    
         <script src="https://unpkg.com/feather-icons"></script>
     </head>
         
@@ -37,16 +41,11 @@
 
         <div>
 
-        <div id="wrapper" style="background: #e9e9e9; height:1650px">
+        <div id="wrapper" style="background: #e9e9e9; height:2139px">
             <div class="cart-icon-top">
             </div>
 
             <div class="cart-icon-bottom">
-            </div>
-
-
-            <div id="checkout">
-                <a href="{{ url('/show-cart') }}">CHECKOUT</a>
             </div>
 
             @include('backend.partitions.user.header')

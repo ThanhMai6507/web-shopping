@@ -15,6 +15,10 @@ class Attachment extends Model
         'file_path',
         'file_name',
         'size',
+        'attachable_type',
+        'attachable_id',
+        'extension',
+        'mime_type',
     ];
 
     public function attachable()
