@@ -52,7 +52,7 @@ class CartService
 
     public function removeItem($id)
     {
-        $this->cart = $this->cart->where('id', '<>', $id);
+        $this->cart = $this->cart->whereNotIn('id', $id);
         session()->put('cart', $this->cart);
     }
 

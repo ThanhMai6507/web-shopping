@@ -54,15 +54,7 @@ class CartController extends Controller
 
     public function showCart()
     {
-        $cart = session('cart');
-
-        if ($cart) {
-            $cart = $cart->where('user_id', auth()->id());
-        } else {
-            $cart = collect(); // create empty collection if cart isn't exist
-        }
-        
-        return view('cart.cart', compact('cart'));
+        return view('cart.cart');
     }
 
     public function showList()
