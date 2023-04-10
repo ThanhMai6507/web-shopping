@@ -13,6 +13,7 @@ use App\Repositories\AttachmentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use PDOException;
 
 class ProductController extends Controller
 {
@@ -44,7 +45,9 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        DB::transaction(function () {
+        DB::beginTransaction();
+
+        try {
             $input = request()->all();
             $product = $this->productRepository->save($input);
             
@@ -59,9 +62,13 @@ class ProductController extends Controller
                     'size' => $input['image']->getSize()
                 ]);
             }
-        });
+            DB::commit();
 
-        return redirect()->route('products.index')->with('message', 'Create successfully!');
+            return redirect()->route('products.index')->with('message', 'Create successfully!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function edit(int $id)
@@ -74,7 +81,9 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, $id)
     {
-        DB::transaction(function () use ($id) {
+        DB::beginTransaction();
+
+        try {
             $input = request()->all();
             $this->productRepository->save($input, ["id" => $id]);
 
@@ -88,9 +97,13 @@ class ProductController extends Controller
                     'size' => $input['image']->getSize(),
                 ], ['attachable_id' => $id]);
             }
-        });
+            DB::commit();
 
-        return redirect()->route('products.index')->with('message', 'Update successfully');
+            return redirect()->route('products.index')->with('message', 'Update successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function show(int $id)
