@@ -51,17 +51,11 @@ class ProductController extends Controller
             $input = request()->all();
             $product = $this->productRepository->save($input);
             
-            if (!empty($input['image'])) {
-                $this->attachmentRepository->save([
-                    'attachable_type' => Product::class,
-                    'file_path' => Storage::putFile('public/attachments', $input['image']),
-                    'file_name' => $input['image']->hashName(),
-                    'attachable_id' => $product['id'],
-                    'extension' => $input['image']->extension(),
-                    'mime_type' => $input['image']->getClientMimeType(),
-                    'size' => $input['image']->getSize()
-                ]);
-            }
+            $this->attachmentRepository->saveFile(
+                $input['image'], 
+                Product::class, 
+                $product['id']
+            );
             DB::commit();
 
             return redirect()->route('products.index')->with('message', 'Create successfully!');
@@ -85,18 +79,15 @@ class ProductController extends Controller
 
         try {
             $input = request()->all();
-            $this->productRepository->save($input, ["id" => $id]);
-
-            if (!empty($input['image'])) {
-                $this->attachmentRepository->save([
-                    'attachable_type' => Product::class,
-                    'file_path' => Storage::putFile('public/attachments', $input['image']),
-                    'file_name' => $input['image']->hashName(),
-                    'extension' => $input['image']->extension(),
-                    'mime_type' => $input['image']->getClientMimeType(),
-                    'size' => $input['image']->getSize(),
-                ], ['attachable_id' => $id]);
-            }
+            $product = $this->productRepository->save($input, ["id" => $id]);
+            
+            $this->attachmentRepository->saveFile(
+                $input['image'], 
+                Product::class, 
+                $product['id'], 
+                $id
+            );
+            
             DB::commit();
 
             return redirect()->route('products.index')->with('message', 'Update successfully');
