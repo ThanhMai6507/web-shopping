@@ -1,5 +1,5 @@
 <div id="sidebar" style="height: 2139px">
-    <a style="color: #262626; font-weight: bold; text-decoration: none" href="{{ url('/show-cart') }}">CART</a>
+    <a style="color: #262626; font-weight: bold; text-decoration: none" href="{{ url('cart/show') }}">CART</a>
     <div id="cart">
         <br>
         <span class="empty">No items in cart.</span>       
