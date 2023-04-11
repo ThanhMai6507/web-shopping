@@ -43,6 +43,6 @@ class ProductRepository extends BaseRepository
 
     public function getByUserId($userId)
     {
-        return Product::whereRelation('users', 'users.id', $userId)->with('category')->get();
+        return $this->model->where('created_by', $userId)->get();
     }
 }
