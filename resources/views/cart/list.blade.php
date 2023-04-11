@@ -70,7 +70,7 @@
                     <div class="stats">        	
                         <div class="stats-container" style="width: 100%">
                             <span class="product_price">{{ $product->price }}</span>
-                            <span class="product_name">{{ $product->name }}</span>    
+                            <a href="{{ route('cart.detail.product', $product->id) }}"><span class="product_name">{{ $product->name }}</span></a>    
                             <p>{{ $product->category->name }}</p>                                            
                             
                             <div class="product-options">

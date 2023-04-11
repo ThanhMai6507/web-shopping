@@ -9,6 +9,7 @@ use App\Http\Requests\PasswordRequest;
 use App\Providers\RouteServiceProvider;
 use App\Repositories\UserRepository;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
 class ConfirmPasswordController extends Controller
@@ -53,9 +54,9 @@ class ConfirmPasswordController extends Controller
     public function updatePassword(PasswordRequest $request)
     {
         $user = auth()->user();
-        $user->password = bcrypt($request->new_password);
+        $user->password = Hash::make($request->new_password);
         $user->save();
 
-        return back()->with("message", "Password changed successfully");
+        return redirect()->back()->with("message", "Password changed successfully");
     }
 }

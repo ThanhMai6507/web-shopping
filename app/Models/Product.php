@@ -22,24 +22,24 @@ class Product extends Model
         'description'
     ];
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function colors()
     {
-        return $this->belongsToMany(Color::class);
+        return $this->belongsToMany(Color::class, 'color_product', 'product_id', 'color_id');
     }
 
     public function sizes()
     {
-        return $this->belongsToMany(Size::class);
+        return $this->belongsToMany(Size::class, 'product_size', 'product_id', 'size_id');
     }
 
     public function attachment()
