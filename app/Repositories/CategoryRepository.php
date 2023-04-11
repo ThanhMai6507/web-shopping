@@ -12,9 +12,4 @@ class CategoryRepository extends BaseRepository
     {
         $this->model = $model;
     }
-
-    public function getByUserId($userId)
-    {
-        return $this->model->whereRelation('users', 'users.id', $userId)->with('category')->get();
-    }
 }
