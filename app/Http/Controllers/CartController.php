@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
+use App\Services\BaseService;
 use App\Services\CartService;
 use Illuminate\Http\Request;
 use App\Services\MailService;
@@ -11,18 +12,16 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    protected $productRepository;
-    protected $categoryRepository;
+    protected $baseService;
 
-    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
+    public function __construct(BaseService $baseService)
     {
-        $this->productRepository = $productRepository;
-        $this->categoryRepository = $categoryRepository;
+        $this->baseService = $baseService;
     }
 
     public function addToCart(int $id) 
     {
-        $product = $this->productRepository->findById($id);
+        $product = $this->baseService->getProductRepository()->findById($id);
         $cartService = app(CartService::class); //create a new CartService object
 
         if (app(CartService::class)->exists($product->id)) {
@@ -42,15 +41,15 @@ class CartController extends Controller
     public function showList()
     {
         return view('cart.list', [
-            'products' => $this->productRepository->getAll(request()->all()),
-            'categories' => $this->categoryRepository->getAll()
+            'products' => $this->baseService->getProductRepository()->getAll(request()->all()),
+            'categories' => $this->baseService->getCategoryRepository()->getAll()
         ]);
     }
 
     public function showDetailProduct(int $id)
     {
         return view('cart.detail_product', [
-            'product' => $this->productRepository->findById($id)
+            'product' => $this->baseService->getProductRepository()->findById($id)
         ]);
     }
 
