@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('session_id')->nullable();
+            $table->string('product_id')->nullable();
+            $table->unsignedInteger('quantity')->nullable();
             $table->timestamps();
-            $table->foreign('session_id')->references('id')->on('sessions');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -28,6 +29,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('carts');
     }
-
-    
 };

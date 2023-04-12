@@ -2,6 +2,8 @@
 namespace App\Services;
 
 use Illuminate\Support\Arr;
+use App\Models\Cart;
+use Illuminate\Support\Facades\DB;
 
 class CartService
 {
@@ -9,55 +11,52 @@ class CartService
 
     public function __construct()
     {
-        $this->cart = session()->get('cart') ?? collect();
+        $userId = auth()->id();
+        $this->cart = Cart::where('user_id', $userId)->get() ?? collect();
     }
 
-    public function insert($data) 
+    public function insert($product)
     {
-        $data->quantity = 1;
-        // $this->cart->push($data);
-        $data->user_id = auth()->id(); // thêm user_id vào đối tượng sản phẩm
-        $this->cart->push($data);
-        session()->put('cart', $this->cart);
+        Cart::updateOrCreate(
+            [
+                'product_id' => $product->id,
+                'user_id' => auth()->id()
+            ],
+            ['quantity' => DB::raw('quantity + 1')]
+        );
     }
 
     public function update(array $inputs, $isReplace = true)
     {
         foreach ($inputs as $key => $quantity) {
-            $this->cart = $this->cart->map(function ($item) use ($isReplace, $key, $quantity) {
-                if ($key == $item->id) {
-                    $isReplace ? $item->quantity = $quantity : $item->quantity += $quantity ;
-                }
-                return $item;
-            });
+            $cart = Cart::where('id', $key)->firstOrFail();
+            $isReplace ? $cart->quantity = $quantity : $cart->quantity += $quantity;
+            $cart->save();
         }
-        session()->put('cart', $this->cart);
-        return;
     }
 
     public function total()
     {
-        return $this->cart->count();
+        return Cart::where('user_id', auth()->id())->count();
     }
 
     public function exists($id)
     {
-        return $this->cart->where('id', $id)->isNotEmpty();
+        return Cart::where('user_id', auth()->id())->where('product_id', $id)->exists();
     }
 
     public function find($id)
     {
-        return $this->cart->where('id', $id);
+        return Cart::where('user_id', auth()->id())->where('product_id', $id)->first();
     }
 
     public function removeItem($id)
     {
-        $this->cart = $this->cart->where('id', '<>', $id);
-        session()->put('cart', $this->cart);
+        Cart::where('user_id', auth()->id())->where('product_id', $id)->delete();
     }
 
     public function destroy()
     {
-        request()->session()->forget('cart');
+        Cart::where('user_id', auth()->id())->delete();
     }
 }
