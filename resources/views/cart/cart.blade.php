@@ -7,11 +7,6 @@
             @csrf
             <table id="cart" class="table table-hover table-condesed">
                 <thead>
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>  
-                @endif
 
                 <tr>
                     <th style="width: 16%">Name</th>
@@ -24,30 +19,32 @@
                 </thead>
                 <tbody>
                 @php
-                    $total = 0
+                    $total = 0;
                 @endphp
-                @if (session('cart'))
-                    @foreach (session('cart') as $id => $products)
+
+                @if ($carts)
+                    @foreach ($carts as $cart)
                         @php
-                            $total += $products['price'] * $products['quantity']
+                            $subtotal = $cart->price * $cart->quantity;
+                            $total += $subtotal;
                         @endphp
                         <tr>
-                            <td data-th="Product">{{ $products['name'] }}</td>
+                            <td data-th="Product">{{ $cart->name }}</td>
                             <td data-th="Image">
-                                <img src="{{ asset('storage/attachments/'.$products['image']) }}" style="width: 300px;"/>
+                                <img src="{{ asset('storage/attachments/'.$cart->image) }}" style="width: 200px;"/>
                             </td>
-                            <td data-th="Price">{{ $products['price'] }}</td>
+                            <td data-th="Price">{{ $cart->price }}</td>
                             <td data-th="Quantity">
-                                <input type="number" class="form-control text-center" name="quantity[{{ $products['id'] }}]" value="{{ $products['quantity'] }}">
+                                <input type="number" class="form-control text-center" name="quantity[{{ $cart->id }}]" value="{{ $cart->quantity }}">
                             </td>
-                            <td data-th="Subtotal">{{ $products['price'] * $products['quantity'] }}</td>
+                            <td data-th="Subtotal">{{ $subtotal }}</td>
                             <td data-th="" class="action">
-                                <a href="{{ route('delete.to.cart', $products['id'])}}" style="background:#E2F6ED;color:black;text-decoration:none;padding:8px;border-radius:6px;">Delete</a>
+                                <a href="{{ route('delete.to.cart', $cart->id) }}" style="background:#E2F6ED;color:black;text-decoration:none;padding:8px;border-radius:6px;">Delete</a>
                             </td>
                         </tr>
                     @endforeach
-                </tbody>
                 @endif
+                </tbody>
                 <tfoot>
                     <tr class="visible-xs">
                         <td class="text-center"><strong></strong></td>

@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\CategoryRepository;
-use App\Repositories\ProductRepository;
 use App\Services\BaseService;
 use App\Services\CartService;
 use Illuminate\Http\Request;
 use App\Services\MailService;
-use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -18,24 +15,22 @@ class CartController extends Controller
     {
         $this->baseService = $baseService;
     }
-
+    
     public function addToCart(int $id) 
     {
         $product = $this->baseService->getProductRepository()->findById($id);
-        $cartService = app(CartService::class); //create a new CartService object
-
-        if (app(CartService::class)->exists($product->id)) {
-            $cartService->update([$product->id => 1], false);
-            return redirect()->back();
-        }
+        $cartService = app(CartService::class); 
         $product->image = $product->attachment->file_name ?? null;
         $cartService->insert($product);
+
         return redirect()->back()->with('success', 'Add Successfully!');    
     }
-
+    
     public function showCart()
     {
-        return view('cart.cart');
+        return view('cart.cart', [
+            'carts' => $this->baseService->getCartRepository()->getByUserId(auth()->id()),
+        ]);
     }
 
     public function showList()
@@ -62,7 +57,7 @@ class CartController extends Controller
     public function removeItem($id)
     {
         app(CartService::class)->removeItem($id);
-        return redirect()->back()->with('sucess', 'Delete this product successfully');
+        return redirect()->back()->with('success', 'Delete this product successfully');
     }
 
     public function removeAll()
@@ -73,8 +68,11 @@ class CartController extends Controller
 
     public function chekoutCart()
     {
-        app(MailService::class)->sendMailCheckoutCart(auth()->user(), session()->get('cart'));
+        $carts = $this->baseService->getCartRepository()->getByUserId(auth()->id());
+        
+        app(MailService::class)->sendMailCheckoutCart(auth()->user(), $carts);
         app(CartService::class)->destroy();
-        return redirect('')->with('success', 'Checkout cart successfully');
+
+        return view('emails.checkout_cart', ['carts' => $carts]);  
     }
 }

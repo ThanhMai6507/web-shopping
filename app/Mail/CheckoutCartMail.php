@@ -39,7 +39,7 @@ class CheckoutCartMail extends Mailable implements ShouldQueue
     {
         return new Content(
             view: 'emails.checkout_cart',
-            with: ['listCart' => $this->listCart]
+            with: ['carts' => $this->listCart]
         );
     }
 

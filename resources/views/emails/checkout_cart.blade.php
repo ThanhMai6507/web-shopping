@@ -5,12 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart Information</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+        
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+    
+        <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
-    <h1 style="text-align: center;">Thanks {{ Auth::user()->name }}</h1>
-    <h2 style="text-align: center;">Information of your cart</h2>
     <br>
-    <table id="cart" class="table table-hover table-condesed">
+    <h1 class="display-4" style="text-align: center;">Thanks {{ Auth::user()->name }}</h1>
+    <h4 style="text-align: center; margin-bottom: 30px">Information of your cart</h4>
+    <br>
+    <table id="cart" class="table table-hover table-condesed" style="width:80%; margin:auto">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>  
+        @endif
+
         <tr>
             <th style="width: 10%">Name</th>
             <th style="width: 10%">Image</th>
@@ -19,20 +39,21 @@
             <th style="width: 10%">Subtotal</th>
         </tr>
             @php
-                $total = 0
+                $total = 0;
             @endphp
-                @foreach (session('cart') as $id => $products)
+                @foreach ($carts as $cart)
                     @php
-                        $total += $products['price'] * $products['quantity']
+                        $subtotal = $cart->price * $cart->quantity;
+                        $total += $subtotal;    
                     @endphp
                     <tr>
-                        <td data-th="Product">{{ $products['name'] }}</td>
+                        <td data-th="Product">{{ $cart->name }}</td>
                         <td data-th="Image">
-                            <img src="{{ asset('storage/attachments/'.$products['image']) }}" style="width: 300px;"/>
+                            <img src="{{ asset('storage/attachments/'.$cart->image) }}" style="width: 150px;"/>
                         </td>
-                        <td data-th="Price">{{ $products['price'] }}</td>
-                        <td data-th="Quantity">{{ $products['quantity'] }}</td>
-                        <td data-th="Subtotal">{{ $products['price'] * $products['quantity'] }}</td>
+                        <td data-th="Price">{{ $cart->price }}</td>
+                        <td data-th="Quantity">{{ $cart->quantity }}</td>
+                        <td data-th="Subtotal">{{ $subtotal }}</td>
                     </tr>
                 @endforeach
             <tr>
