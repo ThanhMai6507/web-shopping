@@ -96,9 +96,11 @@ class ProductController extends Controller
         ]);
     }
 
-    public function destroy(int $id)
+    public function destroy(Request $request)
     {
-        $this->baseService->getProductRepository()->delete($id);
-        return redirect()->route('products.index')->with('message', 'Delete successfully!');
+        $productIds = explode(',', $request->input('product_ids'));
+        $this->baseService->getProductRepository()->delete($productIds);
+
+        return redirect()->back()->with('message', 'Products have been deleted successfully.');
     }
 }

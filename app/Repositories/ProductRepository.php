@@ -40,9 +40,4 @@ class ProductRepository extends BaseRepository
         }
         return $query->paginate(static::PER_PAGE);
     }
-
-    public function getByUserId($userId)
-    {
-        return $this->model->where('created_by', $userId)->get();
-    }
 }
