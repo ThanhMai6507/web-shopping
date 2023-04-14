@@ -38,11 +38,13 @@
                                     {{ session()->get('message') }}
                                 </div>
                             @endif
+
                             @if(session('error'))
                             <div class="alert alert-warning">
                                 {{session('error')}}
                             </div>
                             @endif
+
                             <table class="table table-hover table-center">
                                 <thead>
                                     <tr>
@@ -57,7 +59,8 @@
                                 <tbody>
                                     @foreach($products as $product)
                                     <tr>
-                                        <td class="text-nowrap">
+                                        <td class="text-nowrap" style="display:flex; gap: 20px">
+                                            <input type="checkbox" name="product_ids[]" value="{{ $product->id }}">
                                             <div class="font-weight-600">{{ $product->id }}</div>
                                         </td>
                                         <td class="text-nowrap">
@@ -86,7 +89,7 @@
                                                     Sửa
                                                 </a>
 
-                                                <x-button_delete route="{{ route('products.destroy', ['product' => $product->id]) }}"></x-button_delete>
+                                                <x-button_delete route="{{ route('products.destroyMultiple', ['product_ids' => $product->id]) }}"></x-button_delete>
                                                 
                                                 <a href="{{ route('products.show', ['product' => $product->id]) }}" style="background: #E0F6F6; color:#1DB9AA"
                                                     class="btn btn-sm bg-info-light me-2"> Chi tiết
@@ -100,10 +103,29 @@
                             {{ $products->appends(request()->all())->links() }}
                         
                         </div>
+                        <div>
+                            <form id="deleteForm" action="{{ route('products.destroyMultiple', ['product_ids']) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <input type="hidden" name="product_ids" id="productIds">
+                                <button type="submit" class="btn btn-danger">Delete products</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#deleteForm').on('submit', function() {
+            var selectedProducts = $('input[name="product_ids[]"]:checked');
+            var productIds = selectedProducts.map(function() {
+                return $(this).val();
+            }).get().join(',');
+            $('#productIds').val(productIds);
+        });
+    });
+</script>
 @endsection

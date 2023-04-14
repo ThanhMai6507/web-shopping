@@ -34,8 +34,8 @@ Route::prefix('admin')->middleware(['auth', 'checkAdmin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+    Route::delete('products/destroy', [ProductController::class, 'destroyMultiple'])->name('products.destroyMultiple');
 });
-
 
 Route::prefix('cart')->group(function(){
     Route::get('show', [App\Http\Controllers\CartController::class, 'showCart'])->name('show.cart')->middleware(['auth']);
