@@ -1,18 +1,24 @@
 <?php
 namespace App\Services;
 
-use Illuminate\Support\Arr;
 use App\Models\Cart;
+use App\Repositories\CartRepository;
 use Illuminate\Support\Facades\DB;
 
 class CartService
 {
     protected $cart;
 
-    public function __construct()
+    public function __construct(CartRepository $cart)
     {
         $userId = auth()->id();
         $this->cart = Cart::where('user_id', $userId)->get() ?? collect();
+        $this->cart = $cart;
+    }
+
+    public function getCartRepository(): CartRepository
+    {
+        return $this->cart;
     }
 
     public function insert($product)

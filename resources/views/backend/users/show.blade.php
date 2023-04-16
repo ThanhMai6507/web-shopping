@@ -22,35 +22,4 @@
                 </div>
             </div>
         </div>
-        <br>
-    <div class="col-md-8" style="width:40%">
-        <div class="card">
-            <div class="card-body p-0">
-                <table class="table table-hover table-center mb-0">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($products as $product)
-                        <tr>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->price }}</td>
-                            <td>{{ $product->description }}</td>
-                            <td>{{ $product->category->name }}</td>
-                        </tr>
-
-                        <a href="{{ route('users.edit', ['user' => $user->id]) }}">Update</a>
-                        <a href="{{ route('users.show', ['user' => $user->id]) }}">Infomation</a>
-                        
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 @endsection

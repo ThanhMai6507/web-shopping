@@ -7,31 +7,37 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use App\Services\BaseService;
+use App\Services\ProductService;
+use App\Services\CategoryService;
+use App\Services\AttachmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    protected $baseService;
+    protected $productService;
+    protected $categoryService;
+    protected $attachmentService;
 
-    public function __construct(BaseService $baseService)
+    public function __construct(ProductService $productService, CategoryService $categoryService, AttachmentService $attachmentService)
     {
-        $this->baseService = $baseService;
+        $this->productService = $productService;
+        $this->categoryService = $categoryService;
+        $this->attachmentService = $attachmentService;
     }
 
     public function index(Request $request)
     {
         return view('backend.products.index', [
-            'products' => $this->baseService->getProductRepository()->getAll($request->all()),
-            'categories' => $this->baseService->getCategoryRepository()->getAll(),
+            'products' => $this->productService->getProductRepository()->getAll($request->all()),
+            'categories' => $this->categoryService->getCategoryRepository()->getAll(),
         ]);
     }
 
     public function create()
     {
         return view('backend.products.create', [
-            'categories' => $this->baseService->getCategoryRepository()->getAll(),
+            'categories' => $this->categoryService->getCategoryRepository()->getAll(),
         ]);
     }
 
@@ -41,9 +47,9 @@ class ProductController extends Controller
 
         try {
             $input = request()->all();
-            $product = $this->baseService->getProductRepository()->save($input);
+            $product = $this->productService->getProductRepository()->save($input);
             
-            $this->baseService->getAttachmentRepository()->saveFile(
+            $this->attachmentService->getAttachmentRepository()->saveFile(
                 $input['image'], 
                 Product::class, 
                 $product['id']
@@ -60,8 +66,8 @@ class ProductController extends Controller
     public function edit(int $id)
     {
         return view('backend.products.edit', [
-            'product' => $this->baseService->getProductRepository()->findById($id),
-            'categories' => $this->baseService->getCategoryRepository()->getAll()
+            'product' => $this->productService->getProductRepository()->findById($id),
+            'categories' => $this->categoryService->getCategoryRepository()->getAll()
         ]);
     }
 
@@ -71,9 +77,9 @@ class ProductController extends Controller
 
         try {
             $input = request()->all();
-            $product = $this->baseService->getProductRepository()->save($input, ["id" => $id]);
+            $product = $this->productService->getProductRepository()->save($input, ["id" => $id]);
             
-            $this->baseService->getAttachmentRepository()->saveFile(
+            $this->attachmentService->getAttachmentRepository()->saveFile(
                 $input['image'], 
                 Product::class, 
                 $product['id'], 
@@ -92,14 +98,14 @@ class ProductController extends Controller
     public function show(int $id)
     {
         return view('backend.products.show', [
-            'product' => $this->baseService->getProductRepository()->findById($id)
+            'product' => $this->productService->getProductRepository()->findById($id)
         ]);
     }
 
     public function destroy(Request $request)
     {
         $productIds = explode(',', $request->input('product_ids'));
-        $this->baseService->getProductRepository()->delete($productIds);
+        $this->productService->getProductRepository()->delete($productIds);
 
         return redirect()->back()->with('message', 'Products have been deleted successfully.');
     }
