@@ -6,27 +6,24 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
-use App\Repositories\ProductRepository;
-use App\Repositories\UserRepository;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    protected $userRepository;
-    protected $productRepository;
+    protected $userService;
 
-    public function __construct(UserRepository $userRepository, ProductRepository $productRepository)
+    public function __construct(UserService $userService)
     {
-        $this->userRepository = $userRepository;
-        $this->productRepository = $productRepository;
+        $this->userService = $userService;
     }
 
     public function index(Request $request)
     {
         return view('backend.users.index', [
-            'users' => $this->userRepository->getAll($request->all()),
+            'users' => $this->userService->getUserRepository()->getAll($request->all()),
         ]);
     }
 
@@ -39,14 +36,14 @@ class UserController extends Controller
     {
         $newUser = $request->except(['_token']);
         $newUser['password'] = Hash::make($newUser['password']);
-        $this->userRepository->save(['id' => ''], $newUser);
+        $this->userService->getUserRepository()->save(['id' => ''], $newUser);
         return redirect()->route('users.index')->with('message', 'Created successfully');
     }
 
     public function edit(int $id)
     {
         return view('backend.users.edit', [
-            'user' => $this->userRepository->findById($id),
+            'user' => $this->userService->getUserRepository()->findById($id),
         ]);
     }
 
@@ -58,15 +55,14 @@ class UserController extends Controller
         } else {
             unset($inputs['password']);
         }
-        $this->userRepository->save($inputs, ["id" => $id]);
+        $this->userService->getUserRepository()->save($inputs, ["id" => $id]);
         return redirect()->route('users.index')->with('message', 'Update successfully!');
     }
 
     public function show(int $id)
     {
         return view('backend.users.show', [
-            'user' => $this->userRepository->findById($id),
-            'products' => $this->productRepository->getByUserId($id),
+            'user' => $this->userService->getUserRepository()->findById($id),
         ]);
     }
 
@@ -76,7 +72,7 @@ class UserController extends Controller
             return back()->with('message', "Don't delete yourself");
         }
 
-        $this->userRepository->delete($id);
+        $this->userService->getUserRepository()->delete($id);
         return redirect()->route('users.index')->with('message', 'Deleted successfully');
     }
 }

@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\BaseService;
 use App\Services\CartService;
+use App\Services\ProductService;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use App\Services\MailService;
 
 class CartController extends Controller
 {
-    protected $baseService;
+    protected $cartService;
+    protected $productService;
+    protected $categoryService;
 
-    public function __construct(BaseService $baseService)
+    public function __construct(ProductService $productService, CartService $cartService, CategoryService $categoryService)
     {
-        $this->baseService = $baseService;
+        $this->productService = $productService;
+        $this->cartService = $cartService;
+        $this->categoryService = $categoryService;
     }
     
     public function addToCart(int $id) 
     {
-        $product = $this->baseService->getProductRepository()->findById($id);
+        $product = $this->productService->getProductRepository()->findById($id);
         $cartService = app(CartService::class); 
         $product->image = $product->attachment->file_name ?? null;
         $cartService->insert($product);
@@ -29,22 +34,22 @@ class CartController extends Controller
     public function showCart()
     {
         return view('cart.cart', [
-            'carts' => $this->baseService->getCartRepository()->getByUserId(auth()->id()),
+            'carts' => $this->cartService->getCartRepository()->getByUserId(auth()->id()),
         ]);
     }
 
     public function showList()
     {
         return view('cart.list', [
-            'products' => $this->baseService->getProductRepository()->getAll(request()->all()),
-            'categories' => $this->baseService->getCategoryRepository()->getAll()
+            'products' => $this->productService->getProductRepository()->getAll(request()->all()),
+            'categories' => $this->categoryService->getCategoryRepository()->getAll()
         ]);
     }
 
     public function showDetailProduct(int $id)
     {
         return view('cart.detail_product', [
-            'product' => $this->baseService->getProductRepository()->findById($id)
+            'product' => $this->productService->getProductRepository()->findById($id)
         ]);
     }
 
@@ -68,7 +73,7 @@ class CartController extends Controller
 
     public function chekoutCart()
     {
-        $carts = $this->baseService->getCartRepository()->getByUserId(auth()->id());
+        $carts = $this->cartService->getCartRepository()->getByUserId(auth()->id());
         
         app(MailService::class)->sendMailCheckoutCart(auth()->user(), $carts);
         app(CartService::class)->destroy();
