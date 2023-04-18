@@ -16,11 +16,6 @@ class CartService
         $this->cart = $cart;
     }
 
-    public function getCartRepository(): CartRepository
-    {
-        return $this->cart;
-    }
-
     public function insert($product)
     {
         Cart::updateOrCreate(
@@ -64,5 +59,10 @@ class CartService
     public function destroy()
     {
         Cart::where('user_id', auth()->id())->delete();
+    }
+
+    public function getByUserId(int $userId)
+    {
+        return $this->cart->getByUserId($userId);
     }
 }

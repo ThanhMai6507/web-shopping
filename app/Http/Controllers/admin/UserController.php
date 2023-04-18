@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         return view('backend.users.index', [
-            'users' => $this->userService->getUserRepository()->getAll($request->all()),
+            'users' => $this->userService->getAll($request->all()),
         ]);
     }
 
@@ -43,7 +43,7 @@ class UserController extends Controller
     public function edit(int $id)
     {
         return view('backend.users.edit', [
-            'user' => $this->userService->getUserRepository()->findById($id),
+            'user' => $this->userService->findById($id),
         ]);
     }
 
@@ -62,7 +62,7 @@ class UserController extends Controller
     public function show(int $id)
     {
         return view('backend.users.show', [
-            'user' => $this->userService->getUserRepository()->findById($id),
+            'user' => $this->userService->findById($id),
         ]);
     }
 
@@ -72,7 +72,7 @@ class UserController extends Controller
             return back()->with('message', "Don't delete yourself");
         }
 
-        $this->userService->getUserRepository()->delete($id);
+        $this->userService->delete($id);
         return redirect()->route('users.index')->with('message', 'Deleted successfully');
     }
 }
