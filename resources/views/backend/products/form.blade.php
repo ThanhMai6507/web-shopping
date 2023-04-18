@@ -63,7 +63,6 @@
     <label class="col-lg-3 col-form-label">Upload image</label>
     <div class="col-lg-9">
         <input type="file" class="form-control" name="image">
-        <input type="hidden" name="old_image" value="{{ $product->image }}">
     </div>
     @error('image') 
     <p class="error" > 
