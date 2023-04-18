@@ -13,8 +13,8 @@ class CategoryService
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function getCategoryRepository(): CategoryRepository
+    public function getAll()
     {
-        return $this->categoryRepository;
+        return $this->categoryRepository->getAll();
     }
 }

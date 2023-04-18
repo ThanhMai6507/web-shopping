@@ -17,4 +17,24 @@ class UserService
     {
         return $this->userRepository;
     }
+    
+    public function findById(int $id)
+    {
+        return $this->userRepository->find($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->userRepository->delete($id);
+    }
+
+    public function getAll()
+    {
+        return $this->userRepository->getAll();
+    }
+
+    public function save(array $inputs, array $conditions = ['id' => null])
+    {
+        return $this->userRepository->save($conditions, $inputs);
+    }
 }
