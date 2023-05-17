@@ -14,7 +14,6 @@
                     <th style="width: 10%">Price</th>
                     <th style="width: 10%">Quantity</th>
                     <th style="width: 10%">Subtotal</th>
-                    <th style="width: 16%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,9 +37,6 @@
                                 <input type="number" class="form-control text-center" name="quantity[{{ $cart->id }}]" value="{{ $cart->quantity }}">
                             </td>
                             <td data-th="Subtotal">{{ $subtotal }}</td>
-                            <td data-th="" class="action">
-                                <a href="{{ route('delete.to.cart', $cart->id) }}" style="background:#E2F6ED;color:black;text-decoration:none;padding:8px;border-radius:6px;">Delete</a>
-                            </td>
                         </tr>
                     @endforeach
                 @endif

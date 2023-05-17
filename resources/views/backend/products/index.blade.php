@@ -2,7 +2,7 @@
 @push('search')
     <x-search>
         <x-slot:slot>
-        <select class="form-select" style="width: 10rem; height: 38px; border-radius: 4px; padding:5px" name='category_id'>
+        <select class="form-select" name='category_id'>
             <option value="">Select Categories</option>
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : ''}}>

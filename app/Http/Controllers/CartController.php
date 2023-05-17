@@ -35,6 +35,7 @@ class CartController extends Controller
     {
         return view('cart.cart', [
             'carts' => $this->cartService->getCartRepository()->getByUserId(auth()->id()),
+            'product' => $this->productService->getProductRepository()->getAll(request()->all()),
         ]);
     }
 

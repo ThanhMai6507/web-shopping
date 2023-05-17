@@ -1,6 +1,6 @@
-<form class="form-inline" style="margin-left: 20%; margin-top: 10px; gap:5px">
+<form class="form-inline">
     {{$slot}}
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" name='search' value="{{ request()->search }}">
-    <button class="btn btn-success" type="submit">Search</button>
+    <input class="form-control mr-sm-2 input-search" type="text" placeholder="Search" name='search' value="{{ request()->search }}">
+    <button class="btn btn-success button-search" type="submit">Search</button>
 </form>
 

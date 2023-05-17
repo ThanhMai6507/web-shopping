@@ -2,3 +2,42 @@
 	color: red;
     font-size: 12px;
 }
+
+.header-style {
+    background-color: white;
+    height: 100px;
+    width: 100%;
+}
+
+.form-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.item-menu {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.button-search {
+    margin-right: 10px;
+}
+
+.form-inline .input-search {
+    margin-left: 10px;
+    margin-right: 10px !important;
+}
+
+.form-login-style {
+    margin-right: 200px;
+}
+
+.item-menu a {
+    color: black;
+}
+
+.form-login-style a {
+    color: black;
+}

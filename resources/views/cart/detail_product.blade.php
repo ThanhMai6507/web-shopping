@@ -19,18 +19,10 @@
             <div class="">
                 <label>Thể loại: {{ $product->category->name }}</label>
             </div>
-            <div class="">
-                <label>Màu sắc</label>
-                <p>{{ $product->category->color }}</p>
-            </div>
-            <div class="">
-                <label>Kích thước</label>
-                <p>{{ $product->category->size }}</p>
-            </div>
         </div>
     </div>
     <br>
-    <div style="gap: 50px; margin-left: 50%">
+    <div style="gap: 50px; margin-left: 40%; margin-top: -63px">
         <a href="{{ route('add.to.cart', $product->id) }}" style="background-color: #47a3de;color: #fff;text-decoration: none;padding: 8px;border-radius: 6px;">Add to cart</a>
         <input type="submit" class="btn" formaction="{{ route('checkout.cart') }}" value="Buy now" style="background-color: #f05d40; color: #fff; margin-left: 20px">
         <a href="{{ url('/show-list') }}" class="btn btn-warning" style=" margin-left: 20px">Continue Shopping</a>
