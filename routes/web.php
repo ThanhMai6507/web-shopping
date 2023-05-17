@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\CouponController;
 //use
 use App\Http\Controllers\User\IndexController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\UserController;
 
 
 /*

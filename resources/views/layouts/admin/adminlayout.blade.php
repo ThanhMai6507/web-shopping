@@ -9,7 +9,7 @@
     <title> Dashboard</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="public/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href=" {{ asset('css/bootstrap.min.css') }}  ">
@@ -20,12 +20,12 @@
     <!-- Feathericon CSS -->
     <link rel="stylesheet" href="{{ asset('css/feathericon.min.css') }}  ">
 
-    <link rel="stylesheet" href="{{ asset('public/plugins/morris/morris.css') }}  ">
+    <link rel="stylesheet" href="{{ asset('plugins/morris/morris.css') }}  ">
 
     <!-- Main CSS -->
     <link rel="stylesheet" href=" {{ asset('css/style.css') }}  ">
 
-    <link rel="stylesheet" href="{{ asset('public/icon/themify-icons/themify-icons.css') }}  ">
+    <link rel="stylesheet" href="{{ asset('icon/themify-icons/themify-icons.css') }}  ">
 
 
 
@@ -46,7 +46,7 @@
                     <img src=" {{ asset('public/img/logo2.png') }} " alt="Logo">
                 </a>
                 {{-- <a href="index.html" class="logo logo-small">
-						<img src=" {{ asset('public/public/img/logo-small.png') }}  " alt="Logo" width="30" height="30">
+						<img src=" {{ asset('img/logo-small.png') }}  " alt="Logo" width="30" height="30">
 					</a> --}}
             </div>
             <!-- /Logo -->
@@ -88,7 +88,7 @@
                                         <div class="media">
                                             <span class="avatar avatar-sm">
                                                 <img class="avatar-img rounded-circle" alt="User Image"
-                                                    src=" public/img/doctors/doctor-thumb-01.jpg">
+                                                    src="public/img/doctors/doctor-thumb-01.jpg">
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details"><span class="noti-title">Dr. Ruby
@@ -105,7 +105,7 @@
                                         <div class="media">
                                             <span class="avatar avatar-sm">
                                                 <img class="avatar-img rounded-circle" alt="User Image"
-                                                    src=" public/img/patients/patient1.jpg">
+                                                    src="pblic/img/patients/patient1.jpg">
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details"><span class="noti-title">Charlene
@@ -122,7 +122,7 @@
                                         <div class="media">
                                             <span class="avatar avatar-sm">
                                                 <img class="avatar-img rounded-circle" alt="User Image"
-                                                    src=" public/img/patients/patient2.jpg">
+                                                    src="pblic/img/patients/patient2.jpg">
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details"><span class="noti-title">Travis
@@ -139,7 +139,7 @@
                                         <div class="media">
                                             <span class="avatar avatar-sm">
                                                 <img class="avatar-img rounded-circle" alt="User Image"
-                                                    src=" public/img/patients/patient3.jpg">
+                                                    src="pblic/img/patients/patient3.jpg">
                                             </span>
                                             <div class="media-body">
                                                 <p class="noti-details"><span class="noti-title">Carl Kelly</span>
@@ -168,7 +168,7 @@
                     <div class="dropdown-menu">
                         <div class="user-header">
                             <div class="avatar avatar-sm">
-                                {{-- <img src="{{ asset('public/img/profiles/avatar-01.jpg') }}  " alt="User Image" class="avatar-img rounded-circle"> --}}
+                                {{-- <img src="{{ asset('img/profiles/avatar-01.jpg') }}  " alt="User Image" class="avatar-img rounded-circle"> --}}
                             </div>
                             <div class="user-text">
                                 <h6>{{ Auth::guard('admin')->user()->name }}</h6>
@@ -223,10 +223,10 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
     <!-- Slimscroll JS -->
-    <script src="{{ asset('public/plugins/slimscroll/jquery.slimscroll.min.js') }} "></script>
+    <script src="{{ asset('plugins/slimscroll/jquery.slimscroll.min.js') }} "></script>
 
-    <script src="{{ asset('public/plugins/raphael/raphael.min.js') }} "></script>
-    <script src=" {{ asset('public/plugins/morris/morris.min.js') }}"></script>
+    <script src="{{ asset('plugins/raphael/raphael.min.js') }} "></script>
+    <script src=" {{ asset('plugins/morris/morris.min.js') }}"></script>
     <script src="{{ asset('js/chart.morris.js') }} "></script>
 
     <!-- Custom JS -->

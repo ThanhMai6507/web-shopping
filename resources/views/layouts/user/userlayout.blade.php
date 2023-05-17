@@ -22,21 +22,22 @@
             window.scrollTo(0, 1);
         }
     </script>
-    <link href="{{ asset('public/User/css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
+    <link href="{{ asset('User/css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- Custom Theme files -->
-    <link href="{{ asset('public/User/css/style.css') }}" rel='stylesheet' type='text/css' />
-    <link href="{{ asset('public/User/css/sweetalert.css') }}" rel='stylesheet' type='text/css' />
-    <script src="{{ asset('public/User/js/simpleCart.min.js') }}"> </script>
+    <link href="{{ asset('User/css/style.css') }}" rel='stylesheet' type='text/css' />
+    <link href="{{ asset('User/css/sweetalert.css') }}" rel='stylesheet' type='text/css' />
+    <script src="{{ asset('User/js/simpleCart.min.js') }}"> </script>
     <!-- Custom Theme files -->
     <!--webfont-->
     <link href='http://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700,800,900' rel='stylesheet'
         type='text/css'>
-    <script type="text/javascript" src="{{ asset('public/User/js/jquery-1.11.1.min.js    ') }}"></script>
+    <script type="text/javascript" src="{{ asset('User/js/jquery-1.11.1.min.js    ') }}"></script>
     <!-- start menu -->
-    <link href="{{ asset('public/User/css/megamenu.css') }}" rel="stylesheet" type="text/css" media="all" />
-    <script type="text/javascript" src="{{ asset('public/User/js/megamenu.js') }}"></script>
     {{-- <script>
+    <link href="{{ asset('User/css/megamenu.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="{{ asset('User/js/megamenu.js') }}"></script>
+    <script>
         $(document).ready(function() {
             $(".megamenu").megamenu();
         });
@@ -201,7 +202,8 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {{-- gio hang ajax --}}
-    <script type="text/javascript" src="{{ asset('public/User/js/sweetalert.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('User/js/sweetalert.js') }}"></script>
+    <script type="text/javascript">
 
 
     <script type="text/javascript">

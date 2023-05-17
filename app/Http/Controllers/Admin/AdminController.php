@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AdminModel;
 use Auth;
-use Mail;
 
 class AdminController extends Controller
 {
     public function indexLogin(){
+        // dd(
+        //     Hash::make('12345678')
+        // );
         return view('admin.login');
     }
 
@@ -20,12 +22,13 @@ class AdminController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
+
         if (Auth::guard('admin')->attempt($arr)) {
            // $user =Auth::guard('admin')->user()->email;
           // dd($user);
            return view('admin.home') ;
         } else {
-            return view('admin.login');
+            return redirect()->back()->with('error', 'error_login');
         }
     }
 
