@@ -11,7 +11,7 @@ p {margin: 0;}
 html, body{
    font-family: 'Lato', sans-serif;
    font-size: 100%;
-   background:#fff; 
+   background:#fff;
 }
 body a{
 	transition: 0.5s all;
@@ -82,7 +82,7 @@ body a{
 	  width: 30px;
 	  height: 37px;
 	  padding: 8px;
-}	
+}
 .search input[type="submit"]:active {
 	position:relative;
 }
@@ -249,7 +249,7 @@ body a{
 	text-decoration:none;
     border: none;
 	cursor: pointer;
-	padding:5px 10px; 
+	padding:5px 10px;
 	display: inline-block;
 	outline: none;
 	-webkit-transition: all 0.3s;
@@ -272,7 +272,7 @@ body a{
 	text-decoration:none;
     border: none;
 	cursor: pointer;
-	padding:5px 10px; 
+	padding:5px 10px;
 	display: inline-block;
 	outline: none;
 	-webkit-transition: all 0.3s;
@@ -393,7 +393,7 @@ h2.m_3 {
 .col_1_of_3 {
   display: block;
   float: left;
-  margin:0 0 0 1.6%;
+  padding:0 0 0 1.6%;
 }
 .col_1_of_3:hover .shop-holder{
 	border: 8px solid #f54d56;
@@ -1051,7 +1051,7 @@ ul.footer_social li a i:hover{
 	-webkit-transition: border-color 0.3s;
 }
 .sky-form .toggle i:before {
-	background-color: #2da5da;	
+	background-color: #2da5da;
 }
 /* hover state */
 .sky-form .input:hover input,
@@ -1239,10 +1239,10 @@ ul.footer_social li a i:hover{
   font-size: 0.85em;
   border: none;
   outline:none;
-}	
+}
 .item_add:hover{
 	background:url(../images/plus.png) no-repeat 10px 10px  rgb(3, 193, 167);
-}	
+}
 .add3 {
   background: url(../images/buy.png) no-repeat 7px 6px #F54D5B;
   text-align: center;
@@ -1262,20 +1262,20 @@ ul.footer_social li a i:hover{
   border: none;
   outline: none;
   margin-left: 60%;
-}	
+}
 .add3:hover{
 	background: url(../images/buy.png) no-repeat 7px 6px rgb(3, 193, 167);
 }
 .box_1-cart {
  float: right;
- 
+
 }
 .grid_11 img{
 	margin-bottom:1em;
 }
 .size_2 {
   margin: 0 auto;
-  
+
   width:60%;
 }
 .size_2-left {
@@ -1430,7 +1430,7 @@ i.back_arrow{
 	line-height:1.8em;
 }
 .metro1{
-	position: relative;	
+	position: relative;
 	cursor: pointer;
 	font-weight:600;
 	background:#f4f4f4;
@@ -1467,7 +1467,7 @@ i.back_arrow{
 	height: 100%;
 	opacity: 0;
 }
-/* SELECTED FEEDBACK ITEM */ 
+/* SELECTED FEEDBACK ITEM */
 .metro1 .selected {
     color:#000;
 }
@@ -2153,14 +2153,14 @@ p.cart {
   margin-right: 5%;
 }
 .cart-sec{
-	
+
 	margin-bottom:3em;
 }
 .cart-item{
 	width:20%;
 	float:left;
 	margin-right:5%;
-	
+
 }
 .cart-item img{
 	width:100%;
@@ -2168,7 +2168,7 @@ p.cart {
 .cart-item-info{
 	width:75%;
 	float:left;
-	 
+
 }
 .check{
 	padding:5em 0;
@@ -2207,7 +2207,7 @@ p.cart {
 .cart-item-info h4 span{
 	font-size:0.65em;
 	font-weight:400;
-} 
+}
 
 .close1,.close2{
   background: url('../images/close_1.png') no-repeat 0px 0px;
@@ -2222,19 +2222,19 @@ p.cart {
   -o-transition: color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out;
 }
-.cart-header {  
-  position: relative;  
+.cart-header {
+  position: relative;
 }
-.cart-header2 {  
-  position: relative;  
+.cart-header2 {
+  position: relative;
 }
 /* .cart-total {
-  
+
 } */
 a.order {
   background:#333;
   padding: 10px 20px;
-  
+
   font-size: 1em;
   color: #fff;
   text-decoration: none;
@@ -2265,7 +2265,7 @@ a.order:hover{
 a.cpns{
 	background:#f54d56;
 	color:#fff;
-	
+
 	padding: 10px;
   font-size: 0.8em;
 	font-weight:600;
@@ -2277,7 +2277,7 @@ a.cpns:hover{
 	font-size:0.9em;
 	font-weight:400;
 	margin-top:1em;
-	color:#727272;	
+	color:#727272;
 }
 .total-item p a:hover{
 	color:#333;
@@ -2286,12 +2286,12 @@ a.cpns:hover{
 a.continue{
 	background:orange;
 	padding:10px 20px;
-	
+
 	font-size:1em;
 	color:#fff;
 	text-decoration:none;
 	display: block;
-   font-weight: 600;  
+   font-weight: 600;
    text-align: center;
    margin-bottom:2em;
 }
@@ -2306,7 +2306,7 @@ ul.total_price{
 ul.total_price li.last_price{
 	width: 50%;
   float: left;
-  
+
 }
 ul.total_price li.last_price span{
 	font-size: 1.1em;
@@ -2324,7 +2324,7 @@ ul.total_price li.last_price span{
 .price-details span{
 	width: 50%;
   float: left;
- 
+
   font-size: 0.8125em;
   color: #000;
   line-height: 1.8em;
@@ -2836,7 +2836,7 @@ p.empty {
 .comments-area input[type="text"], .comments-area textarea{
   padding: 10px 10px;
   width: 100%;
-}  
+}
 .comments-area textarea{
 	height: 100px;
 }
@@ -2892,13 +2892,13 @@ li.middle {
 }
 .button {
 	margin-top: 1em;
-}  
+}
 .banner_desc {
   padding-top:1.5em;
 }
 .content_top, .content_bottom {
   padding: 3em 0;
-}  
+}
 h3.m_1 {
   font-size: 1.1em;
   margin-bottom: 1em;
@@ -2987,17 +2987,17 @@ h3.m_2 {
 }
 .contact_left h1 {
   font-size: 1.2em;
-} 
+}
 .column_3 input[type="text"], .column_3 textarea {
  	height: 120px;
 }
 .form-submit1 input[type="submit"] {
   padding: 8px 15px;
   font-size: 0.85em;
-}  
+}
 .contact_right h2 {
   font-size: 1.2em;
-}  
+}
 .register-top-grid div, .register-bottom-grid div {
   width: 100%;
   float: none;

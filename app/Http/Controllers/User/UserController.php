@@ -14,7 +14,6 @@ class UserController extends Controller
 {
     public function loginUser(){
         $category = CategoryModel::orderBy('id','ASC')->get();
-
         return view('user.page.login')->with(compact('category'));
     }
 
@@ -22,6 +21,5 @@ class UserController extends Controller
         $category = CategoryModel::orderBy('id','ASC')->get();
         return view('user.page.register')->with(compact('category'));
     }
- 
 
 }
