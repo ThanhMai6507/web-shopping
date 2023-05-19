@@ -14,6 +14,7 @@
                     <th style="width: 10%">Price</th>
                     <th style="width: 10%">Quantity</th>
                     <th style="width: 10%">Subtotal</th>
+                    <th style="width: 10%">#</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -24,19 +25,20 @@
                 @if ($carts)
                     @foreach ($carts as $cart)
                         @php
-                            $subtotal = $cart->price * $cart->quantity;
+                            $subtotal = $cart->product->price * $cart->quantity;
                             $total += $subtotal;
                         @endphp
                         <tr>
-                            <td data-th="Product">{{ $cart->name }}</td>
+                            <td data-th="Product">{{ $cart->product->name }}</td>
                             <td data-th="Image">
-                                <img src="{{ asset('storage/attachments/'.$cart->image) }}" style="width: 200px;"/>
+                                <img src="{{ asset('storage/attachments/'.$cart->product->attachment?->file_name) }}" style="width: 200px;"/>
                             </td>
-                            <td data-th="Price">{{ $cart->price }}</td>
+                            <td data-th="Price">{{ $cart->product->price }}</td>
                             <td data-th="Quantity">
                                 <input type="number" class="form-control text-center" name="quantity[{{ $cart->id }}]" value="{{ $cart->quantity }}">
                             </td>
                             <td data-th="Subtotal">{{ $subtotal }}</td>
+                            <td> <a href="{{ route('delete.to.cart', ['session_id' => $cart->id])  }}"> Delete </a> </td>
                         </tr>
                     @endforeach
                 @endif

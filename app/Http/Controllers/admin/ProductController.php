@@ -48,10 +48,10 @@ class ProductController extends Controller
         try {
             $input = request()->all();
             $product = $this->productService->getProductRepository()->save($input);
-            
+
             $this->attachmentService->getAttachmentRepository()->saveFile(
-                $input['image'], 
-                Product::class, 
+                $input['image'],
+                Product::class,
                 $product['id']
             );
             DB::commit();
@@ -78,14 +78,14 @@ class ProductController extends Controller
         try {
             $input = request()->all();
             $product = $this->productService->getProductRepository()->save($input, ["id" => $id]);
-            
+
             $this->attachmentService->getAttachmentRepository()->saveFile(
-                $input['image'], 
-                Product::class, 
-                $product['id'], 
+                $input['image'],
+                Product::class,
+                $product->id,
                 $id
             );
-            
+
             DB::commit();
 
             return redirect()->route('products.index')->with('message', 'Update successfully');

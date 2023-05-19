@@ -74,7 +74,7 @@
                                         </td>
                                         <td class="text-nowrap" style="width: 15%">
                                             @if ($product->attachment)
-                                                <img class="img-fluid" src="{{ asset('storage/attachments/'.$product->attachment->file_name) }} ?? null">
+                                                <img class="img-fluid" src="{{ asset('storage/attachments/'.$product->attachment->file_name) }} ">
                                             @endif
                                         </td>
                                         <td >
@@ -90,7 +90,7 @@
                                                 </a>
 
                                                 <x-button_delete route="{{ route('products.destroyMultiple', ['product_ids' => $product->id]) }}"></x-button_delete>
-                                                
+
                                                 <a href="{{ route('products.show', ['product' => $product->id]) }}" style="background: #E0F6F6; color:#1DB9AA"
                                                     class="btn btn-sm bg-info-light me-2"> Chi tiết
                                                 </a>
@@ -101,7 +101,7 @@
                                 </tbody>
                             </table>
                             {{ $products->appends(request()->all())->links() }}
-                        
+
                         </div>
                         <div>
                             <form id="deleteForm" action="{{ route('products.destroyMultiple', ['product_ids']) }}" method="POST">

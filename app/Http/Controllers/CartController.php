@@ -20,17 +20,22 @@ class CartController extends Controller
         $this->cartService = $cartService;
         $this->categoryService = $categoryService;
     }
-    
-    public function addToCart(int $id) 
-    {
-        $product = $this->productService->getProductRepository()->findById($id);
-        $cartService = app(CartService::class); 
-        $product->image = $product->attachment->file_name ?? null;
-        $cartService->insert($product);
 
-        return redirect()->back()->with('success', 'Add Successfully!');    
+    public function addToCart(int $id)
+    {
+        try {
+            $product = $this->productService->getProductRepository()->findById($id);
+            $cartService = app(CartService::class);
+            $product->image = $product->attachment->file_name ?? null;
+            $cartService->insert($product);
+            return response()->json();
+        } catch (\Throwable $e) {
+            logger()->error($e->getMessage());
+            return response()->json([], 401);
+        }
+//        return redirect()->back()->with('success', 'Add Successfully!');
     }
-    
+
     public function showCart()
     {
         return view('cart.cart', [
@@ -56,8 +61,11 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
-        app(CartService::class)->update($request->quantity);
-        return redirect()->back()->with('success', 'Update Successfully!');
+        if (isset($request->quantity)) {
+            app(CartService::class)->update($request->quantity);
+            return redirect()->back()->with('success', 'Update Successfully!');
+        }
+        return redirect()->back()->with('success', 'Empty Cart');
     }
 
     public function removeItem($id)
@@ -75,10 +83,10 @@ class CartController extends Controller
     public function chekoutCart()
     {
         $carts = $this->cartService->getCartRepository()->getByUserId(auth()->id());
-        
+
         app(MailService::class)->sendMailCheckoutCart(auth()->user(), $carts);
         app(CartService::class)->destroy();
 
-        return view('emails.checkout_cart', ['carts' => $carts]);  
+        return view('emails.checkout_cart', ['carts' => $carts]);
     }
 }

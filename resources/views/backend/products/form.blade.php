@@ -5,10 +5,10 @@
     <div class="col-lg-9">
         <input type="text" class="form-control" name="name" value="{{ $product->name ?? old('name') }}">
     </div>
-    @error('name') 
+    @error('name')
     <p class="error">
-        <span>{{ $message }}</span> 
-    </p> 
+        <span>{{ $message }}</span>
+    </p>
     @enderror
 </div>
 <br>
@@ -17,10 +17,10 @@
     <div class="col-lg-9">
         <input type="number" class="form-control" name="price" value="{{ $product->price ?? old('price') }}">
     </div>
-    @error('price') 
-    <p class="error"> 
-        <span>{{ $message }}</span> 
-    </p> 
+    @error('price')
+    <p class="error">
+        <span>{{ $message }}</span>
+    </p>
     @enderror
 </div>
 <br>
@@ -29,17 +29,17 @@
     <div class="col-lg-9">
         <input type="text" class="form-control" name="content" value="{{ $product->description ?? old('description') }}">
     </div>
-    @error('content') 
-    <p class="error" > 
-        <span>{{ $message }}</span> 
-    </p> 
+    @error('content')
+    <p class="error" >
+        <span>{{ $message }}</span>
+    </p>
     @enderror
 </div>
 <br>
 <div class="form-group row">
     <label class="col-lg-3 col-form-label">Category</label>
     <div class="col-lg-9">
-        <select class="form-select" name='category_id'>
+        <select class="form-select form-control" name='category_id'>
             <option value="">Select Categories</option>
             @foreach($categories as $category)
                     @if(!empty($course->category_id))
@@ -54,10 +54,10 @@
                 @endforeach
         </select>
     </div>
-    @error('category_id') 
-    <p class="error" > 
-        <span>{{ $message }}</span> 
-    </p> 
+    @error('category_id')
+    <p class="error" >
+        <span>{{ $message }}</span>
+    </p>
     @enderror
 </div>
 <br>
@@ -66,10 +66,10 @@
     <div class="col-lg-9">
         <input type="file" class="form-control" name="image">
     </div>
-    @error('image') 
-    <p class="error" > 
-        <span>{{ $message }}</span> 
-    </p> 
+    @error('image')
+    <p class="error" >
+        <span>{{ $message }}</span>
+    </p>
     @enderror
 </div>
 <br>

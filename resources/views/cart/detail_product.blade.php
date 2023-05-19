@@ -5,7 +5,7 @@
     <div style="display: flex; margin-left: 20%; width: 50%; margin-top: 5%;">
         <div>
             @if ($product->attachment)
-                <img style="width: 60%" src="{{ asset('storage/attachments/'.$product->attachment->file_name) }} ?? null">
+                <img style="width: 60%" src="{{ asset('storage/attachments/'.$product->attachment->file_name) }}">
             @endif
         </div>
 

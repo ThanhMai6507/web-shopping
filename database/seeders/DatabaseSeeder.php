@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::factory()->count(10)->create();
         Attachment::factory()->count(10)->create();
         Category::factory()->count(10)->create();
         Color::factory()->count(10)->create();
@@ -31,6 +32,5 @@ class DatabaseSeeder extends Seeder
         ProductSize::factory()->count(10)->create();
         ProductUser::factory()->count(10)->create();
         Size::factory()->count(10)->create();
-        User::factory()->count(10)->create();
     }
 }

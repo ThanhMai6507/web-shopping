@@ -1,13 +1,13 @@
 
 <div class="d-flex header-style">
     <div class="d-flex form-header">
-        <div class="d-flex"> 
-            <div class="item-menu"><a href="">HOME</a></div>
+        <div class="d-flex">
+            <div class="item-menu"><a href="{{ route('show.list') }}">HOME</a></div>
             <div class="item-menu"><a href="">BRANDS</a></div>
             <div class="item-menu"><a href="">DESIGNERS</a></div>
             <div class="item-menu"><a href="">CONTACT</a></div>
         </div>
-        <div class="ml-2 form-login-style"> 
+        <div class="ml-2 form-login-style">
             @if (Route::has('login'))
                 <div class="">
                     @auth
@@ -21,17 +21,13 @@
                             @csrf
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="font-semibold">LOGIN</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="font-semibold">REGISTER</a>
-                        @endif
+                        <a href="{{ route('login') }}" class="font-semibold">ACCOUNT</a>
                     @endauth
                 </div>
-            @endif 
+            @endif
         </div>
-        <div> 
-            @stack('search')  
+        <div>
+            @stack('search')
         </div>
     </div>
 </div>
