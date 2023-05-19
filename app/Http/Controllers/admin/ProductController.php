@@ -46,7 +46,14 @@ class ProductController extends Controller
         DB::beginTransaction();
 
         try {
-            $input = request()->all();
+            $input = [
+                "name" => $request->name,
+                "price" => $request->price,
+                "description" => $request->content,
+                "category_id" => $request->category_id,
+                "image" => $request->image,
+            ];
+
             $product = $this->productService->getProductRepository()->save($input);
 
             $this->attachmentService->getAttachmentRepository()->saveFile(
@@ -76,14 +83,21 @@ class ProductController extends Controller
         DB::beginTransaction();
 
         try {
-            $input = request()->all();
+            $input = [
+                "name" => $request->name,
+                "price" => $request->price,
+                "description" => $request->content,
+                "category_id" => $request->category_id,
+                "image" => $request->image,
+            ];
+
             $product = $this->productService->getProductRepository()->save($input, ["id" => $id]);
 
             $this->attachmentService->getAttachmentRepository()->saveFile(
                 $input['image'],
                 Product::class,
                 $product->id,
-                $id
+                ['attachable_id' => $product->id]
             );
 
             DB::commit();

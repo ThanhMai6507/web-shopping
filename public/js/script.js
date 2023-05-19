@@ -145,14 +145,14 @@ $(document).ready(function () {
                 $("#cart .cart-item").last()
                     .addClass("flash")
                     .find(".delete-item").click(function () {
-                    $(this).parent().fadeOut(300, function () {
-                        $(this).remove();
-                        if ($("#cart .cart-item").size() == 0) {
-                            $("#cart .empty").fadeIn(500);
-                            $("#checkout").fadeOut(500);
-                        }
-                    })
-                });
+                        $(this).parent().fadeOut(300, function () {
+                            $(this).remove();
+                            if ($("#cart .cart-item").size() == 0) {
+                                $("#cart .empty").fadeIn(500);
+                                $("#checkout").fadeOut(500);
+                            }
+                        })
+                    });
                 setTimeout(function () {
                     $("#cart .cart-item").last().removeClass("flash");
                 }, 10);
@@ -253,7 +253,7 @@ $(document).ready(function () {
         $("body").append('<div class="floating-cart"></div>');
         var cart = $('div.floating-cart');
         productCard.clone().appendTo(cart);
-        $(cart).css({'top': position.top + 'px', "left": position.left + 'px'}).fadeIn("slow").addClass('moveToCart');
+        $(cart).css({ 'top': position.top + 'px', "left": position.left + 'px' }).fadeIn("slow").addClass('moveToCart');
 
         var pathUrl = `cart/add-to-cart/${productId}`;
 
@@ -265,7 +265,8 @@ $(document).ready(function () {
                 console.log('success')
             },
             'error': function (request, error) {
-                console.log('error')
+                //login
+                window.location.href = 'login'
             }
         });
 
@@ -294,10 +295,10 @@ $(document).ready(function () {
             $("#cart .cart-item").last()
                 .addClass("flash")
                 .find(".delete-item").click(function () {
-                $(this).parent().fadeOut(300, function () {
-                    $(this).remove();
-                })
-            });
+                    $(this).parent().fadeOut(300, function () {
+                        $(this).remove();
+                    })
+                });
             setTimeout(function () {
                 $("#cart .cart-item").last().removeClass("flash");
             }, 10);

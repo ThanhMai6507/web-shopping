@@ -1,21 +1,30 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark kind header">
-@stack('search')
+    <div class="" style="margin-left: 13%; padding-left:7%">
+        @stack('search')
+    </div>
+    <div style="margin-left: 32%">
+        <ul class="navbar-nav">
+            @if (auth()->check())
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                document.getElementById('logout-form-user').submit();">
+                        Logout
+                    </a>
 
-<div style="margin-left: 32%">
-    <!-- Links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="{{ route('register') }}">Register</a>
-    </li>
-    <li class="nav-item dropdown navbar-nav">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-          {{ Auth::user()->name }}
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="change-password">Change Password</a>
-          <a class="dropdown-item" href="{{ route('login') }}">Logout</a>
-        </div>
-    </li>
-  </ul>
-</div>
+                    <form id="logout-form-user" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                </li>
+            @endif
+        </ul>
+    </div>
+
 </nav>
