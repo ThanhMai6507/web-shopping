@@ -4,7 +4,7 @@
     </div>
     <div style="margin-left: 32%">
         <ul class="navbar-nav">
-            @if (auth()->check())
+            @auth
                 <li class="nav-item">
                     <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
                 </li>
@@ -23,7 +23,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register') }}">Register</a>
                 </li>
-            @endif
+            @endauth
         </ul>
     </div>
 
