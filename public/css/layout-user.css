@@ -1298,3 +1298,18 @@ div.sku strong {
 #grid {
     height: auto !important;
 }
+
+
+#sidebar {
+    height: auto;
+}
+
+#wrapper {
+    height: auto;
+    width: 100%;
+}
+
+#grid {
+    position: unset;
+    width: auto;
+}
