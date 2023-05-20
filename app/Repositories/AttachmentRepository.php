@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Repositories;
+
 use Illuminate\Support\Facades\Storage;
 use App\Models\Attachment;
 
@@ -20,7 +21,7 @@ class AttachmentRepository extends BaseRepository
 
     public function saveFile($file, $attachableType, $attachableId, $conditions = ['id' => null])
     {
-        return $this->save([
+        $inputArr = [
             'file_path' => Storage::putFile('public/attachments', $file),
             'file_name' => $file->hashName(),
             'extension' => $file->extension(),
@@ -28,6 +29,11 @@ class AttachmentRepository extends BaseRepository
             'size' => $file->getSize(),
             'attachable_type' => $attachableType,
             'attachable_id' => $attachableId,
-        ]);
+        ];
+
+        return $this->save(
+            conditions: $conditions,
+            inputs: $inputArr
+        );
     }
 }

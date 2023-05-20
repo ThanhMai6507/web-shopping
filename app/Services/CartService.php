@@ -23,13 +23,21 @@ class CartService
 
     public function insert($product)
     {
-        Cart::updateOrCreate(
-            [
+        $cart = Cart::where([
+            'product_id' => $product->id,
+            'user_id' => auth()->id()
+        ])->first();
+
+        if (isset($cart)) {
+            $cart->quantity = $cart->quantity + 1;
+            $cart->save();
+        } else {
+            Cart::create([
+                'user_id' => auth()->id(),
                 'product_id' => $product->id,
-                'user_id' => auth()->id()
-            ],
-            ['quantity' => DB::raw('quantity + 1')]
-        );
+                'quantity' => 1
+            ]);
+        }
     }
 
     public function update(array $inputs, $isReplace = true)
@@ -58,7 +66,7 @@ class CartService
 
     public function removeItem($id)
     {
-        Cart::where('user_id', auth()->id())->where('product_id', $id)->delete();
+        Cart::where('user_id', auth()->id())->where('id', $id)->delete();
     }
 
     public function destroy()

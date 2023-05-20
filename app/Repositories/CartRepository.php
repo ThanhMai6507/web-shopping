@@ -21,14 +21,8 @@ class CartRepository extends BaseRepository
 
     public function getByUserId($userId)
     {
-        $query = $this->model
-            ->join('products', 'carts.product_id', '=', 'products.id')
-            ->join('attachments', function($join) {
-                $join->on('attachments.attachable_id', '=', 'products.id')
-                     ->where('attachments.attachable_type', '=', Product::class);
-            })
-            ->where('user_id', $userId)
-            ->select('products.*', 'carts.*', 'attachments.file_name as image');
+        $query = $this->model->with(['user', 'product.attachment'])->where('user_id', auth()->id());
+
         return $query->get();
     }
 }

@@ -5,10 +5,10 @@
     <div class="col-lg-9">
         <input type="text" class="form-control" name="name" value="{{ $product->name ?? old('name') }}">
     </div>
-    @error('name') 
-    <p class="error">
-        <span>{{ $message }}</span> 
-    </p> 
+    @error('name')
+        <p class="error">
+            <span>{{ $message }}</span>
+        </p>
     @enderror
 </div>
 <br>
@@ -17,47 +17,42 @@
     <div class="col-lg-9">
         <input type="number" class="form-control" name="price" value="{{ $product->price ?? old('price') }}">
     </div>
-    @error('price') 
-    <p class="error"> 
-        <span>{{ $message }}</span> 
-    </p> 
+    @error('price')
+        <p class="error">
+            <span>{{ $message }}</span>
+        </p>
     @enderror
 </div>
 <br>
 <div class="form-group row">
     <label class="col-lg-3 col-form-label">Description</label>
     <div class="col-lg-9">
-        <input type="text" class="form-control" name="content" value="{{ $product->description ?? old('description') }}">
+        <input type="text" class="form-control" name="content"
+            value="{{ $product->description ?? old('description') }}">
     </div>
-    @error('content') 
-    <p class="error" > 
-        <span>{{ $message }}</span> 
-    </p> 
+    @error('content')
+        <p class="error">
+            <span>{{ $message }}</span>
+        </p>
     @enderror
 </div>
 <br>
 <div class="form-group row">
     <label class="col-lg-3 col-form-label">Category</label>
     <div class="col-lg-9">
-        <select class="form-select" name='category_id'>
+        <select class="form-select form-control" name='category_id'>
             <option value="">Select Categories</option>
-            @foreach($categories as $category)
-                    @if(!empty($course->category_id))
-                        <option value="{{ $category->id }}" {{ $course->category_id == $category->id || old('category_id') == $category->id  ? 'selected' : '' }}>
-                            {{$category->name}}
-                        </option>
-                    @else
-                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id  ? 'selected' : '' }}>
-                            {{$category->name}}
-                        </option>
-                    @endif
-                @endforeach
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}" @selected(old('category_id', $product->category_id ?? '') == $category->id)>
+                    {{ $category->name }}
+                </option>
+            @endforeach
         </select>
     </div>
-    @error('category_id') 
-    <p class="error" > 
-        <span>{{ $message }}</span> 
-    </p> 
+    @error('category_id')
+        <p class="error">
+            <span>{{ $message }}</span>
+        </p>
     @enderror
 </div>
 <br>
@@ -66,10 +61,10 @@
     <div class="col-lg-9">
         <input type="file" class="form-control" name="image">
     </div>
-    @error('image') 
-    <p class="error" > 
-        <span>{{ $message }}</span> 
-    </p> 
+    @error('image')
+        <p class="error">
+            <span>{{ $message }}</span>
+        </p>
     @enderror
 </div>
 <br>

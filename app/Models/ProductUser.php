@@ -11,7 +11,7 @@ class ProductUser extends Model
 {
     use HasFactory;
 
-    protected $table = 'product_user';
+    protected $table = 'product_users';
 
     protected $fillable = [
         'product_id',
