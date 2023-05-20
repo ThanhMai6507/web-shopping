@@ -22,5 +22,4 @@
             <span class="empty">No items in cart.</span>
         @endif
     </div>
-
 @endif

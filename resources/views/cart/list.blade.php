@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.layout-user')
 @push('search')
     <x-search>
         <x-slot:slot>
@@ -17,131 +17,95 @@
 @endpush
 
 @section('content')
-    <div id="item-list-product">
+    <div>
         @if(session('success'))
             <div class="alert alert-success">
                 {{session('success')}}
             </div>
         @endif
-
-        <div class="row">
+        <div id="grid">
             @foreach($products as $product)
-                <div class="product col-3 d-flex">
+                <div class="product">
                     <div class="info-large">
                         <h4>{{ $product->name }}</h4>
-                        <div class="sku">
-                            PRODUCT SKU: <strong>89356</strong>
-                        </div>
-
                         <div class="price-big">
                             <span>$43</span> $39
                         </div>
-
                         <h3>COLORS</h3>
                         <div class="colors-large">
                             <ul>
                                 @foreach($product->colors as $color)
                                     <li> {{ $color }}</li>
                                 @endforeach
+                                @if(!empty($product->colors))
+                                    @foreach($product->sizes as $size)
+                                        <span>{{ $size }}</span>
+                                    @endforeach
+                                @else
+                                    <li><a href style="background:#222"><span></span></a></li>
+                                    <li><a href style="background:#6e8cd5"><span></span></a></li>
+                                    <li><a href style="background:#f56060"><span></span></a></li>
+                                    <li><a href style="background:#44c28d"><span></span></a></li>
+                                @endif
                             </ul>
                         </div>
-
                         <h3>SIZE</h3>
                         <div class="sizes-large">
-                            <ul>
+                            @if(!empty($product->sizes))
                                 @foreach($product->sizes as $size)
-                                    <li> {{ $size }}</li>
+                                    <span>{{ $size }}</span>
                                 @endforeach
-                            </ul>
+                            @else
+                                <span>XS</span>
+                                <span>S</span>
+                                <span>M</span>
+                                <span>L</span>
+                                <span>XL</span>
+                                <span>XXL</span>
+                            @endif
                         </div>
-
                         <button class="add-cart-large">Add To Cart</button>
-
                     </div>
                     <div class="make3D">
                         <div class="product-front">
                             <div class="shadow"></div>
                             @if ($product->attachment)
-                                <img class="img-fluid"
-                                     src="{{ asset('storage/attachments/'.$product->attachment->file_name) }}">
+                                <img src="{{ asset('storage/attachments/'.$product->attachment->file_name) }}"/>
                             @else
-                                <img
-                                    src="https://perspectives.agf.com/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png"
-                                >
+                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1.jpg"/>
                             @endif
                             <div class="image_overlay"></div>
-                                <a class="add_to_cart">Add to cart</a>
+                            <div class="add_to_cart">Add to cart</div>
                             <input type="hidden" value="{{ $product->id }}" id="product___id">
-
-{{--                            <a class="add_to_cart" href="{{ route('add.to.cart', $product->id) }}">Add to cart</a>--}}
                             <div class="view_gallery">View gallery</div>
                             <div class="stats">
-                                <div class="stats-container" style="width: 100%">
+                                <div class="stats-container">
                                     <span class="product_price">{{ $product->price }}</span>
-                                    <a href="{{ route('cart.detail.product', $product->id) }}"><span
-                                            class="product_name">{{ $product->name }}</span></a>
+                                    <a href="{{ route('cart.detail.product', $product->id) }}"
+                                       style="color: black;text-decoration: none;">
+                                        <span class="product_name">{{ $product->name }}</span>
+                                    </a>
                                     <p>{{ $product->category->name }}</p>
-
                                     <div class="product-options">
-                                        <div>
-                                            <strong style="margin-right: 10px">SIZES</strong>
-                                            @foreach($product->sizes as $size)
-                                                <span
-                                                    style="display: inline-block; margin-left: -5px; margin-right: 10px">{{ $size->name }}</span>
-                                            @endforeach
-                                        </div>
-                                        <div>
-                                            <strong style="margin-right: 10px">COLORS</strong>
-                                            <div class="colors">
-                                                @foreach($product->colors as $color)
-                                                    <span
-                                                        style="display: inline-block; margin-left: -5px; margin-right: 10px">{{ $color->name }}</span>
-                                                @endforeach
-                                            </div>
+                                        <strong>SIZES</strong>
+                                        <span>XS, S, M, L, XL, XXL</span>
+                                        <strong>COLORS</strong>
+                                        <div class="colors">
+                                            <div class="c-blue"><span></span></div>
+                                            <div class="c-red"><span></span></div>
+                                            <div class="c-white"><span></span></div>
+                                            <div class="c-green"><span></span></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="product-back">
-                            <div class="shadow"></div>
-                            <div class="carousel">
-                                <ul class="carousel-container" style="padding: 0">
-                                    @if ($product->attachment)
-                                        <li><img class="img-fluid"
-                                                 src="{{ asset('storage/attachments/'.$product->attachment->file_name) }}">
-                                        </li>
-                                    @else
-                                        <li><img
-                                                src="https://perspectives.agf.com/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png"
-                                                style='display:block; width:100%; height: 100%; object-fit: cover '>
-                                        </li>
-                                    @endif
-                                </ul>
-                                <div class="arrows-perspective">
-                                    <div class="carouselPrev">
-                                        <div class="y"></div>
-                                        <div class="x"></div>
-                                    </div>
-                                    <div class="carouselNext">
-                                        <div class="y"></div>
-                                        <div class="x"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flip-back">
-                                <div class="cy"></div>
-                                <div class="cx"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        <div class="box-pagination">
-            {{ $products->appends(request()->all())->links() }}
-        </div>
     </div>
-
+@endsection
+@section('pagination')
+    {{ $products->appends(request()->all())->links('pagination::default') }}
 @endsection
